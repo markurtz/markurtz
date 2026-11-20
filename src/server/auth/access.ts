@@ -2,7 +2,7 @@ import "server-only";
 
 import { notFound, redirect } from "next/navigation";
 
-import { adminEmails } from "@/lib/env";
+import { adminEmails, adminUserIds } from "@/lib/env";
 import { privateAreaReady } from "@/lib/features";
 import { siteConfig } from "@/lib/site";
 import { getCollectionByTokenHash, type CollectionOwner } from "@/server/dal/collections";
@@ -130,9 +130,19 @@ export async function getCurrentUser(): Promise<AuthUser | null> {
   return getAuthProvider().getUser();
 }
 
-/** True when the account is on the admin allowlist. */
-export function isAdminUser(user: AuthUser | null): boolean {
-  return Boolean(user && adminEmails().includes(user.email.toLowerCase()));
+/**
+ * True when the account is the admin: its confirmed email is on the allowlist
+ * and, once `ADMIN_USER_IDS` is set, its user id is pinned there as well.
+ */
+export function isAdminUser(
+  user: AuthUser | null,
+  allowed: { emails: string[]; userIds: string[] } = {
+    emails: adminEmails(),
+    userIds: adminUserIds(),
+  },
+): boolean {
+  if (!user || !allowed.emails.includes(user.email.toLowerCase())) return false;
+  return allowed.userIds.length === 0 || allowed.userIds.includes(user.id.toLowerCase());
 }
 
 /** Requires the admin. Signed-out visitors go to sign-in; other accounts see a 404. */

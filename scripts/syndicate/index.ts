@@ -69,6 +69,7 @@ async function main() {
   if (plan.length === 0) console.log("Nothing to syndicate.");
 
   let changed = false;
+  const failures: string[] = [];
   for (const entry of plan) {
     const post = posts.find((candidate) => candidate.slug === entry.slug);
     if (!post) continue;
@@ -96,13 +97,21 @@ async function main() {
         console.log(JSON.stringify(target.buildPayload(payload, { publish }), null, 2));
         continue;
       }
-      const result = await target.publish(payload, { publish });
-      state[post.slug] = {
-        ...state[post.slug],
-        [targetId]: { ...result, hash: contentHash(post.raw) },
-      };
-      changed = true;
-      console.log(`${target.label}: ${post.slug} -> ${result.url}`);
+      try {
+        const result = await target.publish(payload, { publish });
+        state[post.slug] = {
+          ...state[post.slug],
+          [targetId]: { ...result, hash: contentHash(post.raw) },
+        };
+        // Recorded immediately: if a later target fails, this copy is still
+        // on file and is never created a second time.
+        await writeFile(STATE_PATH, `${JSON.stringify(state, null, 2)}\n`);
+        changed = true;
+        console.log(`${target.label}: ${post.slug} -> ${result.url}`);
+      } catch (error) {
+        failures.push(`${target.label}: ${post.slug}`);
+        console.error(`${target.label}: ${post.slug} failed`, error);
+      }
     }
   }
 
@@ -113,8 +122,10 @@ async function main() {
   }
 
   if (changed) {
-    await writeFile(STATE_PATH, `${JSON.stringify(state, null, 2)}\n`);
     console.log(`Updated ${STATE_PATH}. Commit it so the site can link to the copies.`);
+  }
+  if (failures.length > 0) {
+    throw new Error(`Syndication failed for: ${failures.join(", ")}`);
   }
 }
 

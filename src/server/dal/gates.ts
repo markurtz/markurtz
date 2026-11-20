@@ -34,16 +34,19 @@ export async function createGate(values: {
 }
 
 /** Replaces a gate's passcode and revokes sessions unlocked with the old one. */
-export async function setGatePasscode(id: string, passcodeHash: string): Promise<void> {
+export async function setGatePasscode(id: string, passcodeHash: string): Promise<boolean> {
   const db = await getDb();
-  await db
+  const rows = await db
     .update(gates)
     .set({ passcodeHash, accessVersion: sql`${gates.accessVersion} + 1` })
-    .where(eq(gates.id, id));
+    .where(eq(gates.id, id))
+    .returning({ id: gates.id });
+  return rows.length > 0;
 }
 
-/** Deletes a gate. */
-export async function deleteGate(id: string): Promise<void> {
+/** Deletes a gate. Returns false when no gate has that id. */
+export async function deleteGate(id: string): Promise<boolean> {
   const db = await getDb();
-  await db.delete(gates).where(eq(gates.id, id));
+  const rows = await db.delete(gates).where(eq(gates.id, id)).returning({ id: gates.id });
+  return rows.length > 0;
 }

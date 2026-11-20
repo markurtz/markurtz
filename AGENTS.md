@@ -49,6 +49,8 @@ These are enforced by `tests/unit/boundaries.test.ts`.
 - **Client components import nothing from `src/server/` except `actions/`**, and never receive storage keys or database rows. Map rows to view models on the server (`src/server/media.ts`).
 - **Pages and route handlers in the private area never query the database directly.** They call an access guard from `src/server/auth/access.ts` first (`requireGalleryAccess`, `requireCollectionAccess`, `requireGate`, `requireAdmin`) and then the data access layer.
 - **Every admin server action begins with `await requireAdmin();`.**
+- **Rate-limited work calls `consumeAttempt()` first** (`src/server/rate-limit.ts`) and proceeds only if it returns true. Never check a counter and record the hit afterwards: parallel requests would all pass the check.
+- **The client IP and cookie security come from `src/server/auth/request.ts`** (`clientIp`, `isSecureRequest`). Do not read `x-forwarded-for` or the site URL for these anywhere else.
 - **Access decisions are pure functions** (`evaluate*Access`) with unit tests. Change the rules there, not in pages.
 - **Private media stays in the private bucket** and is reached only through short-lived signed URLs.
 - Modules loaded by root config files (`next.config.ts`, `velite.config.ts`) use relative imports, not the `@/` alias.
@@ -92,7 +94,7 @@ Run `pnpm check` before finishing any change, and `pnpm build` when routes, conf
   - `main.yml`: Push to `main` (same stages, post-merge).
   - `weekly.yml`: Scheduled security audit, full test suite, and link check.
 - Pin every third-party action to a full commit SHA with a version comment.
-- Operational workflows: `syndicate.yml` (blog cross-posting), `db-migrate.yml` (manual, `production` environment), `keepalive.yml` (daily health check and gallery expiry), `db-backup.yml` (weekly encrypted dump). Each is inert until its secrets exist.
+- Operational workflows: `syndicate.yml` (blog cross-posting), `db-migrate.yml` (manual, `production` environment), `keepalive.yml` (daily health check and gallery expiry), `db-backup.yml` (weekly encrypted dump to the private bucket, never to an artifact, because this repository is public). Each is inert until its secrets exist.
 - Deployment is not done in GitHub Actions. Vercel builds and deploys from Git.
 
 ## Documentation

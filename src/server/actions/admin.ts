@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { z } from "zod";
 
 import { siteConfig } from "@/lib/site";
@@ -20,7 +20,14 @@ import {
   updateGallery,
 } from "@/server/dal/galleries";
 import { createGate, deleteGate, getGateByKey, setGatePasscode } from "@/server/dal/gates";
-import { deletePhoto, listAllPhotos, reorderPhotos } from "@/server/dal/photos";
+import {
+  deleteCollection,
+  getCollectionInGallery,
+  revokeGalleryShares,
+  revokeMemberShares,
+  updateCollection,
+} from "@/server/dal/collections";
+import { deletePhoto, getPhotoInGallery, listAllPhotos, movePhoto } from "@/server/dal/photos";
 import { getStorage, photoKeys } from "@/server/storage";
 
 import {
@@ -45,7 +52,17 @@ export interface PasscodeState extends FormState {
 }
 
 const DAY_MS = 24 * 60 * 60 * 1000;
-const optionalPasscode = z.string().trim().max(200).optional();
+/** Shortest passcode the admin may type. Generated ones are four words. */
+const MIN_TYPED_PASSCODE = 12;
+const optionalPasscode = z
+  .string()
+  .trim()
+  .max(200)
+  .optional()
+  .refine(
+    (value) => !value || value.length >= MIN_TYPED_PASSCODE,
+    `Use at least ${MIN_TYPED_PASSCODE} characters, or leave it empty to generate one`,
+  );
 
 const galleryPath = (id: string) => `/admin/galleries/${id}`;
 
@@ -109,29 +126,41 @@ export async function updateGalleryAction(
   );
   if (!parsed.ok) return { error: parsed.error };
   const { id, shootDate, ...values } = parsed.data;
-  await updateGallery(id, { ...values, shootDate: shootDate || null });
+  const found = await updateGallery(id, { ...values, shootDate: shootDate || null });
+  if (!found) return { error: "Gallery not found." };
   revalidatePath(galleryPath(id));
   return { message: "Saved." };
 }
 
 /**
  * Sets a gallery's passcode (typed, or four generated words) and returns it
- * once. Changing it signs out everyone who used the old one.
+ * once. Changing it signs out everyone who used the old one and, unless the
+ * admin unticks it, also stops every share link made in the gallery, so
+ * nobody who was let in under the old passcode keeps a way back.
  */
 export async function setGalleryPasscodeAction(
   _previous: PasscodeState,
   formData: FormData,
 ): Promise<PasscodeState> {
   await requireAdmin();
-  const parsed = parseForm(z.object({ id: uuidSchema, passcode: optionalPasscode }), formData);
+  const parsed = parseForm(
+    z.object({ id: uuidSchema, passcode: optionalPasscode, revokeShares: checkbox }),
+    formData,
+  );
   if (!parsed.ok) return { error: parsed.error };
   const gallery = await getGalleryById(parsed.data.id);
   if (!gallery) return { error: "Gallery not found." };
 
   const passcode = parsed.data.passcode || generatePasscode();
   await setGalleryPasscode(gallery.id, await hashPasscode(passcode));
+  const revoked = parsed.data.revokeShares ? await revokeGalleryShares(gallery.id) : 0;
   revalidatePath(galleryPath(gallery.id));
-  return { passcode, link: absoluteUrl(`/clients/g/${gallery.slug}`) };
+  return {
+    passcode,
+    link: absoluteUrl(`/clients/g/${gallery.slug}`),
+    message:
+      revoked > 0 ? `Stopped ${revoked} share ${revoked === 1 ? "link" : "links"}.` : undefined,
+  };
 }
 
 /** Deletes a gallery and every file stored for it. The slug must be typed to confirm. */
@@ -176,13 +205,30 @@ export async function inviteMemberAction(
   return { message: `${email} can now sign in at ${absoluteUrl("/clients/sign-in")}.` };
 }
 
-/** Removes a client's access to a gallery. */
+/**
+ * Removes a client's access to a gallery and stops the share links of the
+ * collections they made there.
+ */
 export async function removeMemberAction(formData: FormData): Promise<void> {
   await requireAdmin();
   const { id, userId } = z
     .object({ id: uuidSchema, userId: uuidSchema })
     .parse(Object.fromEntries(formData));
-  await removeMember(id, userId);
+  if (!(await removeMember(id, userId))) notFound();
+  await revokeMemberShares(id, userId);
+  revalidatePath(galleryPath(id));
+}
+
+/** Admin control over a client's collection: stop its share link, or delete it. */
+export async function collectionAdminAction(formData: FormData): Promise<void> {
+  await requireAdmin();
+  const { id, collectionId, op } = z
+    .object({ id: uuidSchema, collectionId: uuidSchema, op: z.enum(["unshare", "delete"]) })
+    .parse(Object.fromEntries(formData));
+  const collection = await getCollectionInGallery(id, collectionId);
+  if (!collection) notFound();
+  if (op === "delete") await deleteCollection(collection.id);
+  else await updateCollection(collection.id, { shareTokenHash: null });
   revalidatePath(galleryPath(id));
 }
 
@@ -198,18 +244,14 @@ export async function photoAction(formData: FormData): Promise<void> {
     .parse(Object.fromEntries(formData));
 
   if (op === "cover") {
+    // The cover must be one of this gallery's own photos.
+    if (!(await getPhotoInGallery(id, photoId))) notFound();
     await updateGallery(id, { coverPhotoId: photoId });
   } else if (op === "delete") {
     const photo = await deletePhoto(id, photoId);
     if (photo) await (await getStorage("private")).delete(Object.values(photoKeys(photo)));
   } else {
-    const ids = (await listAllPhotos(id)).map((photo) => photo.id);
-    const from = ids.indexOf(photoId);
-    const to = op === "earlier" ? from - 1 : from + 1;
-    if (from !== -1 && to >= 0 && to < ids.length) {
-      [ids[from], ids[to]] = [ids[to] as string, ids[from] as string];
-      await reorderPhotos(id, ids);
-    }
+    await movePhoto(id, photoId, op);
   }
   revalidatePath(galleryPath(id));
 }
@@ -253,10 +295,12 @@ export async function gateAction(
   const { id, key, op } = parsed.data;
   revalidatePath("/admin/gates");
   if (op === "delete") {
-    await deleteGate(id);
+    if (!(await deleteGate(id))) return { error: "Gate not found." };
     return { message: `Deleted gate "${key}".` };
   }
   const passcode = generatePasscode();
-  await setGatePasscode(id, await hashPasscode(passcode));
+  if (!(await setGatePasscode(id, await hashPasscode(passcode)))) {
+    return { error: "Gate not found." };
+  }
   return { passcode, link: absoluteUrl(`/p/${key}`) };
 }

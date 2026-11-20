@@ -8,8 +8,7 @@ import { jwtVerify, SignJWT } from "jose";
 import { cookies } from "next/headers";
 
 import { getEnv } from "@/lib/env";
-import { siteConfig } from "@/lib/site";
-
+import { isSecureRequest } from "./request";
 import { sessionSecret } from "./session";
 
 /**
@@ -31,7 +30,7 @@ export interface AuthUser {
 export interface AuthProvider {
   /** The verified user for this request, or null. */
   getUser(): Promise<AuthUser | null>;
-  /** Sends a one-time code to an address that already has an account. */
+  /** Sends a one-time code to an address that already has an account. Throws when it cannot. */
   requestCode(email: string): Promise<void>;
   /** Exchanges a code for a session. Returns false when the code is wrong or expired. */
   verifyCode(email: string, code: string): Promise<boolean>;
@@ -87,11 +86,20 @@ const supabaseProvider: AuthProvider = {
     const supabase = await supabaseServer();
     // getUser() validates the session with the Auth server, unlike getSession().
     const { data } = await supabase.auth.getUser();
-    return data.user?.email ? { id: data.user.id, email: data.user.email.toLowerCase() } : null;
+    const user = data.user;
+    // An address counts only once Supabase has confirmed it, so an account
+    // registered for someone else's address (should sign-ups ever be left on)
+    // carries no rights here.
+    if (!user?.email || !user.email_confirmed_at) return null;
+    return { id: user.id, email: user.email.toLowerCase() };
   },
   async requestCode(email) {
     const supabase = await supabaseServer();
-    await supabase.auth.signInWithOtp({ email, options: { shouldCreateUser: false } });
+    const { error } = await supabase.auth.signInWithOtp({
+      email,
+      options: { shouldCreateUser: false },
+    });
+    if (error) throw error;
   },
   async verifyCode(email, code) {
     const supabase = await supabaseServer();
@@ -155,7 +163,7 @@ const devProvider: AuthProvider = {
       .sign(sessionSecret());
     (await cookies()).set(DEV_COOKIE, token, {
       httpOnly: true,
-      secure: siteConfig.url.startsWith("https://"),
+      secure: await isSecureRequest(),
       sameSite: "lax",
       path: "/",
       maxAge: DEV_SESSION_SECONDS,

@@ -79,7 +79,8 @@ export function createLocalStorage(bucket: Bucket): MediaStorage {
     async signedGetUrl(key, options) {
       assertSafeKey(key);
       if (bucket === "public") return `/media/${key}`;
-      const expires = Math.floor(Date.now() / 1000) + options.expiresIn;
+      const signedAt = options.signedAt ?? new Date();
+      const expires = Math.floor(signedAt.getTime() / 1000) + options.expiresIn;
       const params = new URLSearchParams({
         e: String(expires),
         s: signLocalUrl(key, expires, options.downloadAs),

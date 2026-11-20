@@ -21,6 +21,7 @@ import {
   jsonb,
   pgEnum,
   pgTable,
+  uniqueIndex,
   primaryKey,
   text,
   timestamp,
@@ -142,6 +143,14 @@ export const collections = pgTable(
   },
   (table) => [
     index("collections_gallery_idx").on(table.galleryId),
+    // One Favorites collection per owner in a gallery (a null owner is the
+    // gallery itself), so two quick taps on the heart cannot create two.
+    uniqueIndex("collections_favorites_key")
+      .on(
+        table.galleryId,
+        sql`coalesce(${table.createdByUser}, '00000000-0000-0000-0000-000000000000'::uuid)`,
+      )
+      .where(sql`${table.isFavorites}`),
     // Target of the composite foreign key on collection_photos.
     unique("collections_id_gallery_key").on(table.id, table.galleryId),
   ],
@@ -192,14 +201,19 @@ export const accessEvents = pgTable(
   {
     id: bigserial("id", { mode: "number" }).primaryKey(),
     kind: accessEventKind("kind").notNull(),
-    galleryId: uuid("gallery_id").references(() => galleries.id, { onDelete: "cascade" }),
+    // The log outlives what it describes: deleting a gallery must not erase
+    // the record of who unlocked it or downloaded from it.
+    galleryId: uuid("gallery_id").references(() => galleries.id, { onDelete: "set null" }),
     collectionId: uuid("collection_id").references(() => collections.id, { onDelete: "set null" }),
-    gateId: uuid("gate_id").references(() => gates.id, { onDelete: "cascade" }),
+    gateId: uuid("gate_id").references(() => gates.id, { onDelete: "set null" }),
     ipHash: text("ip_hash").notNull(),
     userAgent: text("user_agent").notNull().default(""),
     at: timestamp("at", { withTimezone: true }).notNull().defaultNow(),
   },
-  (table) => [index("access_events_at_idx").on(sql`${table.at} desc`)],
+  (table) => [
+    index("access_events_at_idx").on(sql`${table.at} desc`),
+    index("access_events_gallery_idx").on(table.galleryId),
+  ],
 ).enableRLS();
 
 /** Fixed-window counters for the rate limiter. */

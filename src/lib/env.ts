@@ -30,6 +30,13 @@ const envSchema = z.object({
   }),
   IP_HASH_SALT: optional,
   CRON_SECRET: optional,
+  /** Header the deployment's own edge sets with the client IP (see docs/guides/deploy.md). */
+  CLIENT_IP_HEADER: optional,
+  /** Supabase user ids allowed to be admin. When set, the email allowlist alone is not enough. */
+  ADMIN_USER_IDS: optional,
+  /** "1" permits the development drivers in a production build. Tests only; ignored on Vercel. */
+  ALLOW_INSECURE_DEV_DRIVERS: optional,
+  NODE_ENV: optional,
 
   STORAGE_DRIVER: z.enum(["r2", "local"]).default("r2"),
   R2_ACCOUNT_ID: optional,
@@ -41,6 +48,9 @@ const envSchema = z.object({
   RESEND_API_KEY: optional,
   CONTACT_TO_EMAIL: optional,
   CONTACT_FROM_EMAIL: optional,
+
+  /** Signs generated Open Graph image URLs (see src/lib/seo/og.ts). */
+  OG_IMAGE_SECRET: optional,
 
   GITHUB_TOKEN: optional,
   /** Set by Vercel on every deployment. Used to refuse development-only drivers there. */
@@ -63,6 +73,23 @@ export function parseEnv(source: Record<string, string | undefined>): Env {
   if (env.VERCEL && env.STORAGE_DRIVER === "local") {
     throw new Error("STORAGE_DRIVER=local writes to the local disk and cannot be used on Vercel.");
   }
+  // Anywhere else, a production build refuses the development drivers unless
+  // explicitly told otherwise, so a self-hosted server cannot run them by accident.
+  const insecureAllowed = env.ALLOW_INSECURE_DEV_DRIVERS === "1";
+  if (env.NODE_ENV === "production" && !insecureAllowed) {
+    if (env.AUTH_DRIVER === "dev") {
+      throw new Error(
+        "AUTH_DRIVER=dev accepts a fixed sign-in code and is refused in production builds. " +
+          "Use AUTH_DRIVER=supabase (ALLOW_INSECURE_DEV_DRIVERS=1 exists for automated tests only).",
+      );
+    }
+    if (env.STORAGE_DRIVER === "local") {
+      throw new Error(
+        "STORAGE_DRIVER=local is refused in production builds. " +
+          "Use STORAGE_DRIVER=r2 (ALLOW_INSECURE_DEV_DRIVERS=1 exists for automated tests only).",
+      );
+    }
+  }
   return env;
 }
 
@@ -72,6 +99,14 @@ let cached: Env | undefined;
 export function getEnv(): Env {
   cached ??= parseEnv(process.env);
   return cached;
+}
+
+/** Admin user ids from `ADMIN_USER_IDS` (comma separated). Empty when not pinned. */
+export function adminUserIds(env: Env = getEnv()): string[] {
+  return (env.ADMIN_USER_IDS ?? "")
+    .split(",")
+    .map((id) => id.trim().toLowerCase())
+    .filter(Boolean);
 }
 
 /** Lower-cased admin allowlist from `ADMIN_EMAILS` (comma separated). */

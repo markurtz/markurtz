@@ -19,16 +19,75 @@ type Scope = { kind: "gallery"; slug: string } | { kind: "collection"; token: st
 
 const NEW_COLLECTION = "__new__";
 
-/** Fetches the files and saves them as one zip, streamed so memory stays flat. */
-async function saveZip(items: { name: string; url: string }[], filename: string): Promise<void> {
-  const { downloadZip } = await import("client-zip");
+/** Download URLs are signed this many photos at a time, just before they are fetched. */
+const ZIP_BATCH = 10;
+/** Larger selections are streamed straight to disk instead of being held in memory. */
+const IN_MEMORY_ZIP_MAX = 40;
+
+type ZipResult =
+  { status: "saved"; count: number } | { status: "too-large" | "cancelled" | "empty" };
+
+interface SaveFilePicker {
+  (options: {
+    suggestedName: string;
+    types: { description: string; accept: Record<string, string[]> }[];
+  }): Promise<{ createWritable(): Promise<WritableStream<Uint8Array>> }>;
+}
+
+/**
+ * Saves the selected photos as one zip.
+ *
+ * URLs are requested in small batches while the archive is being written, so
+ * a long download never outlives its short-lived links. A small selection is
+ * assembled in memory. A large one is streamed to a file the visitor picks,
+ * where the browser supports that, so memory stays flat; elsewhere the caller
+ * is told the selection is too large.
+ */
+async function saveZip(
+  ids: string[],
+  signBatch: (batch: string[]) => Promise<{ name: string; url: string }[]>,
+  filename: string,
+): Promise<ZipResult> {
+  const picker = (window as unknown as { showSaveFilePicker?: SaveFilePicker }).showSaveFilePicker;
+  const streamToDisk = ids.length > IN_MEMORY_ZIP_MAX;
+  if (streamToDisk && !picker) return { status: "too-large" };
+
+  // Sign the first batch up front: an empty answer means downloads are off.
+  const firstBatch = await signBatch(ids.slice(0, ZIP_BATCH));
+  if (firstBatch.length === 0) return { status: "empty" };
+
+  let count = 0;
   async function* files() {
-    for (const item of items) {
-      const response = await fetch(item.url);
-      if (!response.ok) throw new Error(`Could not download ${item.name}`);
-      yield { name: item.name, input: response };
+    for (let start = 0; start < ids.length; start += ZIP_BATCH) {
+      const batch = start === 0 ? firstBatch : await signBatch(ids.slice(start, start + ZIP_BATCH));
+      for (const item of batch) {
+        const response = await fetch(item.url);
+        if (!response.ok) throw new Error(`Could not download ${item.name}`);
+        count += 1;
+        yield { name: item.name, input: response };
+      }
     }
   }
+
+  const { downloadZip } = await import("client-zip");
+  if (streamToDisk && picker) {
+    let writable: WritableStream<Uint8Array>;
+    try {
+      const handle = await picker({
+        suggestedName: filename,
+        types: [{ description: "Zip archive", accept: { "application/zip": [".zip"] } }],
+      });
+      writable = await handle.createWritable();
+    } catch {
+      // The visitor closed the save dialog.
+      return { status: "cancelled" };
+    }
+    const body = downloadZip(files()).body;
+    if (!body) throw new Error("Could not create the archive");
+    await body.pipeTo(writable);
+    return { status: "saved", count };
+  }
+
   const blob = await downloadZip(files()).blob();
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
@@ -36,6 +95,7 @@ async function saveZip(items: { name: string; url: string }[], filename: string)
   link.download = filename;
   link.click();
   URL.revokeObjectURL(url);
+  return { status: "saved", count };
 }
 
 /**
@@ -131,16 +191,23 @@ export function GalleryView({
     });
   };
 
-  const onDownload = (ids?: string[]) =>
+  const onDownload = (ids: string[] = images.map((image) => image.id)) =>
     run(async () => {
       setStatus("Preparing your download…");
-      const items = await getDownloadUrls(scope, ids);
-      if (items.length === 0) {
+      const result = await saveZip(ids, (batch) => getDownloadUrls(scope, batch), zipName);
+      if (result.status === "saved") {
+        setStatus(`Downloaded ${result.count} ${result.count === 1 ? "photo" : "photos"}.`);
+      } else if (result.status === "too-large") {
+        setStatus(
+          archiveUrl
+            ? `This browser can save up to ${IN_MEMORY_ZIP_MAX} photos at once. Use "Download all" for the full set, or select fewer photos.`
+            : `This browser can save up to ${IN_MEMORY_ZIP_MAX} photos at once. Select fewer photos, or use Chrome or Edge on a computer for larger downloads.`,
+        );
+      } else if (result.status === "cancelled") {
+        setStatus("Download cancelled.");
+      } else {
         setStatus("Downloads are not available.");
-        return;
       }
-      await saveZip(items, zipName);
-      setStatus(`Downloaded ${items.length} ${items.length === 1 ? "photo" : "photos"}.`);
     });
 
   const onAddToCollection = (formData: FormData) => {

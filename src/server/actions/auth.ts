@@ -8,7 +8,7 @@ import { requirePrivateArea } from "@/server/auth/access";
 import { getAuthProvider } from "@/server/auth/provider";
 import { getRequestInfo } from "@/server/auth/request";
 import { isInvitedEmail } from "@/server/dal/galleries";
-import { isRateLimited, recordHit, SIGN_IN_RULE } from "@/server/rate-limit";
+import { consumeAttempt, SIGN_IN_EMAIL_RULE, SIGN_IN_RULE } from "@/server/rate-limit";
 
 import { emailSchema, parseForm } from "./shared";
 
@@ -40,15 +40,19 @@ export async function requestSignInCode(
 
   const request = await getRequestInfo();
   const rateKey = `signin:${request.ipHash}`;
-  if (await isRateLimited(rateKey, SIGN_IN_RULE)) return { step: "email", error: TOO_MANY };
-  await recordHit(rateKey, SIGN_IN_RULE);
+  if (!(await consumeAttempt(rateKey, SIGN_IN_RULE))) return { step: "email", error: TOO_MANY };
 
   const provider = getAuthProvider();
   try {
     if (adminEmails().includes(email)) {
-      // The admin account is created on first sign-in rather than by public sign-up.
-      await provider.ensureUser(email);
-      await provider.requestCode(email);
+      // The admin account is created on first sign-in rather than by public
+      // sign-up. Only when no account exists yet is it created.
+      try {
+        await provider.requestCode(email);
+      } catch {
+        await provider.ensureUser(email);
+        await provider.requestCode(email);
+      }
     } else if (await isInvitedEmail(email)) {
       await provider.requestCode(email);
     }
@@ -86,11 +90,16 @@ export async function verifySignInCode(
 
   const request = await getRequestInfo();
   const rateKey = `signin-verify:${request.ipHash}`;
-  if (await isRateLimited(rateKey, SIGN_IN_RULE)) return { step: "code", email, error: TOO_MANY };
+  // Counted before the code is checked, per visitor and per address, so
+  // neither parallel requests nor many addresses can guess a code.
+  const [visitorOk, emailOk] = await Promise.all([
+    consumeAttempt(rateKey, SIGN_IN_RULE),
+    consumeAttempt(`signin-verify-email:${email}`, SIGN_IN_EMAIL_RULE),
+  ]);
+  if (!visitorOk || !emailOk) return { step: "code", email, error: TOO_MANY };
 
   const ok = await getAuthProvider().verifyCode(email, code);
   if (!ok) {
-    await recordHit(rateKey, SIGN_IN_RULE);
     return { step: "code", email, error: "That code is not right or has expired." };
   }
   redirect(DESTINATIONS[destination]);

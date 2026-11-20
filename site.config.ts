@@ -7,7 +7,12 @@ import { defineSiteConfig } from "./src/lib/site-config";
  * See docs/guides/customizing.md. Values marked TODO are placeholders for Mark.
  */
 export const siteConfig = defineSiteConfig({
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  // Preview deployments use their own address, so links and cookies made
+  // there never point at production.
+  url:
+    process.env.VERCEL_ENV === "preview" && process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
   // TODO (Mark): replace with the real domain once it is chosen.
   productionUrl: "https://example.com",
   name: "Mark Kurtz",

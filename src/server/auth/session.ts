@@ -6,6 +6,8 @@ import { cookies } from "next/headers";
 import { getEnv } from "@/lib/env";
 import { siteConfig } from "@/lib/site";
 
+import { isSecureRequest } from "./request";
+
 /**
  * The passcode session: a signed cookie listing what this browser has unlocked.
  * A grant only says "the right passcode was entered at version v". Every
@@ -30,8 +32,8 @@ const MAX_GRANTS = 20;
 const DAY_SECONDS = 24 * 60 * 60;
 
 /** `__Host-` requires HTTPS, so plain-HTTP development uses an unprefixed name. */
-export function grantCookieName(siteUrl: string = siteConfig.url): string {
-  return siteUrl.startsWith("https://") ? "__Host-grants" : "grants";
+export function grantCookieName(secure: boolean): string {
+  return secure ? "__Host-grants" : "grants";
 }
 
 /** The key that signs session cookies. */
@@ -115,17 +117,19 @@ export function newGrant(
 /** The grants in the current request's session cookie. */
 export async function readGrants(): Promise<Grant[]> {
   const store = await cookies();
-  return verifyGrants(store.get(grantCookieName())?.value, sessionSecret());
+  const name = grantCookieName(await isSecureRequest());
+  return verifyGrants(store.get(name)?.value, sessionSecret());
 }
 
 /** Adds a grant to the session cookie. Call from a server action or route handler. */
 export async function addGrant(grant: Grant): Promise<void> {
   const store = await cookies();
-  const name = grantCookieName();
+  const secure = await isSecureRequest();
+  const name = grantCookieName(secure);
   const grants = mergeGrant(await verifyGrants(store.get(name)?.value, sessionSecret()), grant);
   store.set(name, await signGrants(grants, sessionSecret()), {
     httpOnly: true,
-    secure: siteConfig.url.startsWith("https://"),
+    secure,
     sameSite: "lax",
     path: "/",
     maxAge: siteConfig.clientArea.sessionDays * DAY_SECONDS,
@@ -134,5 +138,5 @@ export async function addGrant(grant: Grant): Promise<void> {
 
 /** Clears the passcode session. */
 export async function clearGrants(): Promise<void> {
-  (await cookies()).delete(grantCookieName());
+  (await cookies()).delete(grantCookieName(await isSecureRequest()));
 }

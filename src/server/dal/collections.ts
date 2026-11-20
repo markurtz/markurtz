@@ -1,6 +1,6 @@
 import "server-only";
 
-import { and, asc, count, desc, eq, inArray, isNull, max, sql } from "drizzle-orm";
+import { and, asc, count, desc, eq, inArray, isNotNull, isNull, max, sql } from "drizzle-orm";
 
 import { getDb } from "@/server/db/client";
 import {
@@ -111,17 +111,96 @@ export async function createCollection(
   return collection;
 }
 
-/** The visitor's Favorites collection, created on first use. */
+/**
+ * The visitor's Favorites collection, created on first use. A unique index
+ * allows one per owner, so a concurrent first use loses the insert quietly
+ * and reads the winner's row instead.
+ */
 export async function getOrCreateFavorites(
   galleryId: string,
   owner: CollectionOwner,
 ): Promise<Collection> {
-  const existing = (await listCollections(galleryId, owner)).find(
-    (collection) => collection.isFavorites,
-  );
-  return (
-    existing ?? createCollection(galleryId, owner, { title: FAVORITES_TITLE, isFavorites: true })
-  );
+  const find = async () =>
+    (await listCollections(galleryId, owner)).find((collection) => collection.isFavorites);
+  const existing = await find();
+  if (existing) return existing;
+  const db = await getDb();
+  await db
+    .insert(collections)
+    .values({
+      galleryId,
+      title: FAVORITES_TITLE,
+      isFavorites: true,
+      createdByUser: owner.userId ?? null,
+      createdByName: owner.name ?? null,
+    })
+    .onConflictDoNothing();
+  const created = await find();
+  if (!created) throw new Error("Favorites collection was not created");
+  return created;
+}
+
+/**
+ * Flips a photo's membership of a collection and reports the new state. The
+ * delete decides: only when nothing was removed is the photo added, so two
+ * concurrent toggles cannot both add or both remove.
+ */
+export async function togglePhotoInCollection(
+  collection: Pick<Collection, "id" | "galleryId">,
+  photoId: string,
+): Promise<boolean> {
+  const db = await getDb();
+  const removed = await db
+    .delete(collectionPhotos)
+    .where(
+      and(eq(collectionPhotos.collectionId, collection.id), eq(collectionPhotos.photoId, photoId)),
+    )
+    .returning({ photoId: collectionPhotos.photoId });
+  if (removed.length > 0) return false;
+  await addPhotosToCollection(collection, [photoId]);
+  return true;
+}
+
+/** Stops every share link in a gallery. Returns how many were active. */
+export async function revokeGalleryShares(galleryId: string): Promise<number> {
+  const db = await getDb();
+  const rows = await db
+    .update(collections)
+    .set({ shareTokenHash: null })
+    .where(and(eq(collections.galleryId, galleryId), isNotNull(collections.shareTokenHash)))
+    .returning({ id: collections.id });
+  return rows.length;
+}
+
+/** Stops the share links of one member's collections in a gallery. */
+export async function revokeMemberShares(galleryId: string, userId: string): Promise<number> {
+  const db = await getDb();
+  const rows = await db
+    .update(collections)
+    .set({ shareTokenHash: null })
+    .where(
+      and(
+        eq(collections.galleryId, galleryId),
+        eq(collections.createdByUser, userId),
+        isNotNull(collections.shareTokenHash),
+      ),
+    )
+    .returning({ id: collections.id });
+  return rows.length;
+}
+
+/** One collection of a gallery, whoever made it. For the admin only. */
+export async function getCollectionInGallery(
+  galleryId: string,
+  collectionId: string,
+): Promise<Collection | undefined> {
+  const db = await getDb();
+  const [row] = await db
+    .select()
+    .from(collections)
+    .where(and(eq(collections.id, collectionId), eq(collections.galleryId, galleryId)))
+    .limit(1);
+  return row;
 }
 
 /** Fields the creator can edit on a collection. */
@@ -202,22 +281,20 @@ export async function removePhotosFromCollection(
     );
 }
 
-/** Rewrites a collection's order to match the given list of photo ids. */
+/** Rewrites a collection's order to match the given list of photo ids, in one statement. */
 export async function reorderCollection(collectionId: string, orderedIds: string[]): Promise<void> {
+  if (orderedIds.length === 0) return;
   const db = await getDb();
-  await db.transaction(async (tx) => {
-    for (const [index, photoId] of orderedIds.entries()) {
-      await tx
-        .update(collectionPhotos)
-        .set({ sortOrder: index })
-        .where(
-          and(
-            eq(collectionPhotos.collectionId, collectionId),
-            eq(collectionPhotos.photoId, photoId),
-          ),
-        );
-    }
-  });
+  const order = sql.join(
+    orderedIds.map((id, index) => sql`(${id}::uuid, ${index}::integer)`),
+    sql`, `,
+  );
+  await db.execute(sql`
+    update ${collectionPhotos} set sort_order = ordering.position
+    from (values ${order}) as ordering(photo_id, position)
+    where ${collectionPhotos.photoId} = ordering.photo_id
+      and ${collectionPhotos.collectionId} = ${collectionId}
+  `);
 }
 
 /** The photos in a collection, in collection order. */

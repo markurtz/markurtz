@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 
+import { verifyOgText } from "@/lib/seo/og";
 import { siteConfig } from "@/lib/site";
 
 const WIDTH = 1200;
@@ -9,13 +10,24 @@ const MAX_SUBTITLE = 160;
 const CACHE_SECONDS = 60 * 60 * 24 * 7;
 
 /**
- * Open Graph image for a page: `/api/og?title=…&subtitle=…`. Text is truncated
- * so the endpoint cannot be used to render arbitrary long content.
+ * Open Graph image for a page: `/api/og?title=…&subtitle=…&sig=…`. The text
+ * must carry the signature `ogImageUrl` adds (see `src/lib/seo/og.ts`).
+ * Anything else is redirected to the plain site card, so the route cannot be
+ * used to put someone else's words on this domain.
  */
 export function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const title = (searchParams.get("title") ?? siteConfig.title).slice(0, MAX_TITLE);
-  const subtitle = (searchParams.get("subtitle") ?? "").slice(0, MAX_SUBTITLE);
+  const url = new URL(request.url);
+  const { searchParams } = url;
+  const requestedTitle = searchParams.get("title");
+  const requestedSubtitle = searchParams.get("subtitle") ?? "";
+  if (requestedTitle === null) {
+    // The bare URL is the site card. Extra parameters would only split the cache.
+    if (url.search) return Response.redirect(new URL(url.pathname, url), 308);
+  } else if (!verifyOgText(requestedTitle, requestedSubtitle, searchParams.get("sig") ?? "")) {
+    return Response.redirect(new URL(url.pathname, url), 307);
+  }
+  const title = (requestedTitle ?? siteConfig.title).slice(0, MAX_TITLE);
+  const subtitle = requestedSubtitle.slice(0, MAX_SUBTITLE);
 
   return new ImageResponse(
     <div

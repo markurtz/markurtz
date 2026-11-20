@@ -11,7 +11,12 @@ import { getCollectionByTokenHash } from "@/server/dal/collections";
 import { recordEvent } from "@/server/dal/events";
 import { getGalleryById, getGalleryBySlug } from "@/server/dal/galleries";
 import { getGateByKey } from "@/server/dal/gates";
-import { isRateLimited, recordHit, resetRateLimit, UNLOCK_RULE } from "@/server/rate-limit";
+import {
+  consumeAttempt,
+  resetRateLimit,
+  UNLOCK_RESOURCE_RULE,
+  UNLOCK_RULE,
+} from "@/server/rate-limit";
 
 import { parseForm, passcodeSchema, slugSchema, type FormState } from "./shared";
 
@@ -37,12 +42,18 @@ interface Target {
 async function attemptUnlock(target: Target, passcode: string): Promise<FormState | undefined> {
   const request = await getRequestInfo();
   const rateKey = `unlock:${target.kind}:${target.name}:${request.ipHash}`;
-  if (await isRateLimited(rateKey, UNLOCK_RULE)) return { error: LOCKED_OUT };
+  const resourceKey = `unlock-all:${target.kind}:${target.name}`;
+  // Count the attempt before checking the passcode. Counting afterwards would
+  // let parallel requests all pass the check before any of them is recorded.
+  const [visitorOk, resourceOk] = await Promise.all([
+    consumeAttempt(rateKey, UNLOCK_RULE),
+    consumeAttempt(resourceKey, UNLOCK_RESOURCE_RULE),
+  ]);
+  if (!visitorOk || !resourceOk) return { error: LOCKED_OUT };
 
   // Always run the hash comparison, so timing does not reveal whether the resource exists.
   const matches = await verifyPasscode(passcode, target.resource?.passcodeHash ?? null);
   if (!matches || !target.resource) {
-    await recordHit(rateKey, UNLOCK_RULE);
     await recordEvent({ kind: "unlock_fail", ...target.event, ...request });
     return { error: GENERIC_ERROR };
   }

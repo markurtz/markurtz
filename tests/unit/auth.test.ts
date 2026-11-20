@@ -185,8 +185,8 @@ describe("session grants", () => {
   });
 
   it("uses the __Host- prefix only over HTTPS", () => {
-    expect(grantCookieName("https://example.com")).toBe("__Host-grants");
-    expect(grantCookieName("http://localhost:3000")).toBe("grants");
+    expect(grantCookieName(true)).toBe("__Host-grants");
+    expect(grantCookieName(false)).toBe("grants");
   });
 });
 

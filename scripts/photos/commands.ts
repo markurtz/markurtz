@@ -22,6 +22,7 @@ import {
   getStorage,
   photoKeys,
   PRIVATE_DERIVATIVES,
+  PRIVATE_IMAGE_CACHE,
 } from "@/server/storage";
 
 import {
@@ -157,13 +158,12 @@ export async function uploadGallery(
     await storage.put(keys.original, source, { contentType: info.contentType });
     await storage.put(keys.preview, await renderDerivative(source, PRIVATE_DERIVATIVES.preview), {
       contentType: "image/webp",
+      cacheControl: PRIVATE_IMAGE_CACHE,
     });
     await storage.put(
       keys.thumb,
       await renderDerivative(source, PRIVATE_DERIVATIVES.thumb, { quality: 80 }),
-      {
-        contentType: "image/webp",
-      },
+      { contentType: "image/webp", cacheControl: PRIVATE_IMAGE_CACHE },
     );
     // The row is written last, so a failed upload leaves no photo pointing at missing files.
     await insertPhoto({

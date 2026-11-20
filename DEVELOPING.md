@@ -183,7 +183,7 @@ The pipelines rely on modular templates located in `.github/workflows/_*.yml`:
 | **Syndicate** (`syndicate.yml`)   | Push to `main` touching blog posts, manual  | Cross-posts new posts and opens a pull request recording the copies.        |
 | **Migrations** (`db-migrate.yml`) | Manual, behind the `production` environment | Applies SQL migrations to the production database.                          |
 | **Keepalive** (`keepalive.yml`)   | Daily cron                                  | Health check that keeps the database awake, and archives expired galleries. |
-| **Backup** (`db-backup.yml`)      | Weekly cron                                 | Encrypted database dump kept as an artifact for 90 days.                    |
+| **Backup** (`db-backup.yml`)      | Weekly cron                                 | Encrypted database dump stored in the private R2 bucket.                    |
 
 Each one does nothing until its secrets or variables exist. See [the deploy guide](docs/guides/deploy.md).
 

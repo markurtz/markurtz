@@ -33,6 +33,8 @@ export const e2eEnv: Record<string, string> = {
   FEATURE_GATED_PAGES: "true",
   DATABASE_URL: "pglite://.data/e2e/db",
   AUTH_DRIVER: "dev",
+  // The development drivers are refused in production builds without this.
+  ALLOW_INSECURE_DEV_DRIVERS: "1",
   ADMIN_EMAILS: E2E_ADMIN_EMAIL,
   STORAGE_DRIVER: "local",
   GALLERY_SESSION_SECRET: "e2e-only-not-a-real-secret-0123456789abcdef",

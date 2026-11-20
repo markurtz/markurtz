@@ -8,6 +8,10 @@
 # 2. Calls /api/cron/archive-expired to archive client galleries whose expiry
 #    has passed.
 #
+# Note: GitHub disables scheduled workflows in a public repository after 60
+# days without repository activity and emails the owner. Re-enable it from the
+# Actions tab if that happens.
+#
 # Variables:  SITE_URL — the production origin, for example https://example.com
 #             (the workflow does nothing until this is set)
 # Secrets:    CRON_SECRET — the same value as the Vercel environment variable

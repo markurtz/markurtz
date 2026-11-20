@@ -31,7 +31,29 @@ function windowStart(rule: RateLimitRule, now: Date): Date {
   return new Date(Math.floor(now.getTime() / rule.windowMs) * rule.windowMs);
 }
 
-/** True when the key has used up its allowance in the current window. */
+/**
+ * Cap on unlock attempts against one resource from all visitors together, so
+ * guessing spread over many addresses is slowed too.
+ */
+export const UNLOCK_RESOURCE_RULE: RateLimitRule = { limit: 100, windowMs: 60 * 60 * 1000 };
+/** Cap on code attempts for one email address from all visitors together. */
+export const SIGN_IN_EMAIL_RULE: RateLimitRule = { limit: 10, windowMs: 15 * 60 * 1000 };
+
+/**
+ * Counts one attempt and reports whether it is within the allowance. The count
+ * and the decision are a single atomic statement, so parallel requests cannot
+ * all slip under the limit the way a separate check and a later write would.
+ * Call this before doing the guarded work.
+ */
+export async function consumeAttempt(
+  key: string,
+  rule: RateLimitRule,
+  now: Date = new Date(),
+): Promise<boolean> {
+  return (await recordHit(key, rule, now)) <= rule.limit;
+}
+
+/** True when the key has used up its allowance in the current window. Read-only. */
 export async function isRateLimited(
   key: string,
   rule: RateLimitRule,

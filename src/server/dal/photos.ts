@@ -1,9 +1,9 @@
 import "server-only";
 
-import { and, asc, count, eq, inArray, max } from "drizzle-orm";
+import { and, asc, count, eq, inArray, max, sql } from "drizzle-orm";
 
 import { getDb } from "@/server/db/client";
-import { photos, type NewPhoto, type Photo } from "@/server/db/schema";
+import { galleries, photos, type NewPhoto, type Photo } from "@/server/db/schema";
 
 /** Data access for photos in client galleries. Callers authorize first. */
 
@@ -82,27 +82,71 @@ export async function insertPhoto(values: Omit<NewPhoto, "sortOrder">): Promise<
     .onConflictDoNothing();
 }
 
-/** Rewrites the display order to match the given list of ids. */
+/** Rewrites the display order to match the given list of ids, in one statement. */
 export async function reorderPhotos(galleryId: string, orderedIds: string[]): Promise<void> {
+  if (orderedIds.length === 0) return;
   const db = await getDb();
-  await db.transaction(async (tx) => {
-    for (const [index, id] of orderedIds.entries()) {
-      await tx
-        .update(photos)
-        .set({ sortOrder: index })
-        .where(and(eq(photos.id, id), eq(photos.galleryId, galleryId)));
-    }
-  });
+  const order = sql.join(
+    orderedIds.map((id, index) => sql`(${id}::uuid, ${index}::integer)`),
+    sql`, `,
+  );
+  await db.execute(sql`
+    update ${photos} set sort_order = ordering.position
+    from (values ${order}) as ordering(id, position)
+    where ${photos.id} = ordering.id and ${photos.galleryId} = ${galleryId}
+  `);
 }
 
-/** Deletes a photo row and returns it so the caller can remove its files. */
+/**
+ * Moves a photo one place earlier or later by swapping its position with its
+ * neighbor, in one statement however large the gallery is.
+ */
+export async function movePhoto(
+  galleryId: string,
+  photoId: string,
+  direction: "earlier" | "later",
+): Promise<void> {
+  const db = await getDb();
+  const neighbor =
+    direction === "earlier"
+      ? sql`select n.id, n.sort_order from ${photos} n, target
+            where n.gallery_id = ${galleryId} and n.sort_order < target.sort_order
+            order by n.sort_order desc limit 1`
+      : sql`select n.id, n.sort_order from ${photos} n, target
+            where n.gallery_id = ${galleryId} and n.sort_order > target.sort_order
+            order by n.sort_order asc limit 1`;
+  await db.execute(sql`
+    with target as (
+      select id, sort_order from ${photos}
+      where id = ${photoId} and gallery_id = ${galleryId}
+    ), neighbor as (${neighbor})
+    update ${photos} p
+    set sort_order = case when p.id = target.id then neighbor.sort_order else target.sort_order end
+    from target, neighbor
+    where p.id in (target.id, neighbor.id)
+  `);
+}
+
+/**
+ * Deletes a photo row and returns it so the caller can remove its files. A
+ * gallery whose cover it was is left without a cover rather than pointing at
+ * a photo that no longer exists.
+ */
 export async function deletePhoto(galleryId: string, photoId: string): Promise<Photo | undefined> {
   const db = await getDb();
-  const [photo] = await db
-    .delete(photos)
-    .where(and(eq(photos.id, photoId), eq(photos.galleryId, galleryId)))
-    .returning();
-  return photo;
+  return db.transaction(async (tx) => {
+    const [photo] = await tx
+      .delete(photos)
+      .where(and(eq(photos.id, photoId), eq(photos.galleryId, galleryId)))
+      .returning();
+    if (photo) {
+      await tx
+        .update(galleries)
+        .set({ coverPhotoId: null })
+        .where(and(eq(galleries.id, galleryId), eq(galleries.coverPhotoId, photoId)));
+    }
+    return photo;
+  });
 }
 
 /** Every photo in a gallery, unpaged. For deleting storage objects and building archives. */

@@ -40,8 +40,9 @@ The site is always the original. Copies elsewhere carry a canonical link back, w
 1. Add the repository secrets `DEVTO_API_KEY`, `HASHNODE_TOKEN` and `HASHNODE_PUBLICATION_ID` (a service without its secrets is skipped).
 2. Set the repository variable `SYNDICATION_ENABLED` to `true`.
 3. Set `productionUrl` in `site.config.ts` to the live domain.
+4. In the repository settings under Actions, General, turn on "Allow GitHub Actions to create and approve pull requests". The workflow needs it to open the pull request that records the copies.
 
-Copies are created as drafts unless `syndication.autoPublish` is `true`. The run opens a pull request that records each copy in `content/.syndication.json`; merging it adds the "Also published on" links, and guarantees a post is never sent twice. To preview what would be sent, run `pnpm syndicate --dry-run` or start the workflow manually (dry run is its default).
+Copies are created as drafts unless `syndication.autoPublish` is `true`. The run opens a pull request that records each copy in `content/.syndication.json`; merging it adds the "Also published on" links, and guarantees a post is never sent twice. Merge it promptly: the workflow will not run again while one of these pull requests is open, because until it merges the repository does not know which copies exist. To preview what would be sent, run `pnpm syndicate --dry-run` or start the workflow manually (dry run is its default).
 
 Per post, `syndicate: [devto]` in the front matter overrides the default targets and `syndicate: []` keeps a post on the site only.
 

@@ -11,7 +11,7 @@ import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 import { getEnv } from "@/lib/env";
 
-import { assertSafeKey, type Bucket, type MediaStorage } from "./index";
+import { assertSafeKey, attachmentDisposition, type Bucket, type MediaStorage } from "./index";
 
 const DELETE_BATCH = 1000;
 
@@ -49,10 +49,13 @@ export function createR2Storage(bucket: Bucket): MediaStorage {
         Bucket: bucketName,
         Key: key,
         ResponseContentDisposition: options.downloadAs
-          ? `attachment; filename="${options.downloadAs.replace(/["\\\r\n]/g, "_")}"`
+          ? attachmentDisposition(options.downloadAs)
           : undefined,
       });
-      return getSignedUrl(client, command, { expiresIn: options.expiresIn });
+      return getSignedUrl(client, command, {
+        expiresIn: options.expiresIn,
+        signingDate: options.signedAt,
+      });
     },
     async delete(keys) {
       for (let start = 0; start < keys.length; start += DELETE_BATCH) {

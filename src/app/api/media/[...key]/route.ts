@@ -1,6 +1,7 @@
 import path from "node:path";
 
 import { getEnv } from "@/lib/env";
+import { attachmentDisposition, PRIVATE_IMAGE_CACHE } from "@/server/storage";
 import { readLocalPrivate, verifyLocalUrl } from "@/server/storage/local";
 
 const CONTENT_TYPES: Record<string, string> = {
@@ -38,12 +39,9 @@ export async function GET(request: Request, { params }: RouteContext<"/api/media
       headers: {
         "Content-Type":
           CONTENT_TYPES[path.extname(key).toLowerCase()] ?? "application/octet-stream",
-        "Cache-Control": "private, no-store",
-        ...(downloadAs
-          ? {
-              "Content-Disposition": `attachment; filename="${downloadAs.replace(/["\\\r\n]/g, "_")}"`,
-            }
-          : {}),
+        // Images may be reused by the same browser while their URL is valid.
+        "Cache-Control": downloadAs ? "private, no-store" : PRIVATE_IMAGE_CACHE,
+        ...(downloadAs ? { "Content-Disposition": attachmentDisposition(downloadAs) } : {}),
       },
     });
   } catch {

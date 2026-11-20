@@ -20,6 +20,7 @@ import {
   removePhotosFromCollection,
   reorderCollection,
   setCollectionPasscode,
+  togglePhotoInCollection,
   updateCollection,
 } from "@/server/dal/collections";
 import { recordEvent } from "@/server/dal/events";
@@ -43,6 +44,8 @@ import {
  */
 
 const MAX_SELECTION = 2000;
+/** Shortest passcode a client may put on a share link. */
+const MIN_SHARE_PASSCODE = 8;
 const photoIdsSchema = z.array(uuidSchema).min(1).max(MAX_SELECTION);
 const titleSchema = z.string().trim().min(1).max(120);
 
@@ -99,10 +102,7 @@ export async function toggleFavorite(
   const [id] = await ownPhotoIds(access.gallery.id, [photoId]);
   if (!id) throw new Error("Not allowed");
   const favorites = await getOrCreateFavorites(access.gallery.id, access.owner);
-  const isFavorite = (await listCollectionPhotoIds(favorites.id)).includes(id);
-  if (isFavorite) await removePhotosFromCollection(favorites.id, [id]);
-  else await addPhotosToCollection(favorites, [id]);
-  return { favorite: !isFavorite };
+  return { favorite: await togglePhotoInCollection(favorites, id) };
 }
 
 /** Adds photos to an existing collection, or to a new one when `title` is given. */
@@ -213,7 +213,15 @@ export async function shareCollectionAction(
       slug: slugSchema,
       collectionId: uuidSchema,
       op: z.enum(["share", "revoke", "passcode"]),
-      passcode: z.string().trim().max(200).optional(),
+      passcode: z
+        .string()
+        .trim()
+        .max(200)
+        .optional()
+        .refine(
+          (value) => !value || value.length >= MIN_SHARE_PASSCODE,
+          `Use at least ${MIN_SHARE_PASSCODE} characters`,
+        ),
     }),
     formData,
   );

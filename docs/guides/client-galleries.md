@@ -21,13 +21,13 @@ It is off until the backend is configured. See [deploy.md](deploy.md) for the on
 
 ## Access options
 
-| Option          | How it works                                                                                                                                                                               |
-| :-------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Passcode        | Anyone with the link and passcode. Five wrong tries lock that address out for 15 minutes.                                                                                                  |
-| Invited clients | Add an email under "Invited clients". They sign in at `/clients/sign-in` with a code sent by email and see every gallery they are invited to. Their collections belong to them personally. |
-| Change passcode | Setting a new passcode signs out everyone who used the old one, immediately.                                                                                                               |
-| Expiry          | After the date the gallery stops opening for clients. You can still see it as admin.                                                                                                       |
-| Downloads       | "Allow downloads" controls whether originals can be downloaded at all.                                                                                                                     |
+| Option          | How it works                                                                                                                                                                                                                                                    |
+| :-------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Passcode        | Anyone with the link and passcode. Five tries from one address lock it out for 15 minutes, and 100 tries an hour from everyone together close the gallery's passcode entry for the rest of the hour. A passcode you type yourself needs at least 12 characters. |
+| Invited clients | Add an email under "Invited clients". They sign in at `/clients/sign-in` with a code sent by email and see every gallery they are invited to. Their collections belong to them personally.                                                                      |
+| Change passcode | Setting a new passcode signs out everyone who used the old one, immediately. By default it also stops every share link clients made in the gallery, so nobody keeps a way back in. Untick the box to leave the links working.                                   |
+| Expiry          | After the date the gallery stops opening for clients. You can still see it as admin.                                                                                                                                                                            |
+| Downloads       | "Allow downloads" controls whether originals can be downloaded at all.                                                                                                                                                                                          |
 
 ## What clients can do
 
@@ -35,6 +35,21 @@ It is off until the backend is configured. See [deploy.md](deploy.md) for the on
 - Select photos and add them to a named collection.
 - Share a collection with a link that shows only those photos, optionally with its own passcode and expiry, and stop sharing at any time.
 - Download single photos, a selection, or everything (when downloads are allowed).
+
+## Share links are separate from the passcode
+
+A share link opens one collection without the gallery passcode, and whoever has the link can pass it on. You stay in control of them:
+
+- The gallery page in the admin lists every client collection, marks the shared ones, and has **Stop sharing** and **Delete** for each.
+- Changing the gallery passcode stops all of its share links unless you untick that option.
+- Removing an invited client stops the share links of the collections they made.
+- A share link never outlives the gallery: when the gallery expires or is unpublished, its links stop too.
+
+## Downloads
+
+Single photos and small selections download straight from the browser as a zip. Selections above 40 photos are streamed to a file the client chooses, which works in Chrome and Edge on a computer. For whole galleries, upload with `--archive` so "Download all" serves one prebuilt zip that works everywhere, including phones.
+
+Downloaded originals are the files you uploaded, unchanged. They keep their camera details and, if your export included it, GPS location. The previews shown in the browser have location removed. If location should not reach clients or the people they share with, remove it when exporting from your photo software.
 
 ## What protects the photos
 

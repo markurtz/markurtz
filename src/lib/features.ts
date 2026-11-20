@@ -60,6 +60,16 @@ export function assertFeaturesConfigured(env: Env = getEnv()): void {
           "Set them or switch the feature off (see docs/guides/deploy.md).",
       );
     }
+    // Share links and passcode links are built from the site URL, so a real
+    // deployment must know its HTTPS origin. Previews derive theirs from Vercel.
+    const realDeployment =
+      env.VERCEL_ENV === "production" ||
+      (!env.VERCEL && env.NODE_ENV === "production" && env.ALLOW_INSECURE_DEV_DRIVERS !== "1");
+    if (realDeployment && !env.NEXT_PUBLIC_SITE_URL?.startsWith("https://")) {
+      throw new Error(
+        "Client galleries or gated pages are enabled, so NEXT_PUBLIC_SITE_URL must be set to the site's https:// address.",
+      );
+    }
   }
   if (siteConfig.features.contact && !contactReady(env)) {
     throw new Error(

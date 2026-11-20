@@ -5,8 +5,8 @@ import { z } from "zod";
 import { getEnv } from "@/lib/env";
 import { contactReady, privateAreaReady } from "@/lib/features";
 import { siteConfig } from "@/lib/site";
-import { hashIp } from "@/server/auth/request";
-import { CONTACT_RULE, isRateLimited, recordHit } from "@/server/rate-limit";
+import { clientIp, hashIp } from "@/server/auth/request";
+import { CONTACT_RULE, consumeAttempt } from "@/server/rate-limit";
 
 import { emailSchema, parseForm, type FormState } from "./shared";
 
@@ -35,9 +35,7 @@ function memoryLimited(key: string, now = Date.now()): boolean {
 
 async function limited(key: string): Promise<boolean> {
   if (!privateAreaReady()) return memoryLimited(key);
-  if (await isRateLimited(key, CONTACT_RULE)) return true;
-  await recordHit(key, CONTACT_RULE);
-  return false;
+  return !(await consumeAttempt(key, CONTACT_RULE));
 }
 
 /** Sends a contact message to `CONTACT_TO_EMAIL`. */
@@ -66,7 +64,7 @@ export async function sendContactMessage(
     };
 
   const { headers } = await import("next/headers");
-  const ip = (await headers()).get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+  const ip = clientIp(await headers(), env.CLIENT_IP_HEADER);
   if (await limited(`contact:${hashIp(ip, env.IP_HASH_SALT ?? "contact")}`)) {
     return { error: "Too many messages. Please try again later." };
   }

@@ -13,7 +13,11 @@ import {
   listCollectionPhotoIds,
   listCollections,
   removePhotosFromCollection,
+  revokeGalleryShares,
+  revokeMemberShares,
   setCollectionPasscode,
+  togglePhotoInCollection,
+  updateCollection,
 } from "@/server/dal/collections";
 import {
   archiveExpiredGalleries,
@@ -22,10 +26,25 @@ import {
   getGalleryById,
   getGalleryBySlug,
   setGalleryPasscode,
+  updateGallery,
 } from "@/server/dal/galleries";
-import { getPhotoInGallery, insertPhoto, listAllPhotos, reorderPhotos } from "@/server/dal/photos";
+import {
+  deletePhoto,
+  getPhotoInGallery,
+  insertPhoto,
+  listAllPhotos,
+  movePhoto,
+  reorderPhotos,
+} from "@/server/dal/photos";
 import type { Db } from "@/server/db/client";
-import { isRateLimited, recordHit, resetRateLimit, type RateLimitRule } from "@/server/rate-limit";
+import { recordEvent, listRecentEvents } from "@/server/dal/events";
+import {
+  consumeAttempt,
+  isRateLimited,
+  recordHit,
+  resetRateLimit,
+  type RateLimitRule,
+} from "@/server/rate-limit";
 
 import { useTestDb } from "../setup/db";
 
@@ -95,6 +114,46 @@ describe("galleries and photos", () => {
     const photo = await addPhoto(theirs.id, "secret");
     expect(await getPhotoInGallery(theirs.id, photo)).toBeDefined();
     expect(await getPhotoInGallery(mine.id, photo)).toBeUndefined();
+  });
+
+  it("moves a photo by swapping it with its neighbor", async () => {
+    const gallery = await createGallery({ slug: "move", title: "Move" });
+    const a = await addPhoto(gallery.id, "a");
+    const b = await addPhoto(gallery.id, "b");
+    const c = await addPhoto(gallery.id, "c");
+    const order = async () => (await listAllPhotos(gallery.id)).map((photo) => photo.id);
+
+    await movePhoto(gallery.id, c, "earlier");
+    expect(await order()).toEqual([a, c, b]);
+    await movePhoto(gallery.id, a, "later");
+    expect(await order()).toEqual([c, a, b]);
+    // Already at the edge: nothing changes.
+    await movePhoto(gallery.id, c, "earlier");
+    await movePhoto(gallery.id, b, "later");
+    expect(await order()).toEqual([c, a, b]);
+  });
+
+  it("clears the cover when the cover photo is deleted", async () => {
+    const gallery = await createGallery({ slug: "cover", title: "Cover" });
+    const photo = await addPhoto(gallery.id, "a");
+    expect(await updateGallery(gallery.id, { coverPhotoId: photo })).toBe(true);
+    await deletePhoto(gallery.id, photo);
+    expect((await getGalleryById(gallery.id))?.coverPhotoId).toBeNull();
+    expect(await updateGallery(randomUUID(), { title: "Nobody" })).toBe(false);
+  });
+
+  it("keeps the access log when its gallery is deleted", async () => {
+    const gallery = await createGallery({ slug: "audited", title: "Audited" });
+    await recordEvent({
+      kind: "download",
+      galleryId: gallery.id,
+      ipHash: "audit-test",
+      userAgent: "",
+    });
+    await deleteGallery(gallery.id);
+    const kept = (await listRecentEvents()).filter((event) => event.ipHash === "audit-test");
+    expect(kept).toHaveLength(1);
+    expect(kept[0]?.galleryTitle).toBeNull();
   });
 
   it("bumps the access version when the passcode changes", async () => {
@@ -171,6 +230,49 @@ describe("collections", () => {
     expect(listed[0]?.photoCount).toBe(1);
   });
 
+  it("creates a single Favorites collection under concurrent first use", async () => {
+    const gallery = await createGallery({ slug: "col-race", title: "Race" });
+    const photo = await addPhoto(gallery.id, "a");
+    const results = await Promise.all(
+      Array.from({ length: 8 }, () => getOrCreateFavorites(gallery.id, {})),
+    );
+    expect(new Set(results.map((collection) => collection.id)).size).toBe(1);
+    expect(await listCollections(gallery.id, {})).toHaveLength(1);
+
+    // Toggling reports the new state and flips it each time.
+    const favorites = results[0];
+    if (!favorites) throw new Error("no favorites");
+    expect(await togglePhotoInCollection(favorites, photo)).toBe(true);
+    expect(await togglePhotoInCollection(favorites, photo)).toBe(false);
+    expect(await listCollectionPhotoIds(favorites.id)).toEqual([]);
+  });
+
+  it("stops share links for a whole gallery or for one member", async () => {
+    const gallery = await createGallery({ slug: "col-share", title: "Share" });
+    const other = await createGallery({ slug: "col-share-other", title: "Other" });
+    const member = randomUUID();
+    const shared = async (galleryId: string, owner: { userId?: string }, token: string) => {
+      const collection = await createCollection(galleryId, owner, { title: token });
+      await updateCollection(collection.id, { shareTokenHash: `hash-${token}` });
+      return collection;
+    };
+    await shared(gallery.id, {}, "guest");
+    await shared(gallery.id, { userId: member }, "member");
+    await shared(other.id, {}, "elsewhere");
+    const live = async (galleryId: string, owner: { userId?: string }) =>
+      (await listCollections(galleryId, owner)).filter((collection) => collection.shareTokenHash)
+        .length;
+
+    expect(await revokeMemberShares(gallery.id, member)).toBe(1);
+    expect(await live(gallery.id, { userId: member })).toBe(0);
+    expect(await live(gallery.id, {})).toBe(1);
+
+    expect(await revokeGalleryShares(gallery.id)).toBe(1);
+    expect(await live(gallery.id, {})).toBe(0);
+    // Another gallery's links are untouched.
+    expect(await live(other.id, {})).toBe(1);
+  });
+
   it("revokes sessions when a collection passcode changes and cascades on delete", async () => {
     const gallery = await createGallery({ slug: "col-e", title: "E" });
     const photo = await addPhoto(gallery.id, "a");
@@ -201,6 +303,16 @@ describe("rate limiter", () => {
     expect(await isRateLimited("unlock:a", rule, new Date(now.getTime() + rule.windowMs))).toBe(
       false,
     );
+  });
+
+  it("lets through exactly the limit when attempts arrive at the same time", async () => {
+    const attempts = await Promise.all(
+      Array.from({ length: 25 }, () => consumeAttempt("unlock:parallel", rule, now)),
+    );
+    expect(attempts.filter(Boolean)).toHaveLength(rule.limit);
+    // Counting happens with the decision, so the key is locked afterwards.
+    expect(await consumeAttempt("unlock:parallel", rule, now)).toBe(false);
+    expect(await isRateLimited("unlock:parallel", rule, now)).toBe(true);
   });
 
   it("clears a key on reset", async () => {

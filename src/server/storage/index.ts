@@ -30,6 +30,30 @@ export interface SignedUrlOptions {
   expiresIn: number;
   /** When set, the browser saves the file under this name instead of showing it. */
   downloadAs?: string;
+  /**
+   * The moment the URL counts as signed (default: now). Passing the start of
+   * a time bucket makes every URL signed within that bucket identical, so the
+   * browser can reuse cached images instead of fetching them again.
+   */
+  signedAt?: Date;
+}
+
+/**
+ * A `Content-Disposition: attachment` value that is valid for any file name:
+ * an ASCII fallback plus the RFC 5987 form that carries the real name.
+ */
+export function attachmentDisposition(filename: string): string {
+  const clean = filename.replace(/[\r\n]/g, " ");
+  const ascii = clean
+    .normalize("NFKD")
+    .replace(/[^\x20-\x7e]/g, "")
+    .replace(/["\\]/g, "_")
+    .trim();
+  const encoded = encodeURIComponent(clean).replace(
+    /['()*]/g,
+    (char) => `%${char.charCodeAt(0).toString(16).toUpperCase()}`,
+  );
+  return `attachment; filename="${ascii || "download"}"; filename*=UTF-8''${encoded}`;
 }
 
 export interface MediaStorage {
@@ -67,6 +91,9 @@ export function getStorage(bucket: Bucket): Promise<MediaStorage> {
 }
 
 // ── Keys ────────────────────────────────────────────────────────────────────
+
+/** Cache policy for private previews and thumbnails: the visitor's own browser only. */
+export const PRIVATE_IMAGE_CACHE = "private, max-age=3600";
 
 /** Long edge, in pixels, of the derivatives made for client galleries. */
 export const PRIVATE_DERIVATIVES = { preview: 2560, thumb: 640 } as const;

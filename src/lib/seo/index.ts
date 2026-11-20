@@ -5,6 +5,8 @@ import { siteConfig } from "@/lib/site";
 import { getSocialLinks } from "@/lib/social";
 import { absoluteUrl } from "@/lib/utils";
 
+import { signOgText } from "./og";
+
 /** Inputs for a page's metadata. */
 export interface PageSeo {
   title: string;
@@ -25,6 +27,8 @@ export interface PageSeo {
 export function ogImageUrl(title: string, subtitle?: string): string {
   const params = new URLSearchParams({ title });
   if (subtitle) params.set("subtitle", subtitle);
+  // The route renders only text carrying this site's signature.
+  params.set("sig", signOgText(title, subtitle));
   return `/api/og?${params.toString()}`;
 }
 

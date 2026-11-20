@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input, Label, Select, Textarea } from "@/components/ui/input";
 import {
+  collectionAdminAction,
   deleteGalleryAction,
   inviteMemberAction,
   photoAction,
@@ -141,7 +142,7 @@ export default async function AdminGalleryPage({ params }: PageProps<"/admin/gal
             <h2 className="mb-2 text-lg font-semibold">Passcode</h2>
             <p className="text-muted-foreground mb-4 text-sm">
               {gallery.passcodeHash
-                ? "A passcode is set. Setting a new one signs out everyone who used the old one."
+                ? "A passcode is set. Setting a new one signs out everyone who used the old one. Share links are separate and keep working unless you stop them below."
                 : "No passcode is set, so only invited clients can open this gallery."}
             </p>
             <StatefulForm
@@ -158,6 +159,10 @@ export default async function AdminGalleryPage({ params }: PageProps<"/admin/gal
                   placeholder="Leave empty to generate four words"
                 />
               </div>
+              <label className="flex items-center gap-2 text-sm">
+                <input type="checkbox" name="revokeShares" defaultChecked />
+                Also stop every share link clients made in this gallery
+              </label>
             </StatefulForm>
           </Card>
 
@@ -282,7 +287,8 @@ export default async function AdminGalleryPage({ params }: PageProps<"/admin/gal
           Client collections ({collections.length})
         </h2>
         <p className="text-muted-foreground mt-1 mb-4 text-sm">
-          What clients have picked. Useful as a selection list for retouching or prints.
+          What clients have picked. Useful as a selection list for retouching or prints. A shared
+          collection has a link that works without the gallery passcode until you stop it.
         </p>
         {collections.length > 0 ? (
           <ul className="list-none divide-y p-0 text-sm">
@@ -294,6 +300,32 @@ export default async function AdminGalleryPage({ params }: PageProps<"/admin/gal
                   {collection.createdByName ? ` · ${collection.createdByName}` : ""}
                 </span>
                 {collection.shareTokenHash ? <Badge tone="accent">Shared</Badge> : null}
+                <form action={collectionAdminAction} className="ml-auto flex gap-2">
+                  {idField}
+                  <input type="hidden" name="collectionId" value={collection.id} />
+                  {collection.shareTokenHash ? (
+                    <Button
+                      type="submit"
+                      name="op"
+                      value="unshare"
+                      variant="outline"
+                      size="sm"
+                      aria-label={`Stop sharing ${collection.title}`}
+                    >
+                      Stop sharing
+                    </Button>
+                  ) : null}
+                  <Button
+                    type="submit"
+                    name="op"
+                    value="delete"
+                    variant="ghost"
+                    size="sm"
+                    aria-label={`Delete collection ${collection.title}`}
+                  >
+                    Delete
+                  </Button>
+                </form>
               </li>
             ))}
           </ul>

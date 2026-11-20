@@ -114,16 +114,18 @@ CREATE TABLE "rate_limits" (
 );
 --> statement-breakpoint
 ALTER TABLE "rate_limits" ENABLE ROW LEVEL SECURITY;--> statement-breakpoint
-ALTER TABLE "access_events" ADD CONSTRAINT "access_events_gallery_id_galleries_id_fk" FOREIGN KEY ("gallery_id") REFERENCES "public"."galleries"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "access_events" ADD CONSTRAINT "access_events_gallery_id_galleries_id_fk" FOREIGN KEY ("gallery_id") REFERENCES "public"."galleries"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "access_events" ADD CONSTRAINT "access_events_collection_id_collections_id_fk" FOREIGN KEY ("collection_id") REFERENCES "public"."collections"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "access_events" ADD CONSTRAINT "access_events_gate_id_gates_id_fk" FOREIGN KEY ("gate_id") REFERENCES "public"."gates"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "access_events" ADD CONSTRAINT "access_events_gate_id_gates_id_fk" FOREIGN KEY ("gate_id") REFERENCES "public"."gates"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "collection_photos" ADD CONSTRAINT "collection_photos_collection_fk" FOREIGN KEY ("collection_id","gallery_id") REFERENCES "public"."collections"("id","gallery_id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "collection_photos" ADD CONSTRAINT "collection_photos_photo_fk" FOREIGN KEY ("photo_id","gallery_id") REFERENCES "public"."photos"("id","gallery_id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "collections" ADD CONSTRAINT "collections_gallery_id_galleries_id_fk" FOREIGN KEY ("gallery_id") REFERENCES "public"."galleries"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "gallery_members" ADD CONSTRAINT "gallery_members_gallery_id_galleries_id_fk" FOREIGN KEY ("gallery_id") REFERENCES "public"."galleries"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "photos" ADD CONSTRAINT "photos_gallery_id_galleries_id_fk" FOREIGN KEY ("gallery_id") REFERENCES "public"."galleries"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 CREATE INDEX "access_events_at_idx" ON "access_events" USING btree ("at" desc);--> statement-breakpoint
+CREATE INDEX "access_events_gallery_idx" ON "access_events" USING btree ("gallery_id");--> statement-breakpoint
 CREATE INDEX "collections_gallery_idx" ON "collections" USING btree ("gallery_id");--> statement-breakpoint
+CREATE UNIQUE INDEX "collections_favorites_key" ON "collections" USING btree ("gallery_id",coalesce("created_by_user", '00000000-0000-0000-0000-000000000000'::uuid)) WHERE "collections"."is_favorites";--> statement-breakpoint
 CREATE INDEX "gallery_members_user_idx" ON "gallery_members" USING btree ("user_id");--> statement-breakpoint
 CREATE INDEX "gallery_members_email_idx" ON "gallery_members" USING btree ("invited_email");--> statement-breakpoint
 CREATE INDEX "photos_gallery_sort_idx" ON "photos" USING btree ("gallery_id","sort_order");

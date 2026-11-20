@@ -67,10 +67,15 @@ export type GalleryUpdate = Partial<
   >
 >;
 
-/** Updates editable gallery fields. */
-export async function updateGallery(id: string, values: GalleryUpdate): Promise<void> {
+/** Updates editable gallery fields. Returns false when no gallery has that id. */
+export async function updateGallery(id: string, values: GalleryUpdate): Promise<boolean> {
   const db = await getDb();
-  await db.update(galleries).set(values).where(eq(galleries.id, id));
+  const rows = await db
+    .update(galleries)
+    .set(values)
+    .where(eq(galleries.id, id))
+    .returning({ id: galleries.id });
+  return rows.length > 0;
 }
 
 /**
@@ -145,11 +150,13 @@ export async function addMember(
 }
 
 /** Removes a member from a gallery. */
-export async function removeMember(galleryId: string, userId: string): Promise<void> {
+export async function removeMember(galleryId: string, userId: string): Promise<boolean> {
   const db = await getDb();
-  await db
+  const rows = await db
     .delete(galleryMembers)
-    .where(and(eq(galleryMembers.galleryId, galleryId), eq(galleryMembers.userId, userId)));
+    .where(and(eq(galleryMembers.galleryId, galleryId), eq(galleryMembers.userId, userId)))
+    .returning({ userId: galleryMembers.userId });
+  return rows.length > 0;
 }
 
 /** True when the address has been invited to at least one gallery. */

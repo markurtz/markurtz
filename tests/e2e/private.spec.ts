@@ -127,7 +127,7 @@ test.describe("admin", () => {
     await expect(alert(page)).toContainText("That code is not right");
   });
 
-  test("rotating a passcode signs clients out, and an expired gallery closes", async ({
+  test("rotating a passcode signs clients out and stops share links, and an expired gallery closes", async ({
     page,
     browser,
   }) => {
@@ -149,6 +149,33 @@ test.describe("admin", () => {
     await unlock(page, slug, passcode);
     await expect(alert(page)).toContainText("That passcode is not right");
     await unlock(page, slug, newPasscode);
+    await expect(page).toHaveURL(new RegExp(`${galleryPath(slug)}$`));
+
+    // A share link made under the old passcode stops with it.
+    await page.getByRole("checkbox", { name: "Select photo 1" }).click();
+    await page.getByRole("button", { name: "Add to collection" }).click();
+    await page.getByLabel("Name of the new collection").fill("Old guest picks");
+    await page.getByRole("button", { name: "Add", exact: true }).click();
+    await page.goto(`${galleryPath(slug)}/collections`);
+    await page.getByRole("link", { name: /Old guest picks/ }).click();
+    await page.getByRole("button", { name: "Create share link" }).click();
+    const sharePath = new URL((await page.getByTestId("share-url").textContent()) ?? "").pathname;
+    const visitorContext = await browser.newContext();
+    const visitor = await visitorContext.newPage();
+    await visitor.goto(sharePath);
+    await expect(visitor.getByRole("button", { name: /^Open photo/ })).toHaveCount(1);
+
+    await admin.reload();
+    await expect(admin.getByText("Old guest picks")).toBeVisible();
+    await admin.getByRole("button", { name: "Change passcode" }).click();
+    await expect(admin.getByText("Stopped 1 share link.")).toBeVisible();
+    const response = await visitor.goto(sharePath);
+    expect(response?.status()).toBe(404);
+    await expect(visitor.getByRole("button", { name: /^Open photo/ })).toHaveCount(0);
+    await visitorContext.close();
+    await page.goto(galleryPath(slug));
+    await expect(page).toHaveURL(/\/unlock$/);
+    await unlock(page, slug, (await admin.getByTestId("new-passcode").textContent()) ?? "");
     await expect(page).toHaveURL(new RegExp(`${galleryPath(slug)}$`));
 
     await admin.getByLabel("Expires on").fill("2020-01-01");
