@@ -1,3 +1,4 @@
+// ## WRITTEN BY AI ##
 import { describe, expect, it } from "vitest";
 
 import { siteConfig } from "@/lib/site";

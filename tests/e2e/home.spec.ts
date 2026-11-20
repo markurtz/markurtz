@@ -1,3 +1,4 @@
+// ## WRITTEN BY AI ##
 import { expect, test } from "@playwright/test";
 
 test("home page renders and sends baseline security headers", async ({ page }) => {
