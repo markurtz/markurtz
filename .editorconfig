@@ -1,10 +1,9 @@
 # ==============================================================================
-# EditorConfig for {{project_name}}
+# EditorConfig for markurtz
 # https://editorconfig.org
 #
-# This file enforces consistent coding styles across multiple editors and IDEs.
-# It is designed to work out-of-the-box for 95% of standard programming
-# environments and aligns with high-quality open-source standards.
+# Enforces consistent whitespace across editors. Prettier reads this file too,
+# so formatting stays in sync between the editor and `pnpm format`.
 # ==============================================================================
 
 # Top-most EditorConfig file for the project
@@ -19,44 +18,19 @@ end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 indent_style = space
-indent_size = 4
-
-# ------------------------------------------------------------------------------
-# Web, Data, and Frontend (2 spaces)
-# ------------------------------------------------------------------------------
-[*.{js,jsx,ts,tsx,vue,json,yml,yaml,toml,html,css,scss,xml}]
-indent_style = space
 indent_size = 2
 
 # ------------------------------------------------------------------------------
-# Python (4 spaces, standard PEP-8)
+# Markdown and MDX content
 # ------------------------------------------------------------------------------
-[*.py]
-indent_style = space
-indent_size = 4
+[*.{md,mdx}]
+# Markdown allows double spaces at the end of a line for hard line breaks.
+trim_trailing_whitespace = false
 
 # ------------------------------------------------------------------------------
-# Go (Tabs)
-# ------------------------------------------------------------------------------
-[*.go]
-indent_style = tab
-
-# ------------------------------------------------------------------------------
-# Rust, C, C++, Java, C# (4 spaces)
-# ------------------------------------------------------------------------------
-[*.{rs,c,h,cpp,hpp,java,cs}]
-indent_style = space
-indent_size = 4
-
-# ------------------------------------------------------------------------------
-# Shell Scripts and Docker (2 spaces)
+# Shell Scripts
 # ------------------------------------------------------------------------------
 [*.{sh,bash}]
-indent_style = space
-indent_size = 2
-
-[{Dockerfile,*.dockerfile}]
-indent_style = space
 indent_size = 2
 
 # ------------------------------------------------------------------------------
@@ -64,12 +38,3 @@ indent_size = 2
 # ------------------------------------------------------------------------------
 [{Makefile,*.mk}]
 indent_style = tab
-
-# ------------------------------------------------------------------------------
-# Markdown Documents
-# ------------------------------------------------------------------------------
-[*.md]
-# Markdown allows double spaces at the end of a line for hard line breaks.
-trim_trailing_whitespace = false
-indent_style = space
-indent_size = 2

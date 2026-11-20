@@ -1,0 +1,36 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# _build.yml — Reusable Site Builder
+#
+# Runs the production build (`next build`) to prove the site compiles.
+#
+# Deployment is NOT handled here. Vercel's Git integration builds and deploys
+# preview environments for pull requests and production from `main`.
+#
+# Callers: development.yml, main.yml
+# ─────────────────────────────────────────────────────────────────────────────
+name: "Build Site (Reusable)"
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: "Build Site"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up toolchain
+        uses: ./.github/actions/setup
+
+      - name: Build
+        run: pnpm build

@@ -1,0 +1,26 @@
+name: ✍️ Content Correction
+description: Report a typo, broken link, or factual error in a post or page
+labels: ["content"]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Page URL
+      description: The address of the page that needs a correction.
+      placeholder: https://...
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: What is wrong?
+      description: Quote the text or describe the link or detail that is incorrect.
+    validations:
+      required: true
+  - type: textarea
+    id: suggested
+    attributes:
+      label: Suggested correction
+      description: What it should say instead, with a source if it is a factual correction.
+    validations:
+      required: false

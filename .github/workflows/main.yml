@@ -6,7 +6,10 @@
 #
 # Stage 1 — Quality Gate & Security Audit
 # Stage 2 — Tests (Unit, Integration, E2E)
-# Stage 3 — Documentation (dev)
+# Stage 3 — Build
+#
+# Production deployment is handled by Vercel's Git integration, not by this
+# workflow.
 # =============================================================================
 name: "CI — Main"
 
@@ -20,12 +23,9 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  contents: write
-  security-events: write
-  actions: read
+  contents: read
 
 jobs:
-
   # ── Stage 1: Quality Gate & Security ───────────────────────────────────────
   quality:
     name: "Quality Gate"
@@ -34,27 +34,20 @@ jobs:
   security:
     name: "Security Audit"
     uses: ./.github/workflows/_security.yml
+    permissions:
+      contents: read
+      security-events: write
 
   # ── Stage 2: Tests ─────────────────────────────────────────────────────────
   tests:
     name: "Run Tests"
     uses: ./.github/workflows/_tests.yml
     with:
-      test_matrix: >-
-        [
-          {"level": "unit", "types": "smoke, sanity"},
-          {"level": "integration", "types": "smoke, sanity"},
-          {"level": "e2e", "types": "smoke"}
-        ]
+      test_levels: '["unit", "integration", "e2e"]'
       generate_coverage: true
-      publish_results: true
       retention_days: 14
 
-  # ── Stage 3: Documentation ─────────────────────────────────────────────────
-  docs:
-    name: "Build & Deploy Docs"
-    needs: quality
-    uses: ./.github/workflows/_docs.yml
-    with:
-      build_type: "dev"
-      alias: "latest"
+  # ── Stage 3: Build ─────────────────────────────────────────────────────────
+  build:
+    name: "Build"
+    uses: ./.github/workflows/_build.yml

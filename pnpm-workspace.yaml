@@ -1,0 +1,17 @@
+# pnpm settings for this single-package repository.
+# Reference: https://pnpm.io/settings
+
+# Supply-chain hardening ------------------------------------------------------
+# Only install versions that have been public for at least 3 days (in minutes).
+# Most malicious releases are detected and unpublished well within this window.
+minimumReleaseAge: 4320
+# Fail if a package's publishing trust level (trusted publisher / provenance)
+# is weaker than an earlier release of the same package.
+trustPolicy: no-downgrade
+
+# Fail the install when a dependency declares an incompatible Node.js version.
+engineStrict: true
+
+# Dependency build (postinstall) scripts are blocked unless approved here.
+# Review a package before setting it to `true`.
+allowBuilds: {}

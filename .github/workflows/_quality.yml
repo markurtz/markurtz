@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # _quality.yml — Reusable Quality Gate
 #
-# Encapsulates quality checking, style/lint, and type checking.
-# Fails the pipeline if any of these checks fail.
+# Encapsulates linting (ESLint), formatting (Prettier), and type checking
+# (TypeScript). Fails the pipeline if any of these checks fail.
 #
 # Callers:  development.yml, main.yml
 # ─────────────────────────────────────────────────────────────────────────────
@@ -13,72 +13,52 @@ on:
 
 permissions:
   contents: read
-  security-events: write
 
 jobs:
-
-  quality:
-    name: "Code Quality"
+  lint:
+    name: "Lint"
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout repository
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
-      - name: "# TODO: Set up toolchain"
-        run: |
-          echo "TODO: set up toolchain for quality checks"
-          # exit 1
+      - name: Set up toolchain
+        uses: ./.github/actions/setup
 
-      - name: "# TODO: Run quality checks"
-        run: |
-          # ───────────────────────────────────────────────────────────────────
-          # PLACEHOLDER — Run code quality analysis.
-          # Example (Python): ruff check .
-          # Example (Node.js): npm run lint:quality
-          # ───────────────────────────────────────────────────────────────────
-          echo "TODO: run quality checks"
-          # exit 1
+      - name: Run ESLint
+        run: pnpm lint
 
-  style:
-    name: "Code Style"
+  format:
+    name: "Format"
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout repository
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
-      - name: "# TODO: Set up toolchain"
-        run: |
-          echo "TODO: set up toolchain for style checks"
-          # exit 1
+      - name: Set up toolchain
+        uses: ./.github/actions/setup
 
-      - name: "# TODO: Run style checks"
-        run: |
-          # ───────────────────────────────────────────────────────────────────
-          # PLACEHOLDER — Run code formatting checks.
-          # Example (Python): black --check .
-          # Example (Node.js): prettier --check .
-          # ───────────────────────────────────────────────────────────────────
-          echo "TODO: run style checks"
-          # exit 1
+      - name: Run Prettier
+        run: pnpm format:check
 
   types:
-    name: "Type Checking"
+    name: "Type Check"
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout repository
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
-      - name: "# TODO: Set up toolchain"
-        run: |
-          echo "TODO: set up toolchain for type checks"
-          # exit 1
+      - name: Set up toolchain
+        uses: ./.github/actions/setup
 
-      - name: "# TODO: Run type checks"
-        run: |
-          # ───────────────────────────────────────────────────────────────────
-          # PLACEHOLDER — Run static type checking.
-          # Example (Python): mypy .
-          # Example (Node.js): tsc --noEmit
-          # ───────────────────────────────────────────────────────────────────
-          echo "TODO: run type checks"
-          # exit 1
+      - name: Run TypeScript
+        run: pnpm typecheck

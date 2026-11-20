@@ -1,0 +1,15 @@
+# Generated output
+.next/
+out/
+build/
+coverage/
+playwright-report/
+test-results/
+next-env.d.ts
+
+# Managed by pnpm
+pnpm-lock.yaml
+
+# Legal text kept verbatim
+LICENSE
+CODE_OF_CONDUCT.md

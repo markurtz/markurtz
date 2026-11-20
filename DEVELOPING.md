@@ -1,179 +1,157 @@
-# Developing `{{project_name}}`
+# Developing `markurtz`
 
-This guide provides instructions for setting up your development environment, navigating the project structure, and adhering to our coding standards.
+This guide provides instructions for setting up your development environment, navigating the project structure, and adhering to the coding standards of this repository.
 
 ## Prerequisites
 
 Ensure your system meets the following requirements before getting started:
 
-- **[Docker](https://docs.docker.com/get-docker/)** (Recommended for isolated environments)
 - **[Git](https://git-scm.com/)** (Version control)
-- <!-- Add language-specific prerequisites, e.g., Python 3.10+, Node.js 18+ -->
-
-> [!NOTE]
-> We strongly recommend using our Docker setup to ensure your local environment exactly matches our CI/CD pipelines.
-
-## Quick Start (Docker)
-
-> [!IMPORTANT]
-> The `Dockerfile` and `docker-compose.yml` files included in this template are **placeholders** that must be filled in for your specific language stack before they are usable. The default `CMD` in both files will exit with an error if run without modification.
->
-> Once implemented, you can spin up the development environment with:
-> ```bash
-> git clone https://github.com/{{organization}}/{{project_name}}.git
-> cd {{project_name}}
->
-> # Build and start the development environment in the background
-> docker-compose up -d --build
-> ```
-
-To view the logs of your running containers:
-```bash
-docker-compose logs -f
-```
+- **[Node.js](https://nodejs.org/) 24** (the version in [`.nvmrc`](.nvmrc); `nvm use` or `fnm use` will pick it up)
+- **[pnpm](https://pnpm.io/installation)** (any recent version; it switches itself to the version pinned in the `packageManager` field of `package.json`)
 
 ## Local Setup
 
-If you prefer to develop directly on your host machine, follow the steps for your language stack.
-
-> [!NOTE]
-> **A note on shared tooling:** This project uses [MkDocs](https://www.mkdocs.org/) for documentation. MkDocs requires Python, regardless of your application's primary language. Install it once globally or in a dedicated virtual environment using `docs/requirements.txt`.
-
-### Python
-
 ```bash
-# 1. Create and activate a virtual environment
-python -m venv .venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
+# 1. Clone the repository
+git clone https://github.com/markurtz/markurtz.git
+cd markurtz
 
-# 2. Install the package and development dependencies
-pip install -e ".[dev]"
+# 2. Install dependencies (also installs the pre-commit hook)
+pnpm install
 
+# 3. Create your local environment file
+cp .env.example .env.local
 
+# 4. Start the development server on http://localhost:3000
+pnpm dev
 ```
 
-### Node.js / TypeScript
+### Environment Variables
 
-```bash
-# 1. Install all dependencies (uses lockfile for reproducibility)
-npm ci
+All variables are documented in [`.env.example`](.env.example). Local values go in `.env.local`, which is ignored by git. Production and preview values are managed in the Vercel project settings, never in this repository.
 
+> [!IMPORTANT]
+> Variables prefixed with `NEXT_PUBLIC_` are embedded in the browser bundle. Never put a secret behind that prefix.
 
-```
+## Project Structure
 
-### Go
+| Path                     | Purpose                                                         |
+| :----------------------- | :-------------------------------------------------------------- |
+| `src/app/`               | Next.js App Router routes, layouts, and route handlers.         |
+| `src/lib/`               | Shared modules such as site configuration and utilities.        |
+| `tests/unit/`            | Fast, isolated Vitest tests.                                    |
+| `tests/integration/`     | Vitest tests that exercise several modules together.            |
+| `tests/e2e/`             | Playwright tests that drive the built site in a real browser.   |
+| `.github/workflows/`     | CI pipelines. Files prefixed with `_` are reusable templates.   |
+| `.github/actions/setup/` | Composite action that installs pnpm, Node.js, and dependencies. |
 
-```bash
-# 1. Download module dependencies
-go mod download
+Import from `src/` with the `@/` alias, for example `import { siteConfig } from "@/lib/site"`.
 
+## Command Reference
 
-```
-
-### Rust
-
-```bash
-# 1. All dependencies are managed by Cargo automatically
-cargo build
-
-
-```
+| Command                 | Description                                                        |
+| :---------------------- | :----------------------------------------------------------------- |
+| `pnpm dev`              | Start the development server with hot reload.                      |
+| `pnpm build`            | Create the production build.                                       |
+| `pnpm start`            | Serve the production build locally.                                |
+| `pnpm lint`             | Run ESLint. `pnpm lint:fix` applies automatic fixes.               |
+| `pnpm format`           | Format every file with Prettier. `pnpm format:check` only reports. |
+| `pnpm typecheck`        | Generate Next.js route types and run the TypeScript compiler.      |
+| `pnpm test`             | Run the unit and integration tests once.                           |
+| `pnpm test:unit`        | Run only the unit tests.                                           |
+| `pnpm test:integration` | Run only the integration tests.                                    |
+| `pnpm test:coverage`    | Run the Vitest suites and write a report to `coverage/`.           |
+| `pnpm test:e2e`         | Run the Playwright end-to-end tests.                               |
+| `pnpm check`            | Lint, format check, type check, and Vitest suites in one command.  |
 
 ## Running Tests
 
-We maintain strict testing standards. Our tests are located in the `tests/` directory and are categorized by tier.
+Tests are located in the `tests/` directory and are categorized by tier.
 
-| Test Tier | Directory | Description |
-| :--- | :--- | :--- |
-| **Unit** | `tests/unit/` | Fast, isolated tests for individual functions and classes. |
-| **Integration** | `tests/integration/` | Slower tests that verify interactions between multiple components. |
-| **End-to-End** | `tests/e2e/` | Full-stack tests simulating real user workflows. |
+| Test Tier       | Directory            | Runner     | Description                                                        |
+| :-------------- | :------------------- | :--------- | :----------------------------------------------------------------- |
+| **Unit**        | `tests/unit/`        | Vitest     | Fast, isolated tests for individual functions and components.      |
+| **Integration** | `tests/integration/` | Vitest     | Slower tests that verify interactions between multiple components. |
+| **End-to-End**  | `tests/e2e/`         | Playwright | Full-stack tests simulating real user workflows in a real browser. |
 
-Replace the commands below with those appropriate for your language stack:
+Vitest files are named `*.test.ts` or `*.test.tsx`; Playwright files are named `*.spec.ts`.
+
+The first time you run the end-to-end tests, install the browser Playwright needs:
 
 ```bash
-# Python (pytest)
-pytest tests/unit/
-pytest tests/integration/
-pytest tests/         # full suite with coverage
-pytest tests/ --cov=src --cov-report=xml
+pnpm exec playwright install chromium
+pnpm test:e2e
+```
 
-# Node.js (Jest)
-npx jest tests/unit/
-npx jest --ci --coverage
+Locally, Playwright starts `pnpm dev` for you (or reuses a server that is already running). In CI it runs against the production build. To test a deployed site such as a Vercel preview, point Playwright at it:
 
-# Go
-go test ./tests/unit/...
-go test ./...
-
-# Rust
-cargo test --lib           # unit tests
-cargo test --test '*'      # integration tests
+```bash
+PLAYWRIGHT_BASE_URL=https://example.vercel.app pnpm test:e2e
 ```
 
 ## Code Quality and Formatting
 
-We use opinionated formatters and linters to maintain consistency.
-
-- **Formatters & Linters:** We enforce code quality through CI/CD pipelines. Please refer to your language-specific guidelines for setting up local linting.
+- **Prettier** owns formatting. Its settings come from [`.prettierrc.json`](.prettierrc.json) and [`.editorconfig`](.editorconfig).
+- **ESLint** uses the Next.js Core Web Vitals and TypeScript rule sets ([`eslint.config.mjs`](eslint.config.mjs)).
+- **TypeScript** runs in strict mode with `noUncheckedIndexedAccess` ([`tsconfig.json`](tsconfig.json)).
+- **Pre-commit hook:** [Husky](https://typicode.github.io/husky/) runs [lint-staged](https://github.com/lint-staged/lint-staged) on staged files, so commits are linted and formatted automatically.
 
 > [!TIP]
-> **IDE Configuration:** We highly recommend configuring your editor (e.g., VSCode, IntelliJ) to format on save using the project's formatting tools. For VSCode, ensure you have the relevant extensions installed and check `.vscode/settings.json` if available.
+> **IDE Configuration:** The repository ships VS Code settings that format on save and recommend the ESLint, Prettier, EditorConfig, Playwright, and Vitest extensions.
+
+## Dependencies and Supply Chain
+
+- Add packages with `pnpm add <name>` (or `pnpm add -D <name>` for tooling) and commit `pnpm-lock.yaml`.
+- [`pnpm-workspace.yaml`](pnpm-workspace.yaml) hardens installs: versions must be public for three days before they can be installed (`minimumReleaseAge`), a package may not lose its publishing provenance (`trustPolicy`), and dependency build scripts only run when approved in `allowBuilds`.
+- [Dependabot](.github/dependabot.yml) opens grouped update pull requests every Monday for npm packages and GitHub Actions.
+- GitHub Actions are pinned to full commit SHAs with a version comment.
 
 ## Git Workflow & Branching
-
-We follow a structured branching strategy to maintain a clean git history.
 
 1. **Branch Naming:**
    - Feature branches: `feature/short-description`
    - Bug fixes: `bugfix/short-description`
+   - Content: `content/short-description`
    - Documentation: `docs/short-description`
 
 2. **Commit Messages:**
-   We encourage following [Conventional Commits](https://www.conventionalcommits.org/).
-   - `feat: add new user endpoint`
-   - `fix: resolve crash on startup`
+   Follow [Conventional Commits](https://www.conventionalcommits.org/).
+   - `feat: add project gallery page`
+   - `fix: correct RSS feed dates`
    - `docs: update developing guide`
 
 3. **Pull Requests:**
    - Push your branch to the remote repository.
    - Open a Pull Request against the `main` branch.
-   - Ensure all CI checks (tests, linters) pass.
-   - Request a review from at least one core maintainer.
+   - Ensure all CI checks pass. `CI Passed` is the single status to require in branch protection.
 
 ## CI/CD Architecture
 
-This repository uses a modular, standardized GitHub Actions architecture. Workflows are divided into core lifecycle events and reusable helper templates.
+This repository uses a modular GitHub Actions architecture. Workflows are divided into core lifecycle events and reusable helper templates.
 
 ### Lifecycle Workflows
 
-| Workflow | Trigger | Purpose |
-| :--- | :--- | :--- |
-| **Development** (`development.yml`) | Pull Request to `main` | Runs quality gates, security audits, unit/integration tests, and builds documentation previews. Blocks merges if checks fail. |
-| **Main** (`main.yml`) | Push to `main` | Post-merge validation. Runs unit/integration/e2e tests, quality/security checks, and updates the `latest` documentation. |
-| **Nightly** (`nightly.yml`) | Cron (Daily 00:00 UTC) | Runs extended regression tests, alpha builds, nightly documentation deployment, and deeper security analysis. |
-| **Release** (`release.yml`) | Push of `v*.*.*` tag | Performs full verification, builds immutable release packages, versioned documentation, and publishes artifacts. |
-| **Weekly** (`weekly.yml`) | Cron (Sun 00:00 UTC) | Conducts dependency hygiene and full test suite regression to catch configuration drift. |
-
-### PR Feedback & Cleanup
-
-- **Safe PR Commenting:** The `pr_comment.yml` workflow uses `workflow_run` to securely post CI status comments on pull requests, circumventing write permission limits on forks.
-- **Environment Cleanup:** When a PR is closed or merged, `development_cleanup.yml` automatically removes ephemeral documentation environments and artifacts to maintain a clean workspace.
+| Workflow                            | Trigger                | Purpose                                                                                  |
+| :---------------------------------- | :--------------------- | :--------------------------------------------------------------------------------------- |
+| **Development** (`development.yml`) | Pull Request to `main` | Runs quality gates, security audits, unit/integration/e2e tests, and a production build. |
+| **Main** (`main.yml`)               | Push to `main`         | Post-merge validation with the same stages.                                              |
+| **Weekly** (`weekly.yml`)           | Cron (Sun 00:00 UTC)   | Security audit, full test suite, and link check to catch drift that no commit triggered. |
 
 ### Reusable Templates
 
-Our pipelines rely on modular templates located in `.github/workflows/_*.yml` (e.g., `_tests.yml`, `_quality.yml`, `_docs.yml`, `_security.yml`, `_build_package.yml`). This ensures testing granularity and linting rules remain perfectly consistent across all stages of the software lifecycle.
+The pipelines rely on modular templates located in `.github/workflows/_*.yml`:
 
-## Building Documentation
+| Template          | Purpose                                                                    |
+| :---------------- | :------------------------------------------------------------------------- |
+| `_quality.yml`    | ESLint, Prettier, and TypeScript checks.                                   |
+| `_tests.yml`      | Vitest (unit, integration) and Playwright (e2e) with coverage and reports. |
+| `_build.yml`      | Production build of the site.                                              |
+| `_security.yml`   | Secret scan, dependency audit, dependency review, and CodeQL analysis.     |
+| `_link-check.yml` | Link validation for Markdown and MDX files.                                |
 
-Our documentation is built using [MkDocs Material](https://squidfunk.github.io/mkdocs-material/). To preview documentation changes locally:
+### Deployment
 
-```bash
-# Install docs dependencies (if not already installed)
-pip install mkdocs-material
+Deployment is handled by [Vercel's Git integration](https://vercel.com/docs/git), not by GitHub Actions. Every pull request gets a preview deployment, and every push to `main` deploys to production. Custom domains and environment variables are configured in the Vercel project.
 
-# Serve documentation on http://127.0.0.1:8000 with hot-reload
-mkdocs serve
-```
-
-For further assistance, please refer to our [SUPPORT.md](SUPPORT.md).
+For further assistance, please refer to [SUPPORT.md](SUPPORT.md).

@@ -1,4 +1,4 @@
-# Code of Conduct for `{{project_name}}`
+# Code of Conduct
 
 ## Our Pledge
 
@@ -60,8 +60,8 @@ representative at an online or offline event.
 
 > [!IMPORTANT]
 > Instances of abusive, harassing, or otherwise unacceptable behavior may be
-> reported to the community leaders responsible for enforcement by contacting
-> **conduct@{{organization}}.com**.
+> reported privately to the repository owner, [@markurtz](https://github.com/markurtz),
+> using the contact options listed on their GitHub profile.
 
 All complaints will be reviewed and investigated promptly and fairly.
 
