@@ -50,6 +50,11 @@ export const siteConfigSchema = z.object({
     .url()
     .transform((value) => value.replace(/\/+$/, ""))
     .describe("Canonical origin, without a trailing slash"),
+  /**
+   * The live site's origin. Used where the output must not depend on the
+   * environment: the profile README and syndicated posts.
+   */
+  productionUrl: z.url().transform((value) => value.replace(/\/+$/, "")),
   name: z.string().min(1),
   title: z.string().min(1),
   tagline: z.string(),

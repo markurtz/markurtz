@@ -19,3 +19,8 @@ engineStrict: true
 allowBuilds:
   esbuild: false
   sharp: false
+
+# Velite pins an older sharp with known advisories in its bundled image
+# libraries. Use the patched release everywhere. Remove once Velite updates.
+overrides:
+  "velite>sharp": "^0.35.5"

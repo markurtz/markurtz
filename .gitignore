@@ -86,3 +86,4 @@ $RECYCLE.BIN/
 *~
 .history/
 public/static/
+.data/

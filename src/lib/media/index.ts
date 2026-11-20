@@ -53,6 +53,7 @@ function decodeThumbhash(thumbhash: string): Uint8Array {
 
 /** A blurred preview as a CSS background value, decoded from a base64 thumbhash. */
 export function thumbhashToPlaceholder(thumbhash: string): string | undefined {
+  if (!thumbhash) return undefined;
   try {
     return `center / cover no-repeat url("${thumbHashToDataURL(decodeThumbhash(thumbhash))}")`;
   } catch {

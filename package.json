@@ -19,13 +19,13 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "velite build && next build",
+    "build": "velite build --strict && next build",
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "typecheck": "velite build && next typegen && tsc --noEmit",
+    "typecheck": "velite build --strict && next typegen && tsc --noEmit",
     "test": "vitest run",
     "test:unit": "vitest run --project unit",
     "test:integration": "vitest run --project integration",
@@ -33,7 +33,16 @@
     "test:e2e": "playwright test",
     "check": "pnpm lint && pnpm format:check && pnpm typecheck && pnpm test",
     "prepare": "husky",
-    "content": "velite build"
+    "content": "velite build --strict",
+    "new": "tsx scripts/new.ts",
+    "photos": "tsx --conditions=react-server --env-file-if-exists=.env.local scripts/photos/upload.ts",
+    "readme:generate": "velite build --strict && tsx scripts/readme/generate.ts",
+    "readme:check": "velite build --strict && tsx scripts/readme/generate.ts --check",
+    "syndicate": "velite build --strict && tsx scripts/syndicate/index.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx --env-file-if-exists=.env.local src/server/db/migrate.ts",
+    "db:studio": "drizzle-kit studio",
+    "e2e:seed": "tsx --conditions=react-server tests/e2e/seed.ts"
   },
   "lint-staged": {
     "*.{js,jsx,mjs,cjs,ts,tsx}": [
@@ -76,7 +85,7 @@
     "remark-gfm": "^4.0.1",
     "remark-math": "^6.0.0",
     "server-only": "^0.0.1",
-    "sharp": "^0.34.5",
+    "sharp": "^0.35.5",
     "shiki": "^4.6.0",
     "tailwind-merge": "^3.7.0",
     "tailwindcss": "^4.3.5",
