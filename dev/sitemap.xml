@@ -57,6 +57,10 @@
          <lastmod>2026-11-20</lastmod>
     </url>
     <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/dev/plans/website-implementation-plan/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
          <loc>https://{{ org_name }}.github.io/{{ project_name }}/dev/reference/</loc>
          <lastmod>2026-11-20</lastmod>
     </url>

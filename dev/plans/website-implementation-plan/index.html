@@ -1,0 +1,3273 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="{{ project_description }}">
+      
+      
+        <meta name="author" content="{{ org_name }}">
+      
+      
+        <link rel="canonical" href="https://{{ org_name }}.github.io/{{ project_name }}/dev/plans/website-implementation-plan/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Personal Website and Profile README: Implementation Plan - {{ project_name }}</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#personal-website-and-profile-readme-implementation-plan" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="{{ project_name }}" class="md-header__button md-logo" aria-label="{{ project_name }}" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            {{ project_name }}
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Personal Website and Profile README: Implementation Plan
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/{{ org_name }}/{{ project_name }}" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    {{ org_name }}/{{ project_name }}
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../guides/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guides
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../examples/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Examples
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../community/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Community
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="{{ project_name }}" class="md-nav__button md-logo" aria-label="{{ project_name }}" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    {{ project_name }}
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/{{ org_name }}/{{ project_name }}" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    {{ org_name }}/{{ project_name }}
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../community/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Community
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Community
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/developing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agent Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/code-of-conduct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code of Conduct
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-goals-and-requirement-traceability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Goals and requirement traceability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-summary-of-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Summary of decisions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-stack-and-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Stack and versions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-repository-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Repository layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-config-driven-customization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Config-driven customization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Config-driven customization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-siteconfigts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 site.config.ts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-adding-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Adding content
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-theme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Theme
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-content-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Content model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Content model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-pages-contentpagesmdx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Pages (content/pages/*.mdx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-data-contentdatayaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Data (content/data/*.yaml)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-blog-contentblog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Blog (content/blog/)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-papers-contentpapersmdx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 Papers (content/papers/*.mdx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-projects-contentprojectsslugindexmdx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.5 Projects (content/projects/&lt;slug&gt;/index.mdx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#76-public-albums-contentalbumsslug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.6 Public albums (content/albums/&lt;slug&gt;/)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#77-mdx-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.7 MDX components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-routes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Routes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-private-area-access-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Private area: access model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Private area: access model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-principals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Principals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-database-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Database schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-passcode-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 Passcode flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-authorization-in-one-place" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 Authorization in one place
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#95-client-collections-and-sharing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.5 Client collections and sharing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#96-generic-gated-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.6 Generic gated pages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#97-admin-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.7 Admin UI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-media-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Media pipeline
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Media pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-buckets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 Buckets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-keys-and-derivatives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 Keys and derivatives
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103-photos-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 Photos CLI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#104-mediastorage-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4 MediaStorage interface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#105-delivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.5 Delivery
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-blog-publishing-and-syndication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Blog publishing and syndication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Blog publishing and syndication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-publishing-on-the-site" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 Publishing on the site
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-automated-cross-posting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 Automated cross-posting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-backend-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Backend wiring
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Backend wiring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-database-and-auth-clients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1 Database and auth clients
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2 Environment variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-keeping-the-free-supabase-project-awake" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.3 Keeping the free Supabase project awake
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-domain-dns-and-hosting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Domain, DNS and hosting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Domain, DNS and hosting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131-recommended-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.1 Recommended setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132-alternative-without-moving-nameservers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2 Alternative without moving nameservers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#133-deployments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.3 Deployments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#134-plan-and-cost-caveats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.4 Plan and cost caveats
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-github-profile-readme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. GitHub profile README
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. GitHub profile README">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1 Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142-how-it-stays-current-and-customizable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2 How it stays current and customizable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#143-standards-for-the-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3 Standards for the profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-build-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Build phases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Build phases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-0-foundations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 0: Foundations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-design-system-and-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1: Design system and layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-content-engine-and-core-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: Content engine and core pages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-profile-readme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: Profile README
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-public-photography" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4: Public photography
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-5-backend-foundation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 5: Backend foundation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-6-client-galleries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 6: Client galleries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-7-collections-sharing-and-client-accounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 7: Collections, sharing and client accounts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-8-blog-syndication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 8: Blog syndication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-9-hardening-and-launch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 9: Hardening and launch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backlog-designed-for-not-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backlog (designed for, not built)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guidance-for-the-build-thread" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Guidance for the build thread
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-quality-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Quality standards
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-what-only-mark-can-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. What only Mark can do
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-risks-and-open-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Risks and open questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/{{ org_name }}/{{ project_name }}/edit/main/docs/plans/website-implementation-plan.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="personal-website-and-profile-readme-implementation-plan">Personal Website and Profile README: Implementation Plan<a class="headerlink" href="#personal-website-and-profile-readme-implementation-plan" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Status</strong></td>
+<td style="text-align: left;">Proposed, ready to build</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Date</strong></td>
+<td style="text-align: left;">2026-11-20</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Scope</strong></td>
+<td style="text-align: left;">The personal website served from this repo, and the GitHub profile <code>README.md</code> at the repo root</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Audience</strong></td>
+<td style="text-align: left;">The build thread that implements this, the reviewer, and Mark</td>
+</tr>
+</tbody>
+</table>
+<p>This plan is written to be executed top to bottom. Sections 1 to 4 fix the decisions, sections 5 to 14 specify the design, section 15 is the phased build order with acceptance criteria, and section 17 lists the few things only Mark can do (accounts, DNS, secrets).</p>
+<p>Where this plan names a library version, it was checked against the npm registry on 2026-11-20. The builder should still install the latest stable release within the named major and read the current docs for anything marked <strong>verify</strong>, because several of these tools move quickly.</p>
+<hr />
+<h2 id="1-goals-and-requirement-traceability">1. Goals and requirement traceability<a class="headerlink" href="#1-goals-and-requirement-traceability" title="Permanent link">&para;</a></h2>
+<p>Every requirement from the original brief maps to a section and a build phase.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">Requirement</th>
+<th style="text-align: left;">Where it is designed</th>
+<th style="text-align: left;">Phase</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">R1</td>
+<td style="text-align: left;">Own and manage the code, full control to customize anything</td>
+<td style="text-align: left;">§3, §5, §6</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">R2</td>
+<td style="text-align: left;">Easy customization without touching components</td>
+<td style="text-align: left;">§6 (config-driven)</td>
+<td style="text-align: left;">0 to 2</td>
+</tr>
+<tr>
+<td style="text-align: left;">R3</td>
+<td style="text-align: left;">About me, hobbies, and work</td>
+<td style="text-align: left;">§7.1, §8</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">R4</td>
+<td style="text-align: left;">Research papers</td>
+<td style="text-align: left;">§7.4, §8</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">R5</td>
+<td style="text-align: left;">Blog: link out to externally hosted posts today</td>
+<td style="text-align: left;">§7.3 (<code>externalUrl</code>)</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">R6</td>
+<td style="text-align: left;">Blog: self-publish on the site</td>
+<td style="text-align: left;">§7.3, §11</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">R7</td>
+<td style="text-align: left;">Blog: sync to other blogging services</td>
+<td style="text-align: left;">§11 (syndication)</td>
+<td style="text-align: left;">8</td>
+</tr>
+<tr>
+<td style="text-align: left;">R8</td>
+<td style="text-align: left;">Coding projects</td>
+<td style="text-align: left;">§7.5</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">R9</td>
+<td style="text-align: left;">DIY and 3D printing projects</td>
+<td style="text-align: left;">§7.5, §7.7 (<code>ModelViewer</code>, <code>BillOfMaterials</code>)</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">R10</td>
+<td style="text-align: left;">Woodworking projects</td>
+<td style="text-align: left;">§7.5, §7.7</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">R11</td>
+<td style="text-align: left;">Photography and travel (public)</td>
+<td style="text-align: left;">§7.6, §10</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr>
+<td style="text-align: left;">R12</td>
+<td style="text-align: left;">Passcode or login protected areas</td>
+<td style="text-align: left;">§9</td>
+<td style="text-align: left;">5 to 6</td>
+</tr>
+<tr>
+<td style="text-align: left;">R13</td>
+<td style="text-align: left;">Host client shoot images and albums privately</td>
+<td style="text-align: left;">§9, §10</td>
+<td style="text-align: left;">6</td>
+</tr>
+<tr>
+<td style="text-align: left;">R14</td>
+<td style="text-align: left;">Clients create their own collections and share them</td>
+<td style="text-align: left;">§9.5</td>
+<td style="text-align: left;">7</td>
+</tr>
+<tr>
+<td style="text-align: left;">R15</td>
+<td style="text-align: left;">Database-backed customizations, generic passcode pathways</td>
+<td style="text-align: left;">§9.6, §12</td>
+<td style="text-align: left;">5, 9</td>
+</tr>
+<tr>
+<td style="text-align: left;">R16</td>
+<td style="text-align: left;">Domain registered at Squarespace</td>
+<td style="text-align: left;">§13</td>
+<td style="text-align: left;">9</td>
+</tr>
+<tr>
+<td style="text-align: left;">R17</td>
+<td style="text-align: left;">Profile README, since the repo is <code>markurtz/markurtz</code></td>
+<td style="text-align: left;">§14</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;">R18</td>
+<td style="text-align: left;">Modern best practices and standards</td>
+<td style="text-align: left;">§4, §16</td>
+<td style="text-align: left;">all</td>
+</tr>
+</tbody>
+</table>
+<p>Non-goals for the first release: e-commerce or print sales, comments hosted on the site, a newsletter system, multi-author support, and a visual CMS. Section 15 lists these in the backlog with the hook each one would attach to.</p>
+<hr />
+<h2 id="2-summary-of-decisions">2. Summary of decisions<a class="headerlink" href="#2-summary-of-decisions" title="Permanent link">&para;</a></h2>
+<p>These are the choices made on Mark's behalf. Each one is reversible, and the "escape hatch" column says how.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Area</th>
+<th style="text-align: left;">Decision</th>
+<th style="text-align: left;">Why</th>
+<th style="text-align: left;">Escape hatch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Framework</td>
+<td style="text-align: left;">Next.js 16 App Router, React 19, TypeScript strict</td>
+<td style="text-align: left;">Matches the suggested stack. Static content pages plus server-side logic for the client area in one codebase.</td>
+<td style="text-align: left;">Avoid Vercel-only APIs so OpenNext on Cloudflare stays possible.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Hosting</td>
+<td style="text-align: left;">Vercel with Git integration</td>
+<td style="text-align: left;">Preview deployment per PR, zero-config Next.js.</td>
+<td style="text-align: left;">See the Hobby plan caveat in §13.4.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Content engine</td>
+<td style="text-align: left;"><strong>Velite</strong> (not Contentlayer)</td>
+<td style="text-align: left;">Contentlayer is unmaintained. Velite was on the shortlist, is bundler independent (works with Turbopack), uses Zod schemas, and emits typed JSON.</td>
+<td style="text-align: left;">All access goes through <code>src/lib/content/</code>, so swapping to Content Collections touches one folder.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Styling</td>
+<td style="text-align: left;">Tailwind CSS v4, shadcn/ui components copied into the repo, CSS variable theme tokens</td>
+<td style="text-align: left;">Owned code, no component library lock-in, theme changes in one file.</td>
+<td style="text-align: left;">Components are plain files.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Database</td>
+<td style="text-align: left;">Supabase Postgres, accessed <strong>server-side only</strong> through Drizzle ORM</td>
+<td style="text-align: left;">Typed queries, SQL migrations in the repo, and the tests can run against in-process PGlite with no Docker.</td>
+<td style="text-align: left;">Schema is plain Postgres. Any Postgres host works.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Auth</td>
+<td style="text-align: left;">Supabase Auth (email one-time code) for the admin and invited clients. A separate signed-cookie grant for passcode access.</td>
+<td style="text-align: left;">Passcode visitors should not need an account.</td>
+<td style="text-align: left;">Auth is isolated in <code>src/server/auth/</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Media storage</td>
+<td style="text-align: left;">Cloudflare R2, one public bucket and one private bucket, behind a <code>MediaStorage</code> interface</td>
+<td style="text-align: left;">Zero egress fees for full-resolution downloads.</td>
+<td style="text-align: left;">Interface has <code>r2</code> and <code>local</code> drivers. Any S3-compatible store fits.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Image processing</td>
+<td style="text-align: left;">Pre-generate derivatives with <code>sharp</code> in a CLI at upload time</td>
+<td style="text-align: left;">No per-request image transformation cost, predictable quality, and bulk shoots upload reliably from a laptop.</td>
+<td style="text-align: left;">Browser upload in the admin UI is a later phase using the same pipeline module.</td>
+</tr>
+<tr>
+<td style="text-align: left;">DNS</td>
+<td style="text-align: left;">Keep the domain registered at Squarespace, move <strong>nameservers to Cloudflare</strong> (free)</td>
+<td style="text-align: left;">R2 custom domains require the zone to be on Cloudflare.</td>
+<td style="text-align: left;">Records are documented, moving back is a nameserver change.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Blog syndication</td>
+<td style="text-align: left;">Site is canonical (POSSE). GitHub Action cross-posts to Dev.to and Hashnode as drafts with <code>canonical_url</code> set. Medium, LinkedIn and Substack use their import tools manually.</td>
+<td style="text-align: left;">Those three have no usable publishing API today.</td>
+<td style="text-align: left;">Each target is an adapter file.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Profile README</td>
+<td style="text-align: left;">Hand-written <code>README.md</code> with generated blocks between markers, checked for drift in CI</td>
+<td style="text-align: left;">Mark edits prose directly. Lists stay in sync with site content with no bot commits.</td>
+<td style="text-align: left;">Delete the markers and it is a static file.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Lint and format</td>
+<td style="text-align: left;">Biome</td>
+<td style="text-align: left;">One fast tool. <code>next lint</code> no longer exists in Next 16.</td>
+<td style="text-align: left;">If the repo standards thread chose ESLint and Prettier, follow that instead.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tests</td>
+<td style="text-align: left;">Vitest for unit and integration, Playwright for end to end</td>
+<td style="text-align: left;">Standard for this stack.</td>
+<td style="text-align: left;">n/a</td>
+</tr>
+<tr>
+<td style="text-align: left;">Package manager</td>
+<td style="text-align: left;">pnpm, pinned through <code>packageManager</code></td>
+<td style="text-align: left;">Fast, strict.</td>
+<td style="text-align: left;">n/a</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-architecture">3. Architecture<a class="headerlink" href="#3-architecture" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart LR
+  subgraph Repo["GitHub: markurtz/markurtz"]
+    C["content/ (MDX, YAML)"]
+    CFG["site.config.ts"]
+    APP["src/ (Next.js app)"]
+    RD["README.md (profile)"]
+  end
+
+  subgraph Vercel
+    ST["Static pages: home, about, work, research, blog, projects, photos"]
+    DYN["Dynamic routes: /clients, /admin, /api"]
+  end
+
+  subgraph Cloudflare
+    DNS["DNS zone"]
+    PUB["R2 public bucket, media.DOMAIN"]
+    PRIV["R2 private bucket, presigned URLs only"]
+  end
+
+  subgraph Supabase
+    PG["Postgres: galleries, photos, collections, gates"]
+    AUTH["Auth: admin and invited clients"]
+  end
+
+  C --&gt; ST
+  CFG --&gt; ST
+  C --&gt; RD
+  APP --&gt; ST
+  APP --&gt; DYN
+  DYN --&gt; PG
+  DYN --&gt; AUTH
+  DYN -- "signs short-lived URLs" --&gt; PRIV
+  ST -- "img srcset" --&gt; PUB
+  CLI["scripts/photos CLI (laptop)"] --&gt; PUB
+  CLI --&gt; PRIV
+  CLI --&gt; PG
+  GA["GitHub Actions"] -- "syndicate posts" --&gt; EXT["Dev.to, Hashnode"]
+  DNS --&gt; Vercel
+  DNS --&gt; PUB</code></pre>
+<p>Three properties drive the layout:</p>
+<ol>
+<li><strong>Public content is static and lives in git.</strong> Blog posts, projects, papers and public albums are files. They build to static HTML, need no database, and the site works with every backend feature switched off.</li>
+<li><strong>Private content is dynamic and lives in Postgres and R2.</strong> Client galleries change without a deploy and must never be in the static output or the client bundle.</li>
+<li><strong>The browser never talks to the database.</strong> All reads and writes go through server components, server actions and route handlers that call a data access layer. Row Level Security is enabled on every table with no public policies, as a second line of defense rather than the primary one.</li>
+</ol>
+<hr />
+<h2 id="4-stack-and-versions">4. Stack and versions<a class="headerlink" href="#4-stack-and-versions" title="Permanent link">&para;</a></h2>
+<p>Majors confirmed on the npm registry on 2026-11-20.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Layer</th>
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Major</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Runtime</td>
+<td style="text-align: left;">Node.js</td>
+<td style="text-align: left;">22 or newer (<code>engines</code>), <code>.nvmrc</code> on current LTS</td>
+<td style="text-align: left;">Next 16 needs 20.9 or newer.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Framework</td>
+<td style="text-align: left;"><code>next</code></td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">Turbopack is the default bundler. <code>middleware.ts</code> is now <code>proxy.ts</code>. Route <code>params</code> and <code>searchParams</code> are async. <strong>verify</strong> details against current docs.</td>
+</tr>
+<tr>
+<td style="text-align: left;">UI</td>
+<td style="text-align: left;"><code>react</code>, <code>react-dom</code></td>
+<td style="text-align: left;">19</td>
+<td style="text-align: left;">Enable the React Compiler if the Next config flag is stable at build time.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Language</td>
+<td style="text-align: left;"><code>typescript</code></td>
+<td style="text-align: left;">latest that Next and Velite both support</td>
+<td style="text-align: left;">TypeScript 7 is current. Fall back one major if any tool fails on it.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Styling</td>
+<td style="text-align: left;"><code>tailwindcss</code></td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">CSS-first config with <code>@theme</code>. Add <code>@tailwindcss/typography</code> for prose.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Components</td>
+<td style="text-align: left;">shadcn/ui (copied), <code>lucide-react</code>, <code>next-themes</code></td>
+<td style="text-align: left;">n/a</td>
+<td style="text-align: left;">Only add components that are used.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Content</td>
+<td style="text-align: left;"><code>velite</code></td>
+<td style="text-align: left;">0.4</td>
+<td style="text-align: left;">Peer-depends on <code>sharp</code> 0.34, so pin <code>sharp</code> to 0.34.x.</td>
+</tr>
+<tr>
+<td style="text-align: left;">MDX plugins</td>
+<td style="text-align: left;"><code>remark-gfm</code>, <code>remark-math</code>, <code>rehype-katex</code>, <code>rehype-slug</code>, <code>rehype-autolink-headings</code>, <code>rehype-pretty-code</code> with <code>shiki</code></td>
+<td style="text-align: left;">n/a</td>
+<td style="text-align: left;">Math and code highlighting at build time, no client JS.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Validation</td>
+<td style="text-align: left;"><code>zod</code></td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Content schemas come from Velite's <code>s</code>. App input and env use Zod directly.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Database</td>
+<td style="text-align: left;"><code>drizzle-orm</code>, <code>drizzle-kit</code>, <code>postgres</code></td>
+<td style="text-align: left;">0.45</td>
+<td style="text-align: left;">Use the Supabase transaction pooler URL with <code>prepare: false</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Test database</td>
+<td style="text-align: left;"><code>@electric-sql/pglite</code></td>
+<td style="text-align: left;">n/a</td>
+<td style="text-align: left;">In-process Postgres for integration tests.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Auth</td>
+<td style="text-align: left;"><code>@supabase/supabase-js</code> 2, <code>@supabase/ssr</code></td>
+<td style="text-align: left;">n/a</td>
+<td style="text-align: left;">Cookie-based sessions on the server.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Sessions</td>
+<td style="text-align: left;"><code>jose</code></td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">Signs the passcode grant cookie.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Storage</td>
+<td style="text-align: left;"><code>@aws-sdk/client-s3</code>, <code>@aws-sdk/s3-request-presigner</code></td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">R2 speaks the S3 API.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Images</td>
+<td style="text-align: left;"><code>sharp</code> 0.34, <code>exifr</code>, <code>thumbhash</code></td>
+<td style="text-align: left;">n/a</td>
+<td style="text-align: left;">Derivatives, EXIF, blur placeholders.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gallery UI</td>
+<td style="text-align: left;"><code>react-photo-album</code>, <code>yet-another-react-lightbox</code></td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Justified rows layout and lightbox.</td>
+</tr>
+<tr>
+<td style="text-align: left;">3D models</td>
+<td style="text-align: left;"><code>@google/model-viewer</code></td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Lazy-loaded web component for <code>.glb</code> files.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Search</td>
+<td style="text-align: left;"><code>minisearch</code></td>
+<td style="text-align: left;">n/a</td>
+<td style="text-align: left;">Client-side search over a build-time index.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Feeds</td>
+<td style="text-align: left;"><code>feed</code></td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">RSS 2.0, Atom and JSON Feed.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Email</td>
+<td style="text-align: left;"><code>resend</code></td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">Contact form, and as the SMTP provider for Supabase Auth mail.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Lint and format</td>
+<td style="text-align: left;"><code>@biomejs/biome</code></td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Tests</td>
+<td style="text-align: left;"><code>vitest</code> 5, <code>@playwright/test</code>, <code>@axe-core/playwright</code></td>
+<td style="text-align: left;">n/a</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Scripts</td>
+<td style="text-align: left;"><code>tsx</code></td>
+<td style="text-align: left;">n/a</td>
+<td style="text-align: left;">Runs the TypeScript CLIs in <code>scripts/</code>.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-repository-layout">5. Repository layout<a class="headerlink" href="#5-repository-layout" title="Permanent link">&para;</a></h2>
+<p>The Next.js app sits at the repo root so Vercel needs no root directory setting and the profile <code>README.md</code> stays at the root where GitHub requires it.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>.
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── README.md                     # GitHub PROFILE readme (see §14), not project docs
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── site.config.ts                # The one file Mark edits to customize the site (§6)
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── velite.config.ts              # Content collections and schemas (§7)
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── next.config.ts
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── drizzle.config.ts
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>├── biome.json
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>├── package.json
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>├── proxy.ts                      # Auth session refresh for /admin and /clients only
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>├── content/
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│   ├── pages/                    # about.mdx, hobbies.mdx, uses.mdx, now.mdx
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│   ├── blog/                     # one .mdx per post, or folder with index.mdx and images
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│   ├── papers/                   # one .mdx per publication
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│   ├── projects/                 # one folder per project, all categories
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│   ├── albums/                   # public photo albums: index.mdx + photos.json
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│   ├── data/                     # experience.yaml, education.yaml, talks.yaml
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│   └── .syndication.json         # state written by the syndication job (§11)
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>├── public/
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│   ├── models/                   # .glb files for ModelViewer
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│   └── static/                   # Velite copies content images here (gitignored)
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>├── src/
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>│   ├── app/
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>│   │   ├── (site)/               # public, static
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>│   │   │   ├── page.tsx
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>│   │   │   ├── about/  work/  research/  hobbies/  contact/
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>│   │   │   ├── blog/  blog/[slug]/  blog/tags/[tag]/
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>│   │   │   ├── projects/  projects/[slug]/  projects/category/[category]/
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>│   │   │   └── photos/  photos/[album]/
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>│   │   ├── (private)/            # dynamic, noindex
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>│   │   │   ├── clients/                      # enter a code or sign in
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>│   │   │   ├── clients/g/[slug]/             # gallery
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>│   │   │   ├── clients/g/[slug]/unlock/
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>│   │   │   ├── clients/g/[slug]/collections/ # manage collections
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>│   │   │   ├── clients/c/[token]/            # shared collection
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>│   │   │   ├── p/[key]/                      # generic gated pages (§9.6)
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>│   │   │   └── admin/                        # galleries, photos, gates
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>│   │   ├── api/
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>│   │   │   ├── health/route.ts
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>│   │   │   ├── og/route.tsx
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>│   │   │   └── clients/download/route.ts
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>│   │   ├── feed.xml/  atom.xml/  feed.json/  llms.txt/
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>│   │   ├── sitemap.ts  robots.ts  manifest.ts
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>│   │   ├── layout.tsx  not-found.tsx  error.tsx  global-error.tsx
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>│   ├── components/
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>│   │   ├── ui/                   # shadcn primitives
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>│   │   ├── layout/               # Header, Footer, Nav, ThemeToggle, CommandMenu
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>│   │   ├── content/              # PostCard, ProjectCard, PaperItem, Timeline, TagList
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>│   │   ├── mdx/                  # components available inside MDX (§7.7)
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>│   │   └── gallery/              # PhotoGrid, Lightbox, SelectionBar, PasscodeForm
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>│   ├── lib/
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>│   │   ├── content/              # ONLY place that imports from .velite
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>│   │   ├── seo/                  # metadata builders, JSON-LD
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>│   │   ├── media/                # public image URL helpers, srcset
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>│   │   ├── features.ts           # feature flags derived from config and env
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>│   │   └── env.ts                # Zod-validated environment
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>│   ├── server/                   # everything here imports "server-only"
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>│   │   ├── db/                   # schema.ts, client.ts, migrations/
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>│   │   ├── dal/                  # galleries.ts, photos.ts, collections.ts, gates.ts
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>│   │   ├── auth/                 # session.ts (grants), supabase.ts, access.ts, passcode.ts
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>│   │   ├── storage/              # index.ts (interface), r2.ts, local.ts
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>│   │   ├── rate-limit.ts
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>│   │   └── actions/              # server actions, one file per feature
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>│   └── styles/
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>│       ├── globals.css
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>│       └── theme.css             # design tokens (§6.3)
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>├── scripts/
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>│   ├── photos/                   # upload.ts, pipeline.ts (shared with admin upload)
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>│   ├── syndicate/                # index.ts, transform.ts, targets/devto.ts, hashnode.ts
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>│   ├── readme/                   # generate.ts
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>│   └── new.ts                    # scaffolds a post, project, paper or album
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>├── tests/
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>│   ├── unit/  integration/  e2e/
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>└── docs/
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>    ├── plans/                    # this file
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>    └── guides/                   # customizing.md, writing.md, photos.md, client-galleries.md, deploy.md
+</span></code></pre></div>
+<p>Rules the builder should encode in <code>AGENTS.md</code>:</p>
+<ul>
+<li>Only <code>src/lib/content/</code> imports from <code>.velite</code>. Pages call functions such as <code>getPosts()</code> and never touch the raw output.</li>
+<li>Everything under <code>src/server/</code> starts with <code>import "server-only"</code>.</li>
+<li>Client components never import from <code>src/server/</code> and never receive a storage key, only a ready-to-use URL.</li>
+<li>The existing template pieces that do not apply to a website (Python packaging, PyPI publishing, MkDocs, the placeholder <code>Dockerfile</code>) are owned by the repo standards thread. This plan assumes they are removed or adapted there and does not depend on any of them.</li>
+</ul>
+<hr />
+<h2 id="6-config-driven-customization">6. Config-driven customization<a class="headerlink" href="#6-config-driven-customization" title="Permanent link">&para;</a></h2>
+<p>The aim is that routine changes are edits to <code>site.config.ts</code>, a content file, or <code>theme.css</code>, and never to a component.</p>
+<h3 id="61-siteconfigts">6.1 <code>site.config.ts</code><a class="headerlink" href="#61-siteconfigts" title="Permanent link">&para;</a></h3>
+<p>A single typed object, validated with Zod at build time so a typo fails the build with a clear message.</p>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">siteConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">defineSiteConfig</span><span class="p">({</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="kt">process.env.NEXT_PUBLIC_SITE_URL</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="s2">"http://localhost:3000"</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Mark Kurtz"</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">"Mark Kurtz"</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nx">tagline</span><span class="o">:</span><span class="w"> </span><span class="s2">"TODO: one line"</span><span class="p">,</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s2">"TODO: two sentences used for SEO and the README"</span><span class="p">,</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nx">locale</span><span class="o">:</span><span class="w"> </span><span class="s2">"en-US"</span><span class="p">,</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nx">author</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Mark Kurtz"</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="nx">avatar</span><span class="o">:</span><span class="w"> </span><span class="s2">"/avatar.jpg"</span><span class="p">,</span><span class="w"> </span><span class="nx">location</span><span class="o">:</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="nx">social</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w">                       </span><span class="c1">// any subset, rendered in the footer, about page and README</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="nx">github</span><span class="o">:</span><span class="w"> </span><span class="s2">"markurtz"</span><span class="p">,</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nx">linkedin</span><span class="o">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="nx">scholar</span><span class="o">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="nx">orcid</span><span class="o">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="nx">bluesky</span><span class="o">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="nx">mastodon</span><span class="o">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="nx">nav</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w">                          </span><span class="c1">// order and labels of the header</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s2">"About"</span><span class="p">,</span><span class="w"> </span><span class="nx">href</span><span class="o">:</span><span class="w"> </span><span class="s2">"/about"</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s2">"Work"</span><span class="p">,</span><span class="w"> </span><span class="nx">href</span><span class="o">:</span><span class="w"> </span><span class="s2">"/work"</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s2">"Research"</span><span class="p">,</span><span class="w"> </span><span class="nx">href</span><span class="o">:</span><span class="w"> </span><span class="s2">"/research"</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s2">"Blog"</span><span class="p">,</span><span class="w"> </span><span class="nx">href</span><span class="o">:</span><span class="w"> </span><span class="s2">"/blog"</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s2">"Projects"</span><span class="p">,</span><span class="w"> </span><span class="nx">href</span><span class="o">:</span><span class="w"> </span><span class="s2">"/projects"</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s2">"Photos"</span><span class="p">,</span><span class="w"> </span><span class="nx">href</span><span class="o">:</span><span class="w"> </span><span class="s2">"/photos"</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">  </span><span class="p">],</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">  </span><span class="nx">projectCategories</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w">            </span><span class="c1">// add a hobby by adding a line here</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s2">"software"</span><span class="p">,</span><span class="w">    </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s2">"Software"</span><span class="p">,</span><span class="w">    </span><span class="nx">icon</span><span class="o">:</span><span class="w"> </span><span class="s2">"code"</span><span class="p">,</span><span class="w">   </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s2">"3d-printing"</span><span class="p">,</span><span class="w"> </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s2">"3D Printing"</span><span class="p">,</span><span class="w"> </span><span class="nx">icon</span><span class="o">:</span><span class="w"> </span><span class="s2">"box"</span><span class="p">,</span><span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s2">"woodworking"</span><span class="p">,</span><span class="w"> </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s2">"Woodworking"</span><span class="p">,</span><span class="w"> </span><span class="nx">icon</span><span class="o">:</span><span class="w"> </span><span class="s2">"hammer"</span><span class="p">,</span><span class="w"> </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s2">"diy"</span><span class="p">,</span><span class="w">         </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s2">"DIY"</span><span class="p">,</span><span class="w">         </span><span class="nx">icon</span><span class="o">:</span><span class="w"> </span><span class="s2">"wrench"</span><span class="p">,</span><span class="w"> </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">  </span><span class="p">],</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">  </span><span class="nx">home</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w">                         </span><span class="c1">// which sections appear on the home page, in order</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="w">    </span><span class="nx">sections</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"hero"</span><span class="p">,</span><span class="w"> </span><span class="s2">"featuredProjects"</span><span class="p">,</span><span class="w"> </span><span class="s2">"latestPosts"</span><span class="p">,</span><span class="w"> </span><span class="s2">"selectedPapers"</span><span class="p">,</span><span class="w"> </span><span class="s2">"photoStrip"</span><span class="p">],</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="w">    </span><span class="nx">counts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">featuredProjects</span><span class="o">:</span><span class="w"> </span><span class="kt">4</span><span class="p">,</span><span class="w"> </span><span class="nx">latestPosts</span><span class="o">:</span><span class="w"> </span><span class="kt">3</span><span class="p">,</span><span class="w"> </span><span class="nx">selectedPapers</span><span class="o">:</span><span class="w"> </span><span class="kt">3</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="w">  </span><span class="nx">features</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w">                     </span><span class="c1">// switch whole areas on or off</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="w">    </span><span class="nx">blog</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span><span class="w"> </span><span class="nx">research</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span><span class="w"> </span><span class="nx">photos</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span><span class="w"> </span><span class="nx">search</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span><span class="w"> </span><span class="nx">contact</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="w">    </span><span class="nx">clientGalleries</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span><span class="w">       </span><span class="c1">// also requires the backend env vars (§12.2)</span>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="w">    </span><span class="nx">gatedPages</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="w">    </span><span class="nx">comments</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span><span class="w">              </span><span class="c1">// giscus, backlog</span>
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="w">    </span><span class="nx">analytics</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="w">  </span><span class="nx">blog</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">postsPerPage</span><span class="o">:</span><span class="w"> </span><span class="kt">10</span><span class="p">,</span><span class="w"> </span><span class="nx">showReadingTime</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span><span class="w"> </span><span class="nx">syndicationTargets</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"devto"</span><span class="p">,</span><span class="w"> </span><span class="s2">"hashnode"</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="w">  </span><span class="nx">media</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">publicBaseUrl</span><span class="o">:</span><span class="w"> </span><span class="kt">process.env.NEXT_PUBLIC_MEDIA_URL</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="nx">widths</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">640</span><span class="p">,</span><span class="w"> </span><span class="mf">1280</span><span class="p">,</span><span class="w"> </span><span class="mf">2560</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="w">  </span><span class="nx">clientArea</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s2">"Client Galleries"</span><span class="p">,</span><span class="w"> </span><span class="nx">defaultExpiryDays</span><span class="o">:</span><span class="w"> </span><span class="kt">90</span><span class="p">,</span><span class="w"> </span><span class="nx">sessionDays</span><span class="o">:</span><span class="w"> </span><span class="kt">30</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="p">});</span>
+</span></code></pre></div>
+<p><code>src/lib/features.ts</code> combines <code>siteConfig.features</code> with the presence of environment variables, so <code>clientGalleries: true</code> without database credentials renders a clear "not configured" page in development and fails the production build.</p>
+<h3 id="62-adding-content">6.2 Adding content<a class="headerlink" href="#62-adding-content" title="Permanent link">&para;</a></h3>
+<p><code>pnpm new post "Title"</code>, <code>pnpm new project "Title" --category woodworking</code>, <code>pnpm new paper</code>, and <code>pnpm new album</code> scaffold a file with valid front matter. Adding a new project category is one line in <code>projectCategories</code>. Its listing page, nav filter and README section follow from the config.</p>
+<h3 id="63-theme">6.3 Theme<a class="headerlink" href="#63-theme" title="Permanent link">&para;</a></h3>
+<p><code>src/styles/theme.css</code> holds all design tokens as CSS variables under <code>@theme</code> for light and dark: colors, fonts, radius, content width. Fonts load through <code>next/font</code> in <code>src/app/layout.tsx</code>. Changing the look of the site is an edit to this one file.</p>
+<hr />
+<h2 id="7-content-model">7. Content model<a class="headerlink" href="#7-content-model" title="Permanent link">&para;</a></h2>
+<p>All collections are defined in <code>velite.config.ts</code>. Common fields on every collection: <code>title</code>, <code>description</code>, <code>date</code>, <code>updated?</code>, <code>tags: string[]</code>, <code>draft: boolean</code> (excluded from production builds), <code>featured: boolean</code>, <code>cover?</code> (image, processed by Velite for dimensions and blur data), plus computed <code>slug</code>, <code>url</code>, <code>readingTime</code> and <code>toc</code> where there is a body.</p>
+<h3 id="71-pages-contentpagesmdx">7.1 Pages (<code>content/pages/*.mdx</code>)<a class="headerlink" href="#71-pages-contentpagesmdx" title="Permanent link">&para;</a></h3>
+<p>Free-form MDX for About, Hobbies, Uses and Now. The route reads the page by slug, so adding <code>content/pages/reading.mdx</code> plus a nav entry creates a new page with no code. The Hobbies page uses a <code>&lt;CategoryGrid /&gt;</code> MDX component that renders the configured project categories and the photos section, so it stays current as categories are added.</p>
+<h3 id="72-data-contentdatayaml">7.2 Data (<code>content/data/*.yaml</code>)<a class="headerlink" href="#72-data-contentdatayaml" title="Permanent link">&para;</a></h3>
+<p><code>experience.yaml</code> (company, role, start, end, location, summary, highlights, links), <code>education.yaml</code>, and <code>talks.yaml</code>. The Work page renders a timeline from these. A print stylesheet on <code>/work</code> gives a clean one-page resume from the same data.</p>
+<h3 id="73-blog-contentblog">7.3 Blog (<code>content/blog/</code>)<a class="headerlink" href="#73-blog-contentblog" title="Permanent link">&para;</a></h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nn">---</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"Post</span><span class="nv"> </span><span class="s">title"</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">"One</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">two</span><span class="nv"> </span><span class="s">sentences."</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2026-11-20</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">ml</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">compression</span><span class="p p-Indicator">]</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nt">cover</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./cover.jpg</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nt">draft</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="nt">externalUrl</span><span class="p">:</span><span class="w">            </span><span class="c1"># set this for posts hosted elsewhere. The card links out and no page is built.</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="nt">externalSource</span><span class="p">:</span><span class="w">         </span><span class="c1"># e.g. "Red Hat Developer", shown as a badge on the card</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="nt">syndicate</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">devto</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">hashnode</span><span class="p p-Indicator">]</span><span class="w">   </span><span class="c1"># overrides blog.syndicationTargets, [] disables</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="nt">canonicalUrl</span><span class="p">:</span><span class="w">           </span><span class="c1"># only when this site is NOT the original home of the post</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="nn">---</span>
+</span></code></pre></div>
+<p>This covers both blog modes in the brief. Existing externally hosted posts are small files with <code>externalUrl</code> set, so they appear in the list, the feeds and the README immediately. Self-published posts have a body and get a page at <code>/blog/[slug]</code>. Syndicated copies are linked from the post footer ("Also published on") using the state file described in §11.</p>
+<h3 id="74-papers-contentpapersmdx">7.4 Papers (<code>content/papers/*.mdx</code>)<a class="headerlink" href="#74-papers-contentpapersmdx" title="Permanent link">&para;</a></h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nn">---</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"Paper</span><span class="nv"> </span><span class="s">title"</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">authors</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"Mark</span><span class="nv"> </span><span class="s">Kurtz"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"Coauthor</span><span class="nv"> </span><span class="s">Name"</span><span class="p p-Indicator">]</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nt">venue</span><span class="p">:</span><span class="w"> </span><span class="s">"ICML"</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nt">year</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2026</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2026-07-01</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conference</span><span class="w">        </span><span class="c1"># conference | journal | preprint | workshop | thesis | patent | talk</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nt">links</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> pdf</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="p p-Indicator">,</span><span class="nt"> arxiv</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="p p-Indicator">,</span><span class="nt"> doi</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="p p-Indicator">,</span><span class="nt"> code</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="p p-Indicator">,</span><span class="nt"> slides</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="p p-Indicator">,</span><span class="nt"> video</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="p p-Indicator">,</span><span class="nt"> poster</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="nt">abstract</span><span class="p">:</span><span class="w"> </span><span class="s">"…"</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="nt">bibtex</span><span class="p">:</span><span class="w">                 </span><span class="c1"># optional. Generated from the fields above when omitted.</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="nt">featured</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="nn">---</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="l l-Scalar l-Scalar-Plain">Optional plain-language summary in MDX. When present the paper gets its own page.</span>
+</span></code></pre></div>
+<p><code>/research</code> lists papers grouped by year with type filters, highlights the site author's name in the author list, and offers a copy-BibTeX button. Paper pages emit <code>citation_*</code> meta tags and <code>ScholarlyArticle</code> JSON-LD so Google Scholar and other indexers pick them up.</p>
+<h3 id="75-projects-contentprojectsslugindexmdx">7.5 Projects (<code>content/projects/&lt;slug&gt;/index.mdx</code>)<a class="headerlink" href="#75-projects-contentprojectsslugindexmdx" title="Permanent link">&para;</a></h3>
+<p>One collection covers software, 3D printing, woodworking and DIY. The <code>category</code> field must match an id in <code>siteConfig.projectCategories</code>, and the build fails on an unknown category.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nn">---</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"Walnut</span><span class="nv"> </span><span class="s">standing</span><span class="nv"> </span><span class="s">desk"</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">"…"</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2026-05-01</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">woodworking</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">completed</span><span class="w">       </span><span class="c1"># idea | in-progress | completed | archived</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nt">cover</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./cover.jpg</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="nt">gallery</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">./01.jpg</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">./02.jpg</span><span class="p p-Indicator">]</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="nt">links</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> repo</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="p p-Indicator">,</span><span class="nt"> demo</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="p p-Indicator">,</span><span class="nt"> docs</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="p p-Indicator">,</span><span class="nt"> printables</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="p p-Indicator">,</span><span class="nt"> video</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="nt">tech</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w">                </span><span class="c1"># software: languages and frameworks</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="nt">materials</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w">           </span><span class="c1"># physical builds: [{ item, quantity, cost?, link? }]</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="nt">tools</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="nt">buildTime</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="w">           </span><span class="c1"># e.g. "3 weekends"</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="nt">difficulty</span><span class="p">:</span><span class="w">             </span><span class="c1"># 1 to 5, optional</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="nt">models</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w">              </span><span class="c1"># .glb paths under /models for the 3D viewer</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="nt">featured</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="nn">---</span>
+</span></code></pre></div>
+<p>Category-specific fields are all optional and the project page renders a section only when its data is present, so one template serves every category. For software projects with <code>links.repo</code> set, star count and primary language are fetched from the GitHub API at build time with a long revalidation window and a graceful fallback if the request fails.</p>
+<h3 id="76-public-albums-contentalbumsslug">7.6 Public albums (<code>content/albums/&lt;slug&gt;/</code>)<a class="headerlink" href="#76-public-albums-contentalbumsslug" title="Permanent link">&para;</a></h3>
+<p><code>index.mdx</code> holds title, date, location, description, cover and optional travel notes as the body. <code>photos.json</code> is a manifest written by the photos CLI (§10.3) with one entry per photo: id, width, height, alt, caption, thumbhash and selected EXIF (camera, lens, focal length, aperture, shutter, ISO). The image files themselves are in the public R2 bucket, not in git. Albums have a <code>kind</code> of <code>photography</code> or <code>travel</code> so <code>/photos</code> can filter them.</p>
+<h3 id="77-mdx-components">7.7 MDX components<a class="headerlink" href="#77-mdx-components" title="Permanent link">&para;</a></h3>
+<p>Registered once in <code>src/components/mdx/index.tsx</code> and available in every MDX file without imports:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>Callout</code></td>
+<td style="text-align: left;">Notes, tips, warnings</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Figure</code></td>
+<td style="text-align: left;">Image with caption, zoom on click</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Gallery</code></td>
+<td style="text-align: left;">Grid of local images with the shared lightbox</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>BeforeAfter</code></td>
+<td style="text-align: left;">Draggable comparison slider for builds and photo edits</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>ModelViewer</code></td>
+<td style="text-align: left;">Interactive 3D preview of a <code>.glb</code> file, loaded only when scrolled into view</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>BillOfMaterials</code></td>
+<td style="text-align: left;">Table from the project's <code>materials</code> front matter, with a cost total</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Steps</code></td>
+<td style="text-align: left;">Numbered build log steps</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>GitHubRepo</code></td>
+<td style="text-align: left;">Repo card</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>YouTube</code>, <code>Video</code></td>
+<td style="text-align: left;">Privacy-friendly lazy embeds</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>CategoryGrid</code></td>
+<td style="text-align: left;">The configured project categories as cards</td>
+</tr>
+<tr>
+<td style="text-align: left;">Fenced code, math</td>
+<td style="text-align: left;">Shiki highlighting with titles and line highlights, KaTeX for <code>$…$</code></td>
+</tr>
+</tbody>
+</table>
+<p>Each component also exports a plain Markdown fallback used when a post is syndicated (§11.2).</p>
+<hr />
+<h2 id="8-routes">8. Routes<a class="headerlink" href="#8-routes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Route</th>
+<th style="text-align: left;">Rendering</th>
+<th style="text-align: left;">Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>/</code></td>
+<td style="text-align: left;">Static</td>
+<td style="text-align: left;"><code>siteConfig.home</code> plus featured content</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/about</code>, <code>/hobbies</code>, <code>/[page]</code></td>
+<td style="text-align: left;">Static</td>
+<td style="text-align: left;"><code>content/pages</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/work</code></td>
+<td style="text-align: left;">Static</td>
+<td style="text-align: left;"><code>content/data</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/research</code>, <code>/research/[slug]</code></td>
+<td style="text-align: left;">Static</td>
+<td style="text-align: left;"><code>content/papers</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/blog</code>, <code>/blog/[slug]</code>, <code>/blog/tags/[tag]</code></td>
+<td style="text-align: left;">Static</td>
+<td style="text-align: left;"><code>content/blog</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/projects</code>, <code>/projects/category/[category]</code>, <code>/projects/[slug]</code></td>
+<td style="text-align: left;">Static</td>
+<td style="text-align: left;"><code>content/projects</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/photos</code>, <code>/photos/[album]</code></td>
+<td style="text-align: left;">Static</td>
+<td style="text-align: left;"><code>content/albums</code> plus public R2</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/contact</code></td>
+<td style="text-align: left;">Static page, server action</td>
+<td style="text-align: left;">Resend, feature flagged</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/feed.xml</code>, <code>/atom.xml</code>, <code>/feed.json</code></td>
+<td style="text-align: left;">Static</td>
+<td style="text-align: left;">Blog, with full content for self-hosted posts</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/sitemap.xml</code>, <code>/robots.txt</code>, <code>/llms.txt</code></td>
+<td style="text-align: left;">Static</td>
+<td style="text-align: left;">Generated from content, excludes private routes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/api/og</code></td>
+<td style="text-align: left;">Dynamic, cached</td>
+<td style="text-align: left;">Open Graph images per page</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/clients</code> and below</td>
+<td style="text-align: left;">Dynamic, <code>noindex</code></td>
+<td style="text-align: left;">Postgres plus private R2</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/p/[key]</code></td>
+<td style="text-align: left;">Dynamic, <code>noindex</code></td>
+<td style="text-align: left;">Gated MDX pages</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/admin</code> and below</td>
+<td style="text-align: left;">Dynamic, <code>noindex</code></td>
+<td style="text-align: left;">Admin only</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/api/health</code></td>
+<td style="text-align: left;">Dynamic</td>
+<td style="text-align: left;">Liveness plus one trivial database query</td>
+</tr>
+</tbody>
+</table>
+<p>All static routes use <code>generateStaticParams</code> with <code>dynamicParams = false</code> so unknown slugs return a real 404.</p>
+<hr />
+<h2 id="9-private-area-access-model">9. Private area: access model<a class="headerlink" href="#9-private-area-access-model" title="Permanent link">&para;</a></h2>
+<h3 id="91-principals">9.1 Principals<a class="headerlink" href="#91-principals" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Who</th>
+<th style="text-align: left;">How they authenticate</th>
+<th style="text-align: left;">What they can do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Admin</strong> (Mark)</td>
+<td style="text-align: left;">Supabase Auth email one-time code. Email must be in <code>ADMIN_EMAILS</code>.</td>
+<td style="text-align: left;">Everything under <code>/admin</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Passcode visitor</strong></td>
+<td style="text-align: left;">Enters a gallery passcode. No account.</td>
+<td style="text-align: left;">View that gallery, download if allowed, create and share collections if allowed.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Invited client</strong></td>
+<td style="text-align: left;">Supabase Auth email one-time code, invited by the admin to specific galleries. Public sign-up is disabled.</td>
+<td style="text-align: left;">Same as a passcode visitor, without typing a code, across all of their galleries at <code>/clients</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Share-link visitor</strong></td>
+<td style="text-align: left;">Opens a collection share URL, optionally enters that collection's passcode.</td>
+<td style="text-align: left;">View, and download if allowed, only the photos in that collection.</td>
+</tr>
+</tbody>
+</table>
+<p>Passcode is the default path because a client should be able to open a link from an email and be looking at photos in seconds. Accounts are optional and invite only.</p>
+<h3 id="92-database-schema">9.2 Database schema<a class="headerlink" href="#92-database-schema" title="Permanent link">&para;</a></h3>
+<p>Drizzle schema in <code>src/server/db/schema.ts</code>, SQL migrations generated by <code>drizzle-kit</code> into <code>src/server/db/migrations/</code>. Row Level Security is enabled on every table with no policies for the <code>anon</code> or <code>authenticated</code> roles, so the Supabase public API exposes nothing. The server connects with the database connection string.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>galleries
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>  id uuid pk, slug text unique, title, description, client_name, shoot_date date,
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>  cover_photo_id uuid null, status (draft | published | archived),
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>  passcode_hash text null, access_version int default 1,
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>  allow_downloads bool, allow_collections bool, expires_at timestamptz null,
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>  archive_key text null,            -- prebuilt zip of all originals
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>  created_at, updated_at
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>photos
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>  id uuid pk, gallery_id fk on delete cascade, filename, storage_prefix text,
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>  width int, height int, bytes bigint, content_type, taken_at timestamptz null,
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>  exif jsonb, thumbhash text, sort_order int, created_at
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>  index (gallery_id, sort_order)
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>gallery_members
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>  gallery_id fk, user_id uuid (auth.users), role (viewer | owner), invited_email, created_at
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>  primary key (gallery_id, user_id)
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>collections
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>  id uuid pk, gallery_id fk on delete cascade, title, description,
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>  created_by_user uuid null, created_by_name text null,
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>  share_token_hash text unique, passcode_hash text null,
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>  allow_downloads bool, expires_at timestamptz null, created_at, updated_at
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>collection_photos
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>  collection_id fk on delete cascade, photo_id fk on delete cascade, sort_order int
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>  primary key (collection_id, photo_id)
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>gates                               -- generic passcode pathways (§9.6)
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>  id uuid pk, key text unique, label, passcode_hash, access_version int,
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>  expires_at timestamptz null, created_at
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>access_events                       -- audit trail
+</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>  id bigserial pk, kind (unlock_ok | unlock_fail | view | download | share_create),
+</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>  gallery_id null, collection_id null, gate_id null, ip_hash text, user_agent text, at timestamptz
+</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>
+</span><span id="__span-5-37"><a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>rate_limits
+</span><span id="__span-5-38"><a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>  key text, window_start timestamptz, count int, primary key (key, window_start)
+</span></code></pre></div>
+<p>A database constraint guarantees every row in <code>collection_photos</code> references a photo in the collection's own gallery, so a collection can never be used to reach photos outside it.</p>
+<h3 id="93-passcode-flow">9.3 Passcode flow<a class="headerlink" href="#93-passcode-flow" title="Permanent link">&para;</a></h3>
+<ol>
+<li>The admin creates a gallery and either types a passcode or generates one (four random words). Only a salted <code>scrypt</code> hash from <code>node:crypto</code> is stored. The admin UI shows the passcode once, with a copyable link.</li>
+<li>The visitor opens <code>/clients/g/&lt;slug&gt;</code>. Without a valid grant they are sent to <code>/clients/g/&lt;slug&gt;/unlock</code>.</li>
+<li>The unlock server action checks the rate limit (5 failures per 15 minutes per hashed IP and gallery, stored in <code>rate_limits</code>), compares in constant time, records an <code>access_events</code> row, and on success adds a grant to the session cookie.</li>
+<li>The session is a JWT signed with <code>GALLERY_SESSION_SECRET</code> in a cookie named <code>__Host-grants</code>, with <code>HttpOnly</code>, <code>Secure</code>, <code>SameSite=Lax</code> and <code>Path=/</code>. Its payload is a list of grants: <code>{ kind: "gallery" | "collection" | "gate", id, v, exp }</code>.</li>
+<li>Every request re-checks the grant against the database: the resource exists, is published, has not expired, and <code>v</code> equals the current <code>access_version</code>. Changing a passcode increments <code>access_version</code>, which revokes every outstanding session for that gallery immediately.</li>
+</ol>
+<p>Unknown slugs and wrong passcodes return the same response so gallery names cannot be enumerated.</p>
+<h3 id="94-authorization-in-one-place">9.4 Authorization in one place<a class="headerlink" href="#94-authorization-in-one-place" title="Permanent link">&para;</a></h3>
+<p><code>src/server/auth/access.ts</code> exports <code>requireAdmin()</code>, <code>requireGalleryAccess(slug)</code>, <code>requireCollectionAccess(token)</code> and <code>requireGate(key)</code>. Each returns the resource plus a capability object (<code>canDownload</code>, <code>canManageCollections</code>) or redirects. Every page, server action and route handler in the private area starts with one of these calls. The data access layer functions take the already-authorized resource id, and a unit test asserts that no file under <code>src/app/(private)</code> imports <code>src/server/db</code> directly.</p>
+<h3 id="95-client-collections-and-sharing">9.5 Client collections and sharing<a class="headerlink" href="#95-client-collections-and-sharing" title="Permanent link">&para;</a></h3>
+<p>Inside a gallery with <code>allow_collections</code> on, the visitor can select photos (click, shift-click range, select all), then "Add to collection" to create a new one or append to an existing one. A built-in "Favorites" collection is created on first use so the heart button works with no setup.</p>
+<p>Each collection has a share action that produces a URL of the form <code>/clients/c/&lt;token&gt;</code>. The token is 32 bytes of randomness, shown once and stored only as a SHA-256 hash. The creator can add an optional passcode, an expiry date, toggle downloads (never more permissive than the parent gallery), rename, reorder, remove photos, regenerate the link, or delete the collection.</p>
+<p>Ownership: collections created by a signed-in client belong to that user. Collections created under a passcode session belong to the gallery, and anyone holding the gallery passcode can manage them, which matches how a couple or a family would share one code. The share page shows only the collection's photos and gives no route back into the full gallery. The admin sees every collection per gallery, which doubles as the client's selection list for retouching or prints.</p>
+<h3 id="96-generic-gated-pages">9.6 Generic gated pages<a class="headerlink" href="#96-generic-gated-pages" title="Permanent link">&para;</a></h3>
+<p>The same grant mechanism protects arbitrary content, which is the "passcode style pathways" requirement. An MDX file in <code>content/private/</code> with <code>gate: &lt;key&gt;</code> in its front matter is served at <code>/p/&lt;key&gt;</code> only after <code>requireGate(key)</code> passes. These files are compiled by Velite into a separate server-only collection that is never included in <code>generateStaticParams</code>, feeds, sitemap or search. Because the repo is public, anything in <code>content/private/</code> is still readable on GitHub, so this is for content that is unlisted rather than secret. Truly private text belongs in the database, and the <code>gates</code> table plus the admin UI leave room for a <code>gated_documents</code> table later.</p>
+<h3 id="97-admin-ui">9.7 Admin UI<a class="headerlink" href="#97-admin-ui" title="Permanent link">&para;</a></h3>
+<p><code>/admin</code> is deliberately small: gallery list and create, gallery detail (settings, passcode, expiry, publish, member invites, photo order, cover selection, delete), the collections for a gallery, gates, and a recent access log. Photo upload in the first release is the CLI in §10.3. Browser upload is in the backlog and reuses the same pipeline module.</p>
+<hr />
+<h2 id="10-media-pipeline">10. Media pipeline<a class="headerlink" href="#10-media-pipeline" title="Permanent link">&para;</a></h2>
+<h3 id="101-buckets">10.1 Buckets<a class="headerlink" href="#101-buckets" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Bucket</th>
+<th style="text-align: left;">Access</th>
+<th style="text-align: left;">Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>PREFIX-public</code></td>
+<td style="text-align: left;">Public through the custom domain <code>media.DOMAIN</code> with long cache headers</td>
+<td style="text-align: left;">Public album derivatives only. No originals, GPS data stripped.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PREFIX-private</code></td>
+<td style="text-align: left;">No public access. Reached only by presigned URLs created on the server.</td>
+<td style="text-align: left;">Client gallery originals and derivatives, zip archives.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="102-keys-and-derivatives">10.2 Keys and derivatives<a class="headerlink" href="#102-keys-and-derivatives" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>public:   albums/&lt;albumSlug&gt;/&lt;photoId&gt;/&lt;width&gt;.webp          widths from siteConfig.media.widths
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>private:  galleries/&lt;galleryId&gt;/&lt;photoId&gt;/original.&lt;ext&gt;
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>          galleries/&lt;galleryId&gt;/&lt;photoId&gt;/preview.webp        2560 px long edge, quality 85
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>          galleries/&lt;galleryId&gt;/&lt;photoId&gt;/thumb.webp          640 px long edge
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>          galleries/&lt;galleryId&gt;/archive.zip                   optional, all originals
+</span></code></pre></div>
+<p>Derivatives are sRGB, auto-rotated, with all metadata stripped. Originals are stored byte for byte. Photo ids are UUIDs, so keys are not guessable even in the public bucket.</p>
+<h3 id="103-photos-cli">10.3 Photos CLI<a class="headerlink" href="#103-photos-cli" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>pnpm<span class="w"> </span>photos<span class="w"> </span>upload<span class="w"> </span>./exports/smith-wedding<span class="w"> </span>--gallery<span class="w"> </span>smith-wedding<span class="w">     </span><span class="c1"># private client gallery</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>pnpm<span class="w"> </span>photos<span class="w"> </span>upload<span class="w"> </span>./exports/iceland<span class="w"> </span>--album<span class="w"> </span>iceland-2026<span class="w">              </span><span class="c1"># public album</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>pnpm<span class="w"> </span>photos<span class="w"> </span>upload<span class="w"> </span>…<span class="w"> </span>--dry-run<span class="w"> </span><span class="p">|</span><span class="w"> </span>--concurrency<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>--archive
+</span></code></pre></div>
+<p>For each image the shared <code>pipeline.ts</code> reads dimensions and EXIF, computes a thumbhash, renders derivatives with <code>sharp</code>, uploads through the <code>MediaStorage</code> interface, then either inserts <code>photos</code> rows (client gallery) or writes <code>content/albums/&lt;slug&gt;/photos.json</code> (public album, committed to git). Uploads are idempotent by content hash, so re-running after a failure resumes. <code>--archive</code> builds and uploads the full-gallery zip.</p>
+<h3 id="104-mediastorage-interface">10.4 <code>MediaStorage</code> interface<a class="headerlink" href="#104-mediastorage-interface" title="Permanent link">&para;</a></h3>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kd">interface</span><span class="w"> </span><span class="nx">MediaStorage</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="nx">put</span><span class="p">(</span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="kt">Buffer</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">Readable</span><span class="p">,</span><span class="w"> </span><span class="nx">opts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">contentType</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w"> </span><span class="nx">cacheControl?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">})</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="ow">void</span><span class="o">&gt;</span><span class="p">;</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="nx">signedGetUrl</span><span class="p">(</span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">opts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">expiresIn</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span><span class="w"> </span><span class="nx">downloadAs?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">})</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="p">;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="ow">delete</span><span class="p">(</span><span class="nx">keys</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[])</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="ow">void</span><span class="o">&gt;</span><span class="p">;</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="nx">exists</span><span class="p">(</span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="kt">boolean</span><span class="o">&gt;</span><span class="p">;</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><code>STORAGE_DRIVER=r2</code> uses the S3 client against the R2 endpoint. <code>STORAGE_DRIVER=local</code> writes under <code>.data/media</code> and serves through a development-only route with HMAC-signed URLs, so the whole client area runs and is tested on a laptop or in CI with no cloud account.</p>
+<h3 id="105-delivery">10.5 Delivery<a class="headerlink" href="#105-delivery" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Public albums:</strong> a <code>&lt;Photo&gt;</code> component renders <code>&lt;img&gt;</code> with a <code>srcset</code> built from the pre-generated widths on <code>media.DOMAIN</code>, the thumbhash as a blur placeholder, and explicit width and height to prevent layout shift. It does not use the Vercel image optimizer, so there is no transformation cost.</li>
+<li><strong>Client galleries:</strong> after the access check, the server component signs thumb and preview URLs for the page (signing is a local HMAC, no network call) with a one hour expiry. Pages are paginated at 200 photos with infinite scroll through a server action.</li>
+<li><strong>Single download:</strong> <code>GET /api/clients/download?photo=&lt;id&gt;</code> re-checks access and <code>canDownload</code>, logs the event, and redirects to a five minute presigned URL with an attachment disposition. Bytes go from R2 to the browser, never through Vercel.</li>
+<li><strong>Download all:</strong> links to the prebuilt <code>archive.zip</code> when present.</li>
+<li><strong>Download a selection or collection:</strong> the browser streams a zip with <code>client-zip</code> from presigned URLs, which needs a CORS rule on the private bucket allowing <code>GET</code> from the site origin.</li>
+</ul>
+<hr />
+<h2 id="11-blog-publishing-and-syndication">11. Blog publishing and syndication<a class="headerlink" href="#11-blog-publishing-and-syndication" title="Permanent link">&para;</a></h2>
+<h3 id="111-publishing-on-the-site">11.1 Publishing on the site<a class="headerlink" href="#111-publishing-on-the-site" title="Permanent link">&para;</a></h3>
+<p>Write <code>content/blog/my-post.mdx</code>, open a PR (the Vercel preview shows the rendered post), merge. Drafts (<code>draft: true</code>) render in development and previews with a banner and are excluded from production, feeds and the sitemap. A future <code>date</code> schedules a post: it is excluded until a daily deploy hook rebuild picks it up.</p>
+<p>Feeds: RSS, Atom and JSON Feed with full content for self-hosted posts and link-only entries for external ones. Feeds are the universal sync path, since Substack, Medium and newsletter tools can all import from a URL or feed.</p>
+<h3 id="112-automated-cross-posting">11.2 Automated cross-posting<a class="headerlink" href="#112-automated-cross-posting" title="Permanent link">&para;</a></h3>
+<p><code>scripts/syndicate/</code> runs from <code>.github/workflows/syndicate.yml</code>, triggered on pushes to <code>main</code> that touch <code>content/blog/**</code> and by manual dispatch with a slug and a dry-run toggle.</p>
+<ol>
+<li>Collect posts that are not drafts, have no <code>externalUrl</code>, and list a target that has no entry yet in <code>content/.syndication.json</code>.</li>
+<li>Wait until the canonical URL on the live site returns 200, so the canonical link is valid before any copy exists.</li>
+<li>Transform the MDX to portable Markdown: remove imports, replace each custom component with its Markdown fallback (§7.7), rewrite relative image and link paths to absolute site URLs, and append "Originally published at <canonical URL>".</li>
+<li>Call each target adapter.</li>
+<li>Write the returned ids and URLs to <code>content/.syndication.json</code> and open a small PR with that change. The site reads this file to show "Also published on" links, and it is what makes the job idempotent.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Target</th>
+<th style="text-align: left;">Method</th>
+<th style="text-align: left;">Canonical handling</th>
+<th style="text-align: left;">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Dev.to</td>
+<td style="text-align: left;">REST API, <code>DEVTO_API_KEY</code></td>
+<td style="text-align: left;"><code>canonical_url</code> field</td>
+<td style="text-align: left;">Created as a draft</td>
+</tr>
+<tr>
+<td style="text-align: left;">Hashnode</td>
+<td style="text-align: left;">GraphQL API, <code>HASHNODE_TOKEN</code> and publication id</td>
+<td style="text-align: left;"><code>originalArticleURL</code></td>
+<td style="text-align: left;">Created as a draft</td>
+</tr>
+<tr>
+<td style="text-align: left;">Medium</td>
+<td style="text-align: left;">Manual, using Medium's "Import a story" with the post URL</td>
+<td style="text-align: left;">Medium sets the canonical link on import</td>
+<td style="text-align: left;">Documented step</td>
+</tr>
+<tr>
+<td style="text-align: left;">LinkedIn</td>
+<td style="text-align: left;">Manual article or link post</td>
+<td style="text-align: left;">Link back in the first line</td>
+<td style="text-align: left;">Documented step</td>
+</tr>
+<tr>
+<td style="text-align: left;">Substack</td>
+<td style="text-align: left;">Manual, or its RSS import</td>
+<td style="text-align: left;">Link back</td>
+<td style="text-align: left;">Documented step</td>
+</tr>
+<tr>
+<td style="text-align: left;">Bluesky, Mastodon</td>
+<td style="text-align: left;">Optional announce adapters that post the title and link</td>
+<td style="text-align: left;">n/a</td>
+<td style="text-align: left;">Off</td>
+</tr>
+</tbody>
+</table>
+<p>Cross-posts are created as drafts by default so Mark reviews formatting on each platform before publishing there. Setting <code>syndication.autoPublish: true</code> in the config changes that. Updates to an already syndicated post are not pushed automatically. The job prints which copies are now stale. Medium is manual because Medium no longer issues integration tokens for its publishing API, and LinkedIn and Substack have no article API.</p>
+<hr />
+<h2 id="12-backend-wiring">12. Backend wiring<a class="headerlink" href="#12-backend-wiring" title="Permanent link">&para;</a></h2>
+<h3 id="121-database-and-auth-clients">12.1 Database and auth clients<a class="headerlink" href="#121-database-and-auth-clients" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>src/server/db/client.ts</code>: a single <code>postgres</code> client using the Supabase transaction pooler URL with <code>prepare: false</code> and a small pool, wrapped by Drizzle.</li>
+<li><code>src/server/auth/supabase.ts</code>: <code>@supabase/ssr</code> server client bound to Next cookies, used only for Auth (sign in with a one-time code, read the verified user, admin invites with the secret key).</li>
+<li><code>proxy.ts</code>: refreshes the Supabase session cookie, with a matcher limited to <code>/admin</code> and <code>/clients</code> so the static site never runs it.</li>
+<li>Supabase project settings: public sign-ups off, email one-time code on, custom SMTP through Resend (the built-in mailer is rate limited to a few messages an hour), site URL and redirect URLs set for production and Vercel previews.</li>
+</ul>
+<h3 id="122-environment-variables">12.2 Environment variables<a class="headerlink" href="#122-environment-variables" title="Permanent link">&para;</a></h3>
+<p>Validated in <code>src/lib/env.ts</code>. Only <code>NEXT_PUBLIC_SITE_URL</code> is required for the public site. The rest become required when the related feature flag is on. <code>.env.example</code> is rewritten to list exactly these.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Scope</th>
+<th style="text-align: left;">Needed for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>NEXT_PUBLIC_SITE_URL</code></td>
+<td style="text-align: left;">public</td>
+<td style="text-align: left;">Canonical URLs, feeds, Open Graph</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>NEXT_PUBLIC_MEDIA_URL</code></td>
+<td style="text-align: left;">public</td>
+<td style="text-align: left;">Public album images</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>DATABASE_URL</code></td>
+<td style="text-align: left;">server</td>
+<td style="text-align: left;">Drizzle (pooler URL)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>DATABASE_URL_DIRECT</code></td>
+<td style="text-align: left;">CI only</td>
+<td style="text-align: left;">Migrations</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>NEXT_PUBLIC_SUPABASE_URL</code>, <code>NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY</code></td>
+<td style="text-align: left;">public</td>
+<td style="text-align: left;">Auth</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>SUPABASE_SECRET_KEY</code></td>
+<td style="text-align: left;">server</td>
+<td style="text-align: left;">Admin invites</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>ADMIN_EMAILS</code></td>
+<td style="text-align: left;">server</td>
+<td style="text-align: left;">Admin allowlist</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>GALLERY_SESSION_SECRET</code></td>
+<td style="text-align: left;">server</td>
+<td style="text-align: left;">Grant cookie signing, 32 bytes or more</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>IP_HASH_SALT</code></td>
+<td style="text-align: left;">server</td>
+<td style="text-align: left;">Hashing IPs in logs and rate limits</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>STORAGE_DRIVER</code></td>
+<td style="text-align: left;">server</td>
+<td style="text-align: left;"><code>r2</code> or <code>local</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>R2_ACCOUNT_ID</code>, <code>R2_ACCESS_KEY_ID</code>, <code>R2_SECRET_ACCESS_KEY</code>, <code>R2_PUBLIC_BUCKET</code>, <code>R2_PRIVATE_BUCKET</code></td>
+<td style="text-align: left;">server and CLI</td>
+<td style="text-align: left;">Media</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>RESEND_API_KEY</code>, <code>CONTACT_TO_EMAIL</code></td>
+<td style="text-align: left;">server</td>
+<td style="text-align: left;">Contact form</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>GITHUB_TOKEN</code></td>
+<td style="text-align: left;">build, optional</td>
+<td style="text-align: left;">Higher rate limit for repo stats</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>DEVTO_API_KEY</code>, <code>HASHNODE_TOKEN</code>, <code>HASHNODE_PUBLICATION_ID</code></td>
+<td style="text-align: left;">GitHub Actions secrets only</td>
+<td style="text-align: left;">Syndication</td>
+</tr>
+</tbody>
+</table>
+<h3 id="123-keeping-the-free-supabase-project-awake">12.3 Keeping the free Supabase project awake<a class="headerlink" href="#123-keeping-the-free-supabase-project-awake" title="Permanent link">&para;</a></h3>
+<p>Free Supabase projects pause after about a week without activity. A scheduled GitHub Action calls <code>/api/health</code> daily, which runs <code>select 1</code>. The same workflow doubles as an uptime check and fails loudly if the site or database is down. Upgrading to the paid tier removes the need for it.</p>
+<hr />
+<h2 id="13-domain-dns-and-hosting">13. Domain, DNS and hosting<a class="headerlink" href="#13-domain-dns-and-hosting" title="Permanent link">&para;</a></h2>
+<h3 id="131-recommended-setup">13.1 Recommended setup<a class="headerlink" href="#131-recommended-setup" title="Permanent link">&para;</a></h3>
+<p>Keep the domain registered at Squarespace and point its nameservers at Cloudflare's free plan. This is required for the <code>media.DOMAIN</code> custom domain on R2 and gives one place to manage records.</p>
+<ol>
+<li>Add the domain as a site in Cloudflare (free plan). Cloudflare scans and imports the existing records. <strong>Check that any email records (MX, SPF, DKIM, DMARC) were imported before continuing</strong>, because mail breaks if they are missed.</li>
+<li>In Squarespace, open the domain's DNS settings, turn off DNSSEC if it is on, and replace the nameservers with the two Cloudflare assigns. Propagation usually takes under an hour and can take up to a day.</li>
+<li>In Vercel, add the apex domain and <code>www</code> to the project under Settings, Domains. Vercel shows the exact records to create.</li>
+<li>In Cloudflare DNS, create those records with the proxy <strong>off</strong> (grey cloud, "DNS only"). Typically an <code>A</code> record on <code>@</code> and a <code>CNAME</code> on <code>www</code>. Vercel issues the TLS certificates.</li>
+<li>In Vercel, set the apex as primary and <code>www</code> to redirect to it.</li>
+<li>In Cloudflare R2, connect <code>media.DOMAIN</code> to the public bucket. Cloudflare creates that record itself, proxied.</li>
+<li>For Resend, add the DKIM and SPF records it lists on a <code>send</code> subdomain.</li>
+<li>Any additional domains Mark owns can be added to the Vercel project as redirects to the primary.</li>
+</ol>
+<h3 id="132-alternative-without-moving-nameservers">13.2 Alternative without moving nameservers<a class="headerlink" href="#132-alternative-without-moving-nameservers" title="Permanent link">&para;</a></h3>
+<p>Add the Vercel <code>A</code> and <code>CNAME</code> records directly in Squarespace's custom DNS records. The site works, but R2 cannot serve from a custom domain. Public album images would then have to come from the rate-limited <code>r2.dev</code> address, which Cloudflare does not support for production. This is why §13.1 is the recommendation.</p>
+<h3 id="133-deployments">13.3 Deployments<a class="headerlink" href="#133-deployments" title="Permanent link">&para;</a></h3>
+<p>Vercel's Git integration builds a preview for every PR and production on merge to <code>main</code>. Environment variables are set per environment in Vercel. Database migrations run from a GitHub Actions workflow (<code>db-migrate.yml</code>) on changes under <code>src/server/db/migrations/**</code> on <code>main</code>, gated by a protected <code>production</code> environment so Mark approves each one.</p>
+<h3 id="134-plan-and-cost-caveats">13.4 Plan and cost caveats<a class="headerlink" href="#134-plan-and-cost-caveats" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Service</th>
+<th style="text-align: left;">Free tier fits?</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Vercel</td>
+<td style="text-align: left;">Yes for a personal site</td>
+<td style="text-align: left;">The Hobby plan is for non-commercial use. Delivering paid client shoots through the site is arguably commercial, which would mean Pro at about $20 a month. Mark should decide this before promoting client galleries. Hosting on Cloudflare through OpenNext is the alternative with no such restriction.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Supabase</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Pauses when idle (§12.3). No automated backups on free, so a weekly <code>pg_dump</code> workflow that stores an encrypted artifact is in Phase 9. Pro is about $25 a month.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Cloudflare R2</td>
+<td style="text-align: left;">First 10 GB free</td>
+<td style="text-align: left;">About $0.015 per GB per month after that and no egress fee. 200 GB of shoots is roughly $3 a month.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Cloudflare DNS</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Resend</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">3,000 emails a month on free.</td>
+</tr>
+</tbody>
+</table>
+<p>R2 is delivery storage, not a backup. Originals should remain in Mark's own archive.</p>
+<hr />
+<h2 id="14-github-profile-readme">14. GitHub profile README<a class="headerlink" href="#14-github-profile-readme" title="Permanent link">&para;</a></h2>
+<p>Because the repo is <code>markurtz/markurtz</code>, GitHub renders the root <code>README.md</code> on Mark's profile page. The repo must be public and the file must be at the root. So the root README is written for profile visitors, and repository documentation lives in <code>DEVELOPING.md</code> and <code>docs/</code>, linked from one line at the bottom.</p>
+<h3 id="141-structure">14.1 Structure<a class="headerlink" href="#141-structure" title="Permanent link">&para;</a></h3>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>&lt;picture&gt; light and dark banner or wordmark from .github/profile/ &lt;/picture&gt;
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="gu">### Hi, I'm Mark</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>Two or three sentences: what I do, what I'm focused on now. (hand-written)
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>[<span class="nt">Website</span>](<span class="na">…</span>) · [<span class="nt">Blog</span>](<span class="na">…</span>) · [<span class="nt">Research</span>](<span class="na">…</span>) · [<span class="nt">LinkedIn</span>](<span class="na">…</span>) · [<span class="nt">Scholar</span>](<span class="na">…</span>)
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>&lt;!-- BEGIN:links --&gt; … &lt;!-- END:links --&gt;
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="gu">#### Featured projects</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>&lt;!-- BEGIN:projects --&gt; … &lt;!-- END:projects --&gt;
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="gu">#### Latest writing</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>&lt;!-- BEGIN:posts --&gt; … &lt;!-- END:posts --&gt;
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="gu">#### Selected publications</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>&lt;!-- BEGIN:papers --&gt; … &lt;!-- END:papers --&gt;
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="gu">#### Beyond work</span>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>One line linking to woodworking, 3D printing and photography on the site. (hand-written)
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>&lt;sub&gt;This repo is also the source of my website. See DEVELOPING.md.&lt;/sub&gt;
+</span></code></pre></div>
+<h3 id="142-how-it-stays-current-and-customizable">14.2 How it stays current and customizable<a class="headerlink" href="#142-how-it-stays-current-and-customizable" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Mark edits everything outside the markers directly in <code>README.md</code>. There is no separate template file to learn.</li>
+<li><code>pnpm readme:generate</code> (<code>scripts/readme/generate.ts</code>) rewrites only the text between <code>BEGIN</code> and <code>END</code> markers from the same content the site uses: <code>featured</code> projects, the newest posts including external ones, <code>featured</code> papers, and <code>siteConfig.social</code>. Counts and section order come from a <code>readme</code> block in <code>site.config.ts</code>. Removing a marker pair removes that section for good.</li>
+<li><code>pnpm readme:check</code> runs in CI and fails if the README is out of date, so the profile cannot drift from the site and no bot needs write access to <code>main</code>. A pre-commit hook runs the generator when content changes.</li>
+<li>Links are absolute URLs to the live site. Output is deterministic, with no timestamps, so there are no noisy diffs.</li>
+</ul>
+<h3 id="143-standards-for-the-profile">14.3 Standards for the profile<a class="headerlink" href="#143-standards-for-the-profile" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Short enough to read in one screen. Lists are capped at about five items.</li>
+<li>Light and dark images through <code>&lt;picture&gt;</code> with <code>prefers-color-scheme</code>, stored in <code>.github/profile/</code>, each with alt text.</li>
+<li>Only HTML that GitHub's sanitizer allows. No scripts, no inline styles.</li>
+<li>No third-party stats or streak widgets by default. They depend on external services that are often down or rate limited, and they add no information a visitor needs. One can be added later as a hand-written line.</li>
+<li>Set the repo's website field to the site URL and add topics, so the repo page links to the site.</li>
+</ul>
+<hr />
+<h2 id="15-build-phases">15. Build phases<a class="headerlink" href="#15-build-phases" title="Permanent link">&para;</a></h2>
+<p>Each phase is a mergeable increment that leaves <code>main</code> deployable. A phase is done when its acceptance criteria pass along with <code>pnpm check</code> (Biome, <code>tsc --noEmit</code>, unit tests) and <code>pnpm build</code>.</p>
+<h3 id="phase-0-foundations">Phase 0: Foundations<a class="headerlink" href="#phase-0-foundations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Scaffold Next.js 16 at the repo root with TypeScript strict, Tailwind v4, Biome, Vitest and Playwright. Pin <code>packageManager</code> and add <code>.nvmrc</code>.</li>
+<li>Add <code>site.config.ts</code> with <code>defineSiteConfig</code> and its Zod schema, <code>src/lib/env.ts</code>, <code>src/lib/features.ts</code>.</li>
+<li>Rewrite <code>.env.example</code>, <code>AGENTS.md</code> commands and layout rules, and <code>DEVELOPING.md</code> for this stack. Coordinate with whatever the repo standards thread has landed rather than duplicating it.</li>
+<li>CI on pull requests: install with a frozen lockfile, Biome, type check, unit tests, build. Reuse the existing reusable workflow files where they fit.</li>
+<li>Scripts in <code>package.json</code>: <code>dev</code>, <code>build</code>, <code>start</code>, <code>check</code>, <code>lint</code>, <code>format</code>, <code>typecheck</code>, <code>test</code>, <code>test:e2e</code>, <code>content</code>, <code>new</code>, <code>photos</code>, <code>readme:generate</code>, <code>readme:check</code>, <code>db:generate</code>, <code>db:migrate</code>, <code>db:studio</code>.</li>
+</ul>
+<p><strong>Done when:</strong> a placeholder home page builds and CI is green.</p>
+<h3 id="phase-1-design-system-and-layout">Phase 1: Design system and layout<a class="headerlink" href="#phase-1-design-system-and-layout" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>theme.css</code> tokens, light and dark themes with <code>next-themes</code>, fonts through <code>next/font</code>.</li>
+<li>Header with config-driven nav and a mobile menu, footer with social links, skip link, 404 and error pages.</li>
+<li>shadcn primitives actually needed: button, card, badge, dialog, dropdown, input, tabs, tooltip, sheet.</li>
+<li>Root metadata, Open Graph image route, favicon and manifest.</li>
+</ul>
+<p><strong>Done when:</strong> the shell is responsive from 320 px, keyboard navigable, and passes axe with no violations.</p>
+<h3 id="phase-2-content-engine-and-core-pages">Phase 2: Content engine and core pages<a class="headerlink" href="#phase-2-content-engine-and-core-pages" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>velite.config.ts</code> with all collections from §7, wired into <code>next.config.ts</code> so it runs in dev (watch) and build.</li>
+<li><code>src/lib/content/</code> accessors: <code>getPosts</code>, <code>getPost</code>, <code>getProjects</code>, <code>getProjectsByCategory</code>, <code>getPapers</code>, <code>getAlbums</code>, <code>getPage</code>, <code>getTags</code>, with draft filtering.</li>
+<li>MDX renderer and the components in §7.7.</li>
+<li>Pages: home sections, about, hobbies, work, research, blog list with tags and pagination, post page with table of contents and previous and next links, projects list with category filter, project page, generic <code>[page]</code>.</li>
+<li>Feeds, sitemap, robots, <code>llms.txt</code>, JSON-LD (<code>Person</code>, <code>WebSite</code>, <code>BlogPosting</code>, <code>ScholarlyArticle</code>, <code>CreativeWork</code>, <code>BreadcrumbList</code>).</li>
+<li>Search: build-time index and a command menu using MiniSearch.</li>
+<li><code>pnpm new</code> scaffolder.</li>
+<li>Seed content: one real or clearly marked sample entry per collection and category, including one external blog post and one project with a 3D model, so every template is exercised. Mark the samples with <code>TODO</code> so they are easy to find and replace.</li>
+</ul>
+<p><strong>Done when:</strong> every route in §8's static list renders from content alone, an invalid front matter field fails the build with a readable error, and unit tests cover the accessors and schema edge cases.</p>
+<h3 id="phase-3-profile-readme">Phase 3: Profile README<a class="headerlink" href="#phase-3-profile-readme" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Replace the template <code>README.md</code> with the structure in §14.1, with placeholder prose marked <code>TODO</code> for Mark.</li>
+<li><code>scripts/readme/generate.ts</code>, <code>readme:check</code> in CI, banner images in <code>.github/profile/</code>.</li>
+</ul>
+<p><strong>Done when:</strong> running the generator twice produces no diff, and changing a featured project changes the README block.</p>
+<h3 id="phase-4-public-photography">Phase 4: Public photography<a class="headerlink" href="#phase-4-public-photography" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>MediaStorage</code> interface with <code>local</code> and <code>r2</code> drivers.</li>
+<li><code>scripts/photos</code> pipeline and CLI for <code>--album</code>.</li>
+<li><code>&lt;Photo&gt;</code>, <code>PhotoGrid</code> and the lightbox, <code>/photos</code> and <code>/photos/[album]</code> with EXIF captions and keyboard navigation.</li>
+<li>Sample album using the local driver with a few license-free images, so the pages build without R2.</li>
+</ul>
+<p><strong>Done when:</strong> an album uploaded with the CLI appears on the site with responsive images and blur placeholders, and Lighthouse reports no layout shift on the album page.</p>
+<h3 id="phase-5-backend-foundation">Phase 5: Backend foundation<a class="headerlink" href="#phase-5-backend-foundation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Drizzle schema and first migration for all tables in §9.2, with Row Level Security enabled.</li>
+<li>Database client, Supabase Auth server client, <code>proxy.ts</code>.</li>
+<li>Passcode hashing, grant session cookie, rate limiter, <code>access.ts</code> guards.</li>
+<li><code>/admin</code> sign-in with one-time code and the allowlist, admin layout.</li>
+<li><code>/api/health</code>.</li>
+<li>Integration test harness on PGlite that applies the real migrations.</li>
+</ul>
+<p><strong>Done when:</strong> the admin can sign in locally, the guards have unit tests for every allow and deny path including revoked and expired grants, and the public site still builds with all backend variables unset.</p>
+<h3 id="phase-6-client-galleries">Phase 6: Client galleries<a class="headerlink" href="#phase-6-client-galleries" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Admin: gallery create, edit, passcode set and rotate, publish, expiry, delete (which also deletes storage objects).</li>
+<li>Photos CLI <code>--gallery</code> mode and <code>--archive</code>.</li>
+<li><code>/clients</code> landing (enter a code, or sign in), unlock page, gallery page with signed URLs, lightbox, single download, download all.</li>
+<li>Access logging and the admin log view.</li>
+<li><code>noindex</code> headers, <code>Referrer-Policy: no-referrer</code> and <code>Cache-Control: private, no-store</code> on everything under <code>(private)</code>.</li>
+</ul>
+<p><strong>Done when:</strong> a Playwright test covers wrong passcode, lockout, success, viewing, download, passcode rotation revoking the session, and expiry. A test confirms no storage key or other gallery's data appears in the page payload.</p>
+<h3 id="phase-7-collections-sharing-and-client-accounts">Phase 7: Collections, sharing and client accounts<a class="headerlink" href="#phase-7-collections-sharing-and-client-accounts" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Selection UI, favorites, create and edit collections, reorder.</li>
+<li>Share links with optional passcode and expiry, <code>/clients/c/[token]</code>, regenerate and revoke.</li>
+<li>Selection and collection zip download in the browser.</li>
+<li>Admin invites to galleries, <code>/clients</code> dashboard for signed-in clients, admin view of collections per gallery.</li>
+</ul>
+<p><strong>Done when:</strong> end to end tests show a passcode visitor creating a collection, a second browser opening the share link and seeing only those photos, and the link failing after revoke. An integration test proves a collection cannot include a photo from another gallery.</p>
+<h3 id="phase-8-blog-syndication">Phase 8: Blog syndication<a class="headerlink" href="#phase-8-blog-syndication" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Transformer with component fallbacks and absolute URLs, with snapshot tests.</li>
+<li>Dev.to and Hashnode adapters, tested against recorded responses.</li>
+<li><code>syndicate.yml</code> with dry run, the state file, and "Also published on" links on posts.</li>
+<li><code>docs/guides/writing.md</code> covering the manual steps for Medium, LinkedIn and Substack.</li>
+</ul>
+<p><strong>Done when:</strong> a dry run prints the exact payloads for a sample post, and a second run after a simulated success does nothing.</p>
+<h3 id="phase-9-hardening-and-launch">Phase 9: Hardening and launch<a class="headerlink" href="#phase-9-hardening-and-launch" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Security headers in <code>next.config.ts</code>: HSTS, <code>X-Content-Type-Options</code>, <code>Referrer-Policy</code>, <code>Permissions-Policy</code>, frame restrictions, and a Content Security Policy shipped in report-only mode first, then enforced.</li>
+<li>Generic gated pages (§9.6) and the gates admin.</li>
+<li>Contact form with Resend, a honeypot field and rate limiting.</li>
+<li>Vercel Web Analytics and Speed Insights behind the feature flag. Both are cookieless, so no consent banner is needed.</li>
+<li>Privacy page describing what the client area stores and for how long. Scheduled job that archives expired galleries.</li>
+<li>Keep-alive and uptime workflow, weekly database backup workflow, Dependabot for npm and Actions.</li>
+<li>Accessibility pass to WCAG 2.2 AA and a performance budget: Lighthouse 95 or higher on home, a post, and an album.</li>
+<li>Guides in <code>docs/guides/</code>: customizing, writing, photos, client galleries, deploy and DNS.</li>
+<li>Go-live checklist from §17.</li>
+</ul>
+<h3 id="backlog-designed-for-not-built">Backlog (designed for, not built)<a class="headerlink" href="#backlog-designed-for-not-built" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Item</th>
+<th style="text-align: left;">Where it attaches</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Browser upload in admin</td>
+<td style="text-align: left;">Presigned multipart upload to R2, then <code>pipeline.ts</code> in a server function</td>
+</tr>
+<tr>
+<td style="text-align: left;">Watermarked previews, proofing workflow, print orders</td>
+<td style="text-align: left;">New derivative in the pipeline, status column on <code>collections</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Comments</td>
+<td style="text-align: left;">giscus component behind <code>features.comments</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Newsletter</td>
+<td style="text-align: left;">RSS-to-email service pointed at <code>/feed.xml</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Webmentions and social reply counts</td>
+<td style="text-align: left;">Section on the post page</td>
+</tr>
+<tr>
+<td style="text-align: left;">Travel map</td>
+<td style="text-align: left;">Album <code>location</code> coordinates on a map component</td>
+</tr>
+<tr>
+<td style="text-align: left;">Publication import from ORCID or Semantic Scholar</td>
+<td style="text-align: left;">Script that writes <code>content/papers</code> files</td>
+</tr>
+<tr>
+<td style="text-align: left;">Database-backed private documents</td>
+<td style="text-align: left;"><code>gated_documents</code> table next to <code>gates</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Internationalization</td>
+<td style="text-align: left;">Not planned</td>
+</tr>
+</tbody>
+</table>
+<h3 id="guidance-for-the-build-thread">Guidance for the build thread<a class="headerlink" href="#guidance-for-the-build-thread" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Everything through Phase 9 can be implemented and tested without any cloud credentials: the content site is static, storage has the local driver, and database tests use PGlite. End to end tests for the client area need a real Postgres, so make them skip cleanly when <code>DATABASE_URL</code> is unset and run them in CI against a Postgres service container.</li>
+<li>If the full plan is delivered as one diff, keep one commit per phase in the order above so the review can follow it.</li>
+<li>Do not put Mark's real biography, employer history or publication list in from memory or guesswork. Use <code>TODO</code> placeholders and clearly labelled samples. Facts about Mark come from Mark.</li>
+<li>Do not create cloud resources, change DNS, or add secrets. Those are in §17.</li>
+</ul>
+<hr />
+<h2 id="16-quality-standards">16. Quality standards<a class="headerlink" href="#16-quality-standards" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Area</th>
+<th style="text-align: left;">Standard</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">TypeScript</td>
+<td style="text-align: left;"><code>strict</code>, <code>noUncheckedIndexedAccess</code>, no <code>any</code> without a comment explaining why</td>
+</tr>
+<tr>
+<td style="text-align: left;">Server and client boundary</td>
+<td style="text-align: left;">Server components by default. <code>"use client"</code> only for interactivity. <code>server-only</code> on all of <code>src/server</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Input handling</td>
+<td style="text-align: left;">Every server action and route handler parses input with Zod and calls an access guard first</td>
+</tr>
+<tr>
+<td style="text-align: left;">Secrets</td>
+<td style="text-align: left;">Only in Vercel and GitHub encrypted settings. Nothing sensitive in <code>NEXT_PUBLIC_*</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Passcodes and tokens</td>
+<td style="text-align: left;">Stored only as hashes. Constant-time comparison. Rate limited. Tokens have at least 128 bits of entropy.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Privacy</td>
+<td style="text-align: left;">IP addresses stored only as salted hashes. GPS data stripped from all derivatives. Private routes are <code>noindex</code> and <code>no-store</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Accessibility</td>
+<td style="text-align: left;">WCAG 2.2 AA. Semantic landmarks, visible focus, <code>prefers-reduced-motion</code> respected, alt text required by the content schema for cover images. Lightbox is fully keyboard operable.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Performance</td>
+<td style="text-align: left;">Static by default, no client JavaScript for content that does not need it, explicit image dimensions, fonts self-hosted through <code>next/font</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">SEO</td>
+<td style="text-align: left;">Canonical URL on every page, Open Graph and Twitter cards, JSON-LD, sitemap, feeds linked from <code>&lt;head&gt;</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Testing</td>
+<td style="text-align: left;">Unit tests for pure logic, integration tests for the data access layer and guards, end to end tests for the critical flows named in each phase</td>
+</tr>
+<tr>
+<td style="text-align: left;">Commits and PRs</td>
+<td style="text-align: left;">Conventional Commits, PR template from this repo, CI green before merge</td>
+</tr>
+<tr>
+<td style="text-align: left;">Dependencies</td>
+<td style="text-align: left;">Lockfile committed, Dependabot grouped weekly updates, no dependency added for something achievable in a few lines</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="17-what-only-mark-can-do">17. What only Mark can do<a class="headerlink" href="#17-what-only-mark-can-do" title="Permanent link">&para;</a></h2>
+<p>None of these block building. They block going live.</p>
+<ol>
+<li><strong>Confirm the primary domain</strong> and set <code>NEXT_PUBLIC_SITE_URL</code>.</li>
+<li><strong>Vercel:</strong> import the repo as a project, add environment variables, decide between Hobby and Pro (§13.4).</li>
+<li><strong>Cloudflare:</strong> create an account, add the domain, switch nameservers at Squarespace (§13.1), create the two R2 buckets and an API token scoped to them, connect <code>media.DOMAIN</code>.</li>
+<li><strong>Supabase:</strong> create a project, copy the connection strings and keys, turn off public sign-ups, set up Resend as SMTP.</li>
+<li><strong>Resend:</strong> verify the sending domain.</li>
+<li><strong>Syndication:</strong> create Dev.to and Hashnode API keys and add them as GitHub Actions secrets.</li>
+<li><strong>GitHub:</strong> confirm the repo is public, add a <code>production</code> environment with required approval for migrations, set the repo website field.</li>
+<li><strong>Content:</strong> replace the <code>TODO</code> placeholders in <code>site.config.ts</code>, <code>README.md</code>, <code>content/pages/about.mdx</code> and <code>content/data/</code>, and add real posts, papers and projects.</li>
+</ol>
+<h2 id="18-risks-and-open-questions">18. Risks and open questions<a class="headerlink" href="#18-risks-and-open-questions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Risk or question</th>
+<th style="text-align: left;">Default taken</th>
+<th style="text-align: left;">Revisit when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Velite is pre-1.0 with a slow release cadence</td>
+<td style="text-align: left;">Use it, isolated behind <code>src/lib/content/</code></td>
+<td style="text-align: left;">A Next.js or TypeScript release breaks it. Switch to Content Collections.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Vercel Hobby and commercial client work</td>
+<td style="text-align: left;">Build on Vercel, flag it</td>
+<td style="text-align: left;">Before sending the first paid client a gallery link</td>
+</tr>
+<tr>
+<td style="text-align: left;">The repo is public, so all code and <code>content/</code> are public</td>
+<td style="text-align: left;">Client data lives only in Postgres and R2. Nothing private in git.</td>
+<td style="text-align: left;">If Mark wants private drafts, use a private branch or the database</td>
+</tr>
+<tr>
+<td style="text-align: left;">Passcode sessions share ownership of collections per gallery</td>
+<td style="text-align: left;">Accepted, matches how clients share a code</td>
+<td style="text-align: left;">A client asks for individual private selections. Invite them to an account.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Very large galleries (thousands of photos)</td>
+<td style="text-align: left;">Pagination, prebuilt zip</td>
+<td style="text-align: left;">Zip size exceeds what browsers handle comfortably. Split archives.</td>
+</tr>
+<tr>
+<td style="text-align: left;">TypeScript 7 compatibility across tools</td>
+<td style="text-align: left;">Use the newest version that Next and Velite both support</td>
+<td style="text-align: left;">At scaffold time</td>
+</tr>
+<tr>
+<td style="text-align: left;">Free Supabase tier limits (pausing, no backups, 500 MB)</td>
+<td style="text-align: left;">Keep-alive and weekly dump workflows</td>
+<td style="text-align: left;">Client area sees regular use. Upgrade.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.tooltips"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="../../scripts/extra.js"></script>
+      
+    
+  </body>
+</html>
