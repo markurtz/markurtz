@@ -1,0 +1,26 @@
+---
+title: Privacy
+description: "What this site stores about visitors and for how long."
+updated: 2026-11-20
+---
+
+TODO (Mark): review this page before launch. It describes what the code does by default.
+
+## The public site
+
+The public pages are static files. They set no cookies. If analytics are enabled, they use Vercel Web Analytics and Speed Insights, which are cookieless and do not track visitors across sites.
+
+## Client galleries
+
+The client area stores the minimum needed to keep galleries private:
+
+- **A session cookie** that records which galleries or shared collections your browser has unlocked. It contains no personal information and expires after the period configured for the site (30 days by default).
+- **An access log** with the kind of event (unlock, view, download, share), the time, the browser's user agent, and a salted one-way hash of the IP address. The raw IP address is never stored. The log is used to detect guessing of passcodes.
+- **Collections you create**, including the name you choose to enter, so they can be shared and so the photographer can see your selection.
+- **Your email address**, only if you were invited to sign in with an account.
+
+Galleries expire on the date shown in the gallery. Expired galleries are archived and their photos stop being served.
+
+## Contact
+
+To ask for your data to be removed, use the contact details on the [about](/about) page.

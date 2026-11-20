@@ -85,3 +85,4 @@ $RECYCLE.BIN/
 *.swo
 *~
 .history/
+public/static/

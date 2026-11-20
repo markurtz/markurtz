@@ -1,0 +1,57 @@
+---
+title: "Sample post: writing on this site"
+description: "TODO: a sample post that exercises every writing feature. Replace or delete it."
+date: 2026-11-20
+tags: [sample, meta]
+cover: ./cover.jpg
+coverAlt: "Abstract blue gradient used as a placeholder cover image"
+syndicate: []
+---
+
+<Callout type="warning" title="Sample content">
+  TODO (Mark): this post only demonstrates what the blog can render. Delete `content/blog/welcome/`
+  when you publish your first real post.
+</Callout>
+
+Posts are MDX files in `content/blog/`. Anything Markdown can do works, plus the components listed in `docs/guides/writing.md`.
+
+## Code
+
+Fenced code blocks are highlighted at build time, with optional titles and line highlights.
+
+```ts title="src/lib/example.ts" {2}
+export function greet(name: string): string {
+  return `Hello, ${name}`;
+}
+```
+
+## Math
+
+Inline math such as $e^{i\pi} + 1 = 0$ and display math both render with KaTeX:
+
+$$
+\mathcal{L}(\theta) = -\frac{1}{N} \sum_{i=1}^{N} \log p_\theta(y_i \mid x_i)
+$$
+
+## Tables and lists
+
+| Feature                  | Status        |
+| :----------------------- | :------------ |
+| GitHub flavored Markdown | Supported     |
+| Footnotes                | Supported[^1] |
+
+<Steps>
+  <Step title="Write">Create `content/blog/my-post.mdx` with `pnpm new post "My post"`.</Step>
+  <Step title="Preview">Open a pull request. The preview deployment shows the rendered post.</Step>
+  <Step title="Publish">Merge. The site rebuilds and the post is cross-posted as a draft.</Step>
+</Steps>
+
+## Media
+
+<Figure
+  src="./cover.jpg"
+  alt="The placeholder cover image again"
+  caption="Figures have captions and open larger on click."
+/>
+
+[^1]: Like this one.
