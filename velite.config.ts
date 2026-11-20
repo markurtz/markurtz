@@ -34,11 +34,24 @@ const common = {
   path: s.path(),
 };
 
+/**
+ * Velite reports an empty body as a schema issue, which strict mode turns into
+ * a failed build. Link-only entries (external posts, papers without a page)
+ * legitimately have no body, so they are compiled from a single blank instead.
+ */
+const BLANK_BODY = " ";
+const bodySource = () =>
+  s
+    .custom<string | undefined>((value) => value === undefined || typeof value === "string")
+    .transform(
+      (value, { meta }) => value ?? (String(meta.content ?? "").trim() ? undefined : BLANK_BODY),
+    );
+
 const body = {
-  body: s.mdx(),
+  body: bodySource().pipe(s.mdx()),
   raw: s.raw(),
-  metadata: s.metadata(),
-  toc: s.toc(),
+  metadata: bodySource().pipe(s.metadata()),
+  toc: bodySource().pipe(s.toc()),
 };
 
 /** Cover images must describe themselves for screen readers. */
@@ -108,7 +121,7 @@ const posts = defineCollection({
       syndicate: s.array(s.enum(SYNDICATION_TARGETS)).optional(),
       /** Only when this site is not the original home of the post. */
       canonicalUrl: optionalUrl,
-      html: s.markdown(),
+      html: bodySource().pipe(s.markdown()),
       ...body,
     })
     .superRefine(requireCoverAlt)
@@ -310,6 +323,8 @@ const talks = defineCollection({
 
 export default defineConfig({
   root: "content",
+  // Any schema error fails the build instead of silently dropping the entry.
+  strict: true,
   output: {
     data: ".velite",
     assets: "public/static",
@@ -336,7 +351,10 @@ export default defineConfig({
       rehypeKatex,
       [
         rehypePrettyCode,
-        { theme: { light: "github-light", dark: "github-dark-dimmed" }, keepBackground: false },
+        {
+          theme: { light: "github-light-default", dark: "github-dark-dimmed" },
+          keepBackground: false,
+        },
       ],
       [rehypeAutolinkHeadings, { behavior: "wrap", properties: { className: ["heading-anchor"] } }],
     ],
