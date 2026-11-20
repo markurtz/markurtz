@@ -1,0 +1,44 @@
+# =============================================================================
+# db-migrate.yml — Production Database Migrations
+#
+# Trigger:  manual workflow_dispatch only
+#
+# Applies the SQL migrations in src/server/db/migrations to the production
+# database. The job runs in the `production` environment: add required
+# reviewers to that environment (Settings → Environments) so every run waits
+# for an approval.
+#
+# Secrets (on the `production` environment):
+#   DATABASE_URL_DIRECT — the direct (not pooled) Postgres connection string
+# =============================================================================
+name: "Database Migrations"
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: "db-migrate"
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  migrate:
+    name: "Apply Migrations"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: production
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up toolchain
+        uses: ./.github/actions/setup
+
+      - name: Apply migrations
+        env:
+          DATABASE_URL_DIRECT: ${{ secrets.DATABASE_URL_DIRECT }}
+        run: pnpm db:migrate

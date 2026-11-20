@@ -36,34 +36,60 @@ All variables are documented in [`.env.example`](.env.example). Local values go 
 
 ## Project Structure
 
-| Path                     | Purpose                                                         |
-| :----------------------- | :-------------------------------------------------------------- |
-| `src/app/`               | Next.js App Router routes, layouts, and route handlers.         |
-| `src/lib/`               | Shared modules such as site configuration and utilities.        |
-| `tests/unit/`            | Fast, isolated Vitest tests.                                    |
-| `tests/integration/`     | Vitest tests that exercise several modules together.            |
-| `tests/e2e/`             | Playwright tests that drive the built site in a real browser.   |
-| `.github/workflows/`     | CI pipelines. Files prefixed with `_` are reusable templates.   |
-| `.github/actions/setup/` | Composite action that installs pnpm, Node.js, and dependencies. |
+| Path                     | Purpose                                                                                   |
+| :----------------------- | :---------------------------------------------------------------------------------------- |
+| `site.config.ts`         | Identity, navigation, categories and feature switches. The one file to edit to customize. |
+| `content/`               | Posts, papers, projects, pages and albums as MDX, plus YAML data. Validated by Velite.    |
+| `src/app/`               | Next.js App Router routes: `(site)` is public, `(private)` is the client area and admin.  |
+| `src/components/`        | UI primitives, layout, content, MDX and gallery components.                               |
+| `src/lib/`               | Shared modules. `src/lib/content` is the only place that reads Velite's output.           |
+| `src/server/`            | Server-only code: database (Drizzle), data access, auth, storage and server actions.      |
+| `scripts/`               | Command-line tools: scaffolding, photo uploads, README generation and blog syndication.   |
+| `docs/guides/`           | How-to guides for customizing, writing, photos, client galleries and deployment.          |
+| `tests/unit/`            | Fast, isolated Vitest tests.                                                              |
+| `tests/integration/`     | Vitest tests against a real in-process Postgres (PGlite) with the migrations applied.     |
+| `tests/e2e/`             | Playwright tests that drive the built site, including the private areas.                  |
+| `.github/workflows/`     | CI pipelines. Files prefixed with `_` are reusable templates.                             |
+| `.github/actions/setup/` | Composite action that installs pnpm, Node.js, and dependencies.                           |
 
 Import from `src/` with the `@/` alias, for example `import { siteConfig } from "@/lib/site"`.
 
 ## Command Reference
 
-| Command                 | Description                                                        |
-| :---------------------- | :----------------------------------------------------------------- |
-| `pnpm dev`              | Start the development server with hot reload.                      |
-| `pnpm build`            | Create the production build.                                       |
-| `pnpm start`            | Serve the production build locally.                                |
-| `pnpm lint`             | Run ESLint. `pnpm lint:fix` applies automatic fixes.               |
-| `pnpm format`           | Format every file with Prettier. `pnpm format:check` only reports. |
-| `pnpm typecheck`        | Generate Next.js route types and run the TypeScript compiler.      |
-| `pnpm test`             | Run the unit and integration tests once.                           |
-| `pnpm test:unit`        | Run only the unit tests.                                           |
-| `pnpm test:integration` | Run only the integration tests.                                    |
-| `pnpm test:coverage`    | Run the Vitest suites and write a report to `coverage/`.           |
-| `pnpm test:e2e`         | Run the Playwright end-to-end tests.                               |
-| `pnpm check`            | Lint, format check, type check, and Vitest suites in one command.  |
+| Command                 | Description                                                                                 |
+| :---------------------- | :------------------------------------------------------------------------------------------ |
+| `pnpm dev`              | Start the development server with hot reload.                                               |
+| `pnpm build`            | Create the production build.                                                                |
+| `pnpm start`            | Serve the production build locally.                                                         |
+| `pnpm lint`             | Run ESLint. `pnpm lint:fix` applies automatic fixes.                                        |
+| `pnpm format`           | Format every file with Prettier. `pnpm format:check` only reports.                          |
+| `pnpm typecheck`        | Generate Next.js route types and run the TypeScript compiler.                               |
+| `pnpm test`             | Run the unit and integration tests once.                                                    |
+| `pnpm test:unit`        | Run only the unit tests.                                                                    |
+| `pnpm test:integration` | Run only the integration tests.                                                             |
+| `pnpm test:coverage`    | Run the Vitest suites and write a report to `coverage/`.                                    |
+| `pnpm test:e2e`         | Run the Playwright end-to-end tests.                                                        |
+| `pnpm check`            | Lint, format check, type check, and Vitest suites in one command.                           |
+| `pnpm new`              | Scaffold a post, project, paper or album. See `docs/guides/writing.md`.                     |
+| `pnpm photos`           | Process and upload photos for an album or client gallery.                                   |
+| `pnpm readme:generate`  | Rewrite the generated blocks of the profile `README.md`. `pnpm readme:check` only verifies. |
+| `pnpm syndicate`        | Cross-post blog posts. `--dry-run` prints what would be sent.                               |
+| `pnpm db:generate`      | Create a SQL migration after changing `src/server/db/schema.ts`.                            |
+| `pnpm db:migrate`       | Apply migrations to the database in `DATABASE_URL_DIRECT`.                                  |
+
+### Guides
+
+| Guide                                               | Covers                                                         |
+| :-------------------------------------------------- | :------------------------------------------------------------- |
+| [Customizing](docs/guides/customizing.md)           | `site.config.ts`, theme, pages and placeholders to replace.    |
+| [Writing](docs/guides/writing.md)                   | Posts, papers, projects and syndication to other services.     |
+| [Photos](docs/guides/photos.md)                     | Public photo albums.                                           |
+| [Client galleries](docs/guides/client-galleries.md) | Delivering private shoots, passcodes, collections and sharing. |
+| [Deploying](docs/guides/deploy.md)                  | Vercel, the domain, Supabase, R2, secrets and going live.      |
+
+### Private areas locally
+
+The client galleries, admin and gated pages are off by default. To run them without any cloud account, add the block from the end of [the deploy guide](docs/guides/deploy.md#local-development-without-any-accounts) to `.env.local`: the database becomes a local file, photos stay on disk and the sign-in code is `000000`.
 
 ## Running Tests
 
@@ -84,10 +110,10 @@ pnpm exec playwright install chromium
 pnpm test:e2e
 ```
 
-Locally, Playwright starts `pnpm dev` for you (or reuses a server that is already running). In CI it runs against the production build. To test a deployed site such as a Vercel preview, point Playwright at it:
+Playwright builds the site, seeds a throwaway in-process database with sample galleries, and starts the production server on port 3100 with the private areas switched on (see `tests/e2e/env.ts`). No accounts or secrets are involved. To run only the public specs against a deployed site such as a Vercel preview, point Playwright at it:
 
 ```bash
-PLAYWRIGHT_BASE_URL=https://example.vercel.app pnpm test:e2e
+PLAYWRIGHT_BASE_URL=https://example.vercel.app pnpm test:e2e tests/e2e/home.spec.ts
 ```
 
 ## Code Quality and Formatting
@@ -144,11 +170,22 @@ The pipelines rely on modular templates located in `.github/workflows/_*.yml`:
 
 | Template          | Purpose                                                                    |
 | :---------------- | :------------------------------------------------------------------------- |
-| `_quality.yml`    | ESLint, Prettier, and TypeScript checks.                                   |
+| `_quality.yml`    | ESLint, Prettier, TypeScript, and the profile README freshness check.      |
 | `_tests.yml`      | Vitest (unit, integration) and Playwright (e2e) with coverage and reports. |
 | `_build.yml`      | Production build of the site.                                              |
 | `_security.yml`   | Secret scan, dependency audit, dependency review, and CodeQL analysis.     |
 | `_link-check.yml` | Link validation for Markdown and MDX files.                                |
+
+### Operational Workflows
+
+| Workflow                          | Trigger                                     | Purpose                                                                     |
+| :-------------------------------- | :------------------------------------------ | :-------------------------------------------------------------------------- |
+| **Syndicate** (`syndicate.yml`)   | Push to `main` touching blog posts, manual  | Cross-posts new posts and opens a pull request recording the copies.        |
+| **Migrations** (`db-migrate.yml`) | Manual, behind the `production` environment | Applies SQL migrations to the production database.                          |
+| **Keepalive** (`keepalive.yml`)   | Daily cron                                  | Health check that keeps the database awake, and archives expired galleries. |
+| **Backup** (`db-backup.yml`)      | Weekly cron                                 | Encrypted database dump kept as an artifact for 90 days.                    |
+
+Each one does nothing until its secrets or variables exist. See [the deploy guide](docs/guides/deploy.md).
 
 ### Deployment
 

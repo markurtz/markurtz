@@ -1,0 +1,94 @@
+# =============================================================================
+# syndicate.yml — Blog Syndication (POSSE)
+#
+# Triggers:
+#   push → main touching content/blog/**
+#   workflow_dispatch (optional slug, dry run on by default)
+#
+# Cross-posts new blog posts to Dev.to and Hashnode with the site as the
+# canonical source, then opens a pull request that records the copies in
+# content/.syndication.json. A target without its secrets is skipped, so this
+# workflow is a no-op until the secrets below exist.
+#
+# Secrets:    DEVTO_API_KEY, HASHNODE_TOKEN, HASHNODE_PUBLICATION_ID
+# Variables:  SYNDICATION_ENABLED = "true" turns the push trigger on
+#
+# Medium, LinkedIn and Substack have no usable publishing API. See
+# docs/guides/writing.md for the manual steps.
+# =============================================================================
+name: "Syndicate Blog Posts"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "content/blog/**"
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Only this post (folder or file name under content/blog)"
+        required: false
+        type: string
+      dry_run:
+        description: "Print the payloads and send nothing"
+        required: false
+        type: boolean
+        default: true
+
+concurrency:
+  group: "syndicate"
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  syndicate:
+    name: "Syndicate"
+    if: github.event_name == 'workflow_dispatch' || vars.SYNDICATION_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write # push the branch that records syndicated copies
+      pull-requests: write # open the pull request for that branch
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up toolchain
+        uses: ./.github/actions/setup
+
+      - name: Syndicate
+        env:
+          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
+          HASHNODE_TOKEN: ${{ secrets.HASHNODE_TOKEN }}
+          HASHNODE_PUBLICATION_ID: ${{ secrets.HASHNODE_PUBLICATION_ID }}
+          SKIP_GITHUB_STATS: "1"
+          SLUG: ${{ inputs.slug }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        run: |
+          args=()
+          if [ "$DRY_RUN" = "true" ]; then args+=(--dry-run); fi
+          if [ -n "$SLUG" ]; then args+=(--slug "$SLUG"); fi
+          pnpm syndicate "${args[@]}"
+
+      - name: Open a pull request with the syndication record
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: "syndication/${{ github.run_id }}"
+        run: |
+          if git diff --quiet -- content/.syndication.json; then
+            echo "No new copies were created."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add content/.syndication.json
+          git commit -m "chore(blog): record syndicated copies"
+          git push origin "$BRANCH"
+          gh pr create \
+            --title "chore(blog): record syndicated copies" \
+            --body "Records the copies created by the syndication run so they are never posted twice. Merge this to add the \"Also published on\" links." \
+            --base main --head "$BRANCH"

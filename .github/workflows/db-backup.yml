@@ -1,0 +1,71 @@
+# =============================================================================
+# db-backup.yml — Weekly Encrypted Database Backup
+#
+# Trigger:  Cron 03:41 UTC every Monday + manual workflow_dispatch
+#
+# Dumps the production database, encrypts the dump with a passphrase and keeps
+# it as a workflow artifact for 90 days. The free Supabase plan has no
+# backups, so this is the only copy of gallery and collection records.
+# (Photos live in R2 and are not part of this backup.)
+#
+# The job does nothing until both secrets exist.
+#
+# Secrets:
+#   DATABASE_URL_DIRECT — the direct (not pooled) Postgres connection string
+#   BACKUP_PASSPHRASE   — a long random passphrase, stored in a password manager
+#
+# Restore:
+#   gpg --decrypt backup.sql.gz.gpg | gunzip | psql "$DATABASE_URL_DIRECT"
+# =============================================================================
+name: "Database Backup"
+
+on:
+  schedule:
+    - cron: "41 3 * * 1" # 03:41 UTC every Monday
+  workflow_dispatch:
+
+concurrency:
+  group: "db-backup"
+  cancel-in-progress: false
+
+permissions: {}
+
+jobs:
+  backup:
+    name: "Backup"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      DATABASE_URL_DIRECT: ${{ secrets.DATABASE_URL_DIRECT }}
+      BACKUP_PASSPHRASE: ${{ secrets.BACKUP_PASSPHRASE }}
+      # Match the major version of the Supabase project's Postgres.
+      POSTGRES_MAJOR: "17"
+    steps:
+      - name: Check configuration
+        id: config
+        run: |
+          if [ -n "$DATABASE_URL_DIRECT" ] && [ -n "$BACKUP_PASSPHRASE" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Backup secrets are not configured. Skipping."
+          fi
+
+      - name: Dump and encrypt
+        if: steps.config.outputs.ready == 'true'
+        run: |
+          set -euo pipefail
+          docker run --rm --env DATABASE_URL_DIRECT "postgres:${POSTGRES_MAJOR}" \
+            sh -c 'pg_dump --no-owner --no-privileges --schema=public "$DATABASE_URL_DIRECT"' \
+            | gzip \
+            | gpg --batch --symmetric --cipher-algo AES256 --passphrase-fd 3 \
+                --output backup.sql.gz.gpg 3<<<"$BACKUP_PASSPHRASE"
+          test -s backup.sql.gz.gpg
+
+      - name: Upload encrypted backup
+        if: steps.config.outputs.ready == 'true'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: db-backup-${{ github.run_id }}
+          path: backup.sql.gz.gpg
+          retention-days: 90
+          if-no-files-found: error

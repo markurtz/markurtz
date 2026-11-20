@@ -26,13 +26,35 @@
 
 ## Repository Layout
 
-- `src/app/`: Next.js App Router routes, layouts, and route handlers.
-- `src/lib/`: Shared, framework-light modules (configuration, utilities).
-- `tests/`: Organized into `unit/`, `integration/` (Vitest), and `e2e/` (Playwright).
+- `site.config.ts`: Identity, navigation, categories and feature switches. Validated by `src/lib/site-config.ts`.
+- `content/`: MDX and YAML content, validated and compiled by Velite (`velite.config.ts`) into `.velite/`.
+- `src/app/(site)/`: Public routes. `src/app/(private)/`: client area, gated pages and admin. `src/app/api/`: route handlers.
+- `src/components/`: `ui/` primitives, `layout/`, `content/`, `mdx/` (components usable in posts), `gallery/`, `private/`.
+- `src/lib/`: Shared, framework-light modules (configuration, content queries, feeds, SEO, utilities).
+- `src/server/`: Server-only code: `db/` (Drizzle schema, migrations), `dal/` (all queries), `auth/`, `storage/`, `actions/`.
+- `scripts/`: CLI tools run with `tsx` (`new`, `photos`, `readme`, `syndicate`).
+- `docs/guides/`: Owner-facing how-to guides. Keep them in step with behavior.
+- `tests/`: Organized into `unit/`, `integration/` (Vitest) and `e2e/` (Playwright).
 - `.github/workflows/`: CI pipelines. Files prefixed with `_` are reusable templates.
 - `.github/actions/setup/`: Composite action that installs pnpm, Node.js, and dependencies.
 
 Import from `src/` with the `@/` alias (for example `@/lib/site`).
+
+## Architecture Rules
+
+These are enforced by `tests/unit/boundaries.test.ts`.
+
+- **Only `src/lib/content/` imports Velite output** (`#velite`). Everything else uses its typed query functions.
+- **Every module under `src/server/` starts with `import "server-only"`** (or `"use server"` for actions). `db/schema.ts` and `db/migrate.ts` are the exceptions, because tools load them outside Next.js.
+- **Client components import nothing from `src/server/` except `actions/`**, and never receive storage keys or database rows. Map rows to view models on the server (`src/server/media.ts`).
+- **Pages and route handlers in the private area never query the database directly.** They call an access guard from `src/server/auth/access.ts` first (`requireGalleryAccess`, `requireCollectionAccess`, `requireGate`, `requireAdmin`) and then the data access layer.
+- **Every admin server action begins with `await requireAdmin();`.**
+- **Access decisions are pure functions** (`evaluate*Access`) with unit tests. Change the rules there, not in pages.
+- **Private media stays in the private bucket** and is reached only through short-lived signed URLs.
+- Modules loaded by root config files (`next.config.ts`, `velite.config.ts`) use relative imports, not the `@/` alias.
+- A schema change needs a migration (`pnpm db:generate`) committed with it. New tables must call `.enableRLS()`.
+- A new MDX component needs a Markdown fallback in `scripts/syndicate/fallbacks.ts`.
+- Do not invent biography, employers or publications. Use `TODO` placeholders and labelled samples.
 
 ## Executable Commands
 
@@ -42,10 +64,14 @@ Import from `src/` with the `@/` alias (for example `@/lib/site`).
 - **Formatting:** `pnpm format:check` (fix with `pnpm format`)
 - **Type checking:** `pnpm typecheck`
 - **Testing:** `pnpm test` (Vitest: unit + integration), `pnpm test:unit`, `pnpm test:integration`, `pnpm test:e2e` (Playwright)
-- **Build:** `pnpm build`
+- **Build:** `pnpm build` (runs `velite build --strict` first)
+- **Content only:** `pnpm content`
+- **Profile README:** `pnpm readme:generate` (CI runs `pnpm readme:check`)
+- **Database:** `pnpm db:generate`, `pnpm db:migrate`
+- **Scaffolding and tools:** `pnpm new`, `pnpm photos`, `pnpm syndicate --dry-run`
 - **Everything CI checks except e2e and build:** `pnpm check`
 
-Run `pnpm check` before finishing any change, and `pnpm build` when routes, configuration, or dependencies change.
+Run `pnpm check` before finishing any change, and `pnpm build` when routes, configuration, or dependencies change. Run `pnpm test:e2e` when a route, the private area or access rules change; it builds the site with the private areas on, using an in-process database (PGlite), local storage and the development sign-in driver, so it needs no accounts or secrets (`tests/e2e/env.ts`).
 
 ## Code Style & Patterns
 
@@ -66,6 +92,7 @@ Run `pnpm check` before finishing any change, and `pnpm build` when routes, conf
   - `main.yml`: Push to `main` (same stages, post-merge).
   - `weekly.yml`: Scheduled security audit, full test suite, and link check.
 - Pin every third-party action to a full commit SHA with a version comment.
+- Operational workflows: `syndicate.yml` (blog cross-posting), `db-migrate.yml` (manual, `production` environment), `keepalive.yml` (daily health check and gallery expiry), `db-backup.yml` (weekly encrypted dump). Each is inert until its secrets exist.
 - Deployment is not done in GitHub Actions. Vercel builds and deploys from Git.
 
 ## Documentation
