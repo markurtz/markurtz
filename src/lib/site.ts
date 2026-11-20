@@ -1,14 +1,6 @@
 /**
- * Site-wide constants shared by metadata, navigation, and feeds.
+ * Re-exports the validated site configuration so application code can import
+ * it through the `@/` alias instead of reaching for the repository root.
  */
-export const siteConfig = {
-  name: "Mark Kurtz",
-  description: "Personal website of Mark Kurtz.",
-  /** Canonical origin, without a trailing slash. */
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/+$/, ""),
-  links: {
-    github: "https://github.com/markurtz",
-  },
-} as const;
-
-export type SiteConfig = typeof siteConfig;
+export { siteConfig } from "../../site.config";
+export type { ProjectCategory, SiteConfig, SocialKey } from "./site-config";

@@ -14,4 +14,13 @@ engineStrict: true
 
 # Dependency build (postinstall) scripts are blocked unless approved here.
 # Review a package before setting it to `true`.
-allowBuilds: {}
+# esbuild and sharp both ship prebuilt binaries as optional dependencies and
+# work without their install scripts, so the scripts stay blocked.
+allowBuilds:
+  esbuild: false
+  sharp: false
+
+# Velite pins an older sharp with known advisories in its bundled image
+# libraries. Use the patched release everywhere. Remove once Velite updates.
+overrides:
+  "velite>sharp": "^0.35.5"

@@ -1,0 +1,71 @@
+{
+  "album": "sample-album",
+  "photos": [
+    {
+      "id": "cd0a9682-f7a7-4717-98e9-b896e1d01514",
+      "hash": "c4f3c50d020af3557bbcd6b6b87f07598fb3ff7d019091d4763a3f680260c80f",
+      "width": 3000,
+      "height": 2000,
+      "alt": "Generated placeholder image 1",
+      "caption": "TODO: captions are optional",
+      "thumbhash": "lKQFJYKCd4d4iIhwiGl3eY2k75X2",
+      "widths": [640, 1280, 2560],
+      "exif": {}
+    },
+    {
+      "id": "0dc5c17a-e309-4b85-bd40-381c61b0d2e6",
+      "hash": "496ce8b167a70872e73ca9dfa65383e918d79d5168355cbd7b39d240fbda3b56",
+      "width": 2000,
+      "height": 3000,
+      "alt": "Generated placeholder image 2",
+      "caption": "",
+      "thumbhash": "UGgFBQSgh5N4F2aId4lqeCc+sDn6",
+      "widths": [640, 1280],
+      "exif": {}
+    },
+    {
+      "id": "c75d4e18-9919-497d-a66d-dd70e7856a4b",
+      "hash": "0a437f6f83a55a99893a768541e51c8cbb940463c86f1bc4e6b5da9d99aa1ce9",
+      "width": 3000,
+      "height": 2000,
+      "alt": "Generated placeholder image 3",
+      "caption": "",
+      "thumbhash": "W9sGFYSgZ3eneHejhoh2dwUdktBB",
+      "widths": [640, 1280, 2560],
+      "exif": {}
+    },
+    {
+      "id": "eef92e39-914f-44f2-bcf5-5cca1825fbdb",
+      "hash": "5b2c5ca4d25f8a7d32a2bd7d9f96858ec5b5baa8b2f44f6b5484058ae50fe89b",
+      "width": 3000,
+      "height": 1688,
+      "alt": "Generated placeholder image 4",
+      "caption": "",
+      "thumbhash": "28UKDISAh3l5h4iEh3igpku2BQ==",
+      "widths": [640, 1280, 2560],
+      "exif": {}
+    },
+    {
+      "id": "b8b53f63-2b71-4975-aee6-3ae08e90b226",
+      "hash": "82e0019d571b9acc57d65219aad2556ca18289724b79545e2c3698a9defdc881",
+      "width": 2400,
+      "height": 2400,
+      "alt": "Generated placeholder image 5",
+      "caption": "",
+      "thumbhash": "FmYJDwRweXd3h3d3lpeHeIiGuGr8rbYP",
+      "widths": [640, 1280],
+      "exif": {}
+    },
+    {
+      "id": "b6058539-2158-4586-984e-955f4f6ec2cf",
+      "hash": "3ce87596d00bb66e27a7eff80e6d6e9cc3fba38ba3c4a41e47ce933e9ae17bc9",
+      "width": 3000,
+      "height": 2000,
+      "alt": "Generated placeholder image 6",
+      "caption": "",
+      "thumbhash": "mgQGHYBwl2d5eHiBeGd4abnC7/Mw",
+      "widths": [640, 1280, 2560],
+      "exif": {}
+    }
+  ]
+}

@@ -2,7 +2,8 @@
 # _quality.yml — Reusable Quality Gate
 #
 # Encapsulates linting (ESLint), formatting (Prettier), and type checking
-# (TypeScript). Fails the pipeline if any of these checks fail.
+# (TypeScript), and checks that the generated blocks of the profile README
+# match the content. Fails the pipeline if any of these checks fail.
 #
 # Callers:  development.yml, main.yml
 # ─────────────────────────────────────────────────────────────────────────────
@@ -62,3 +63,20 @@ jobs:
 
       - name: Run TypeScript
         run: pnpm typecheck
+
+  readme:
+    name: "Profile README"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up toolchain
+        uses: ./.github/actions/setup
+
+      # Fails when README.md is stale. Fix with `pnpm readme:generate`.
+      - name: Check generated README blocks
+        run: pnpm readme:check

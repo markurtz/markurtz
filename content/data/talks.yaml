@@ -1,0 +1,7 @@
+# Talks shown on /work, newest first. TODO (Mark): replace this placeholder.
+- title: "TODO: Talk title"
+  event: "TODO: Event"
+  date: 2026-01-15
+  location: "TODO: City"
+  links:
+    - { label: "Slides", url: "https://example.com/slides" }

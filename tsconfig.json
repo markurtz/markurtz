@@ -21,7 +21,8 @@
     "forceConsistentCasingInFileNames": true,
     "plugins": [{ "name": "next" }],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "#velite": ["./.velite"]
     }
   },
   "include": [

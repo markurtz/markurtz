@@ -1,0 +1,101 @@
+# =============================================================================
+# db-backup.yml — Weekly Encrypted Database Backup
+#
+# Trigger:  Cron 03:41 UTC every Monday + manual workflow_dispatch
+#
+# Dumps the production database, encrypts the dump and stores it in the
+# PRIVATE R2 bucket under `backups/`. The free Supabase plan has no backups,
+# so this is the only copy of gallery and collection records. (Photos already
+# live in R2 and are not part of this backup.)
+#
+# The dump is never uploaded as a workflow artifact: this repository is
+# public, and artifacts of public repositories can be downloaded by any
+# signed-in GitHub user. The dump holds client email addresses and names.
+#
+# The job does nothing until every secret below exists.
+#
+# Secrets:
+#   DATABASE_URL_DIRECT         — the direct (not pooled) Postgres connection string
+#   BACKUP_PASSPHRASE           — a long random passphrase, kept in a password manager
+#   R2_ACCOUNT_ID               — the Cloudflare account id
+#   R2_PRIVATE_BUCKET           — name of the private bucket
+#   R2_BACKUP_ACCESS_KEY_ID     — an R2 API token used only for backups. Scope it
+#   R2_BACKUP_SECRET_ACCESS_KEY   to object read and write on the private bucket.
+#
+# Retention: add an R2 lifecycle rule on the private bucket that deletes
+# objects under `backups/` after 90 days.
+#
+# Note: GitHub disables scheduled workflows in a public repository after 60
+# days without repository activity and emails the owner. Re-enable it from the
+# Actions tab if that happens.
+#
+# Restore:
+#   aws s3 cp "s3://<bucket>/backups/<file>" - --endpoint-url "https://<account>.r2.cloudflarestorage.com" \
+#     | gpg --decrypt | gunzip | psql "$DATABASE_URL_DIRECT"
+# =============================================================================
+name: "Database Backup"
+
+on:
+  schedule:
+    - cron: "41 3 * * 1" # 03:41 UTC every Monday
+  workflow_dispatch:
+
+concurrency:
+  group: "db-backup"
+  cancel-in-progress: false
+
+permissions: {}
+
+jobs:
+  backup:
+    name: "Backup"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      DATABASE_URL_DIRECT: ${{ secrets.DATABASE_URL_DIRECT }}
+      BACKUP_PASSPHRASE: ${{ secrets.BACKUP_PASSPHRASE }}
+      R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+      R2_PRIVATE_BUCKET: ${{ secrets.R2_PRIVATE_BUCKET }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.R2_BACKUP_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_BACKUP_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: auto
+      # Match the major version of the Supabase project's Postgres.
+      POSTGRES_MAJOR: "17"
+    steps:
+      - name: Check configuration
+        id: config
+        run: |
+          for name in DATABASE_URL_DIRECT BACKUP_PASSPHRASE R2_ACCOUNT_ID R2_PRIVATE_BUCKET \
+            AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY; do
+            if [ -z "${!name}" ]; then
+              echo "Backup secrets are not configured ($name is missing). Skipping."
+              exit 0
+            fi
+          done
+          echo "ready=true" >> "$GITHUB_OUTPUT"
+
+      # pg_dump must be at least as new as the server. It comes from the
+      # PostgreSQL project's signed apt repository rather than a container image.
+      - name: Install the PostgreSQL client
+        if: steps.config.outputs.ready == 'true'
+        run: |
+          sudo apt-get install --yes --no-install-recommends postgresql-common
+          sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y
+          sudo apt-get install --yes --no-install-recommends "postgresql-client-${POSTGRES_MAJOR}"
+
+      - name: Dump, encrypt and store in the private bucket
+        if: steps.config.outputs.ready == 'true'
+        run: |
+          set -euo pipefail
+          file="backup-$(date --utc +%Y-%m-%dT%H%M%SZ).sql.gz.gpg"
+          "/usr/lib/postgresql/${POSTGRES_MAJOR}/bin/pg_dump" \
+            --no-owner --no-privileges --schema=public "$DATABASE_URL_DIRECT" \
+            | gzip \
+            | gpg --batch --symmetric --cipher-algo AES256 --passphrase-fd 3 \
+                --output "$file" 3<<<"$BACKUP_PASSPHRASE"
+          test -s "$file"
+          aws s3 cp "$file" "s3://${R2_PRIVATE_BUCKET}/backups/${file}" \
+            --endpoint-url "https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com" \
+            --only-show-errors
+          rm --force "$file"
+          echo "Stored backups/${file}"

@@ -1,0 +1,17 @@
+# Work history shown on /work, newest first. Dates are YYYY or YYYY-MM.
+# TODO (Mark): replace these placeholders. Leave `end` out for a current role.
+- company: "TODO: Company"
+  role: "TODO: Role"
+  start: "2024-01"
+  location: "TODO: Location"
+  summary: "TODO: one or two sentences about the role."
+  highlights:
+    - "TODO: a concrete result"
+    - "TODO: another result"
+  links:
+    - { label: "Company site", url: "https://example.com" }
+- company: "TODO: Previous company"
+  role: "TODO: Role"
+  start: "2020-06"
+  end: "2023-12"
+  summary: "TODO: summary."

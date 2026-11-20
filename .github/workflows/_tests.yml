@@ -4,7 +4,8 @@
 # Executes the project test suite for the requested levels.
 #
 #   unit, integration — Vitest projects (tests/unit, tests/integration)
-#   e2e               — Playwright against the production build (tests/e2e)
+#   e2e               — Playwright against the production build (tests/e2e),
+#                       with the private areas on and throwaway local backends
 #
 # Inputs:
 #   test_levels       (required) — JSON array of levels, e.g. '["unit","e2e"]'
@@ -81,10 +82,8 @@ jobs:
         if: matrix.level == 'e2e'
         run: pnpm exec playwright install --with-deps chromium
 
-      - name: Build site
-        if: matrix.level == 'e2e'
-        run: pnpm build
-
+      # Playwright builds the site, seeds an in-process database and starts the
+      # server itself (see playwright.config.ts and tests/e2e/env.ts).
       - name: Run e2e tests
         if: matrix.level == 'e2e'
         run: pnpm test:e2e

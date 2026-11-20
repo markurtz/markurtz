@@ -1,0 +1,147 @@
+# =============================================================================
+# syndicate.yml — Blog Syndication (POSSE)
+#
+# Triggers:
+#   push → main touching content/blog/**
+#   workflow_dispatch (optional slug, dry run on by default)
+#
+# Cross-posts new blog posts to Dev.to and Hashnode with the site as the
+# canonical source, then opens a pull request that records the copies in
+# content/.syndication.json. A target without its secrets is skipped, so this
+# workflow is a no-op until the secrets below exist.
+#
+# Two jobs keep the write token away from dependency installs and repository
+# scripts: `syndicate` is read-only and hands the updated record to `record`,
+# which holds the write permissions and only commits that one file.
+#
+# A run is skipped while a pull request from an earlier run is still open,
+# because until it merges `main` does not know which copies already exist.
+#
+# Secrets:    DEVTO_API_KEY, HASHNODE_TOKEN, HASHNODE_PUBLICATION_ID
+# Variables:  SYNDICATION_ENABLED = "true" turns the push trigger on
+# Settings:   Actions → General → "Allow GitHub Actions to create and approve
+#             pull requests" must be on for the record job.
+#
+# Medium, LinkedIn and Substack have no usable publishing API. See
+# docs/guides/writing.md for the manual steps.
+# =============================================================================
+name: "Syndicate Blog Posts"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "content/blog/**"
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Only this post (folder or file name under content/blog)"
+        required: false
+        type: string
+      dry_run:
+        description: "Print the payloads and send nothing"
+        required: false
+        type: boolean
+        default: true
+
+concurrency:
+  group: "syndicate"
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  syndicate:
+    name: "Syndicate"
+    if: github.event_name == 'workflow_dispatch' || vars.SYNDICATION_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      pull-requests: read # see whether an earlier record is still unmerged
+    outputs:
+      state: ${{ steps.record.outputs.state }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check for an unmerged syndication record
+        id: pending
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        run: |
+          open=$(gh pr list --state open --json headRefName \
+            --jq '[.[] | select(.headRefName | startswith("syndication/"))] | length')
+          if [ "$open" -gt 0 ] && [ "$DRY_RUN" != "true" ]; then
+            echo "A syndication pull request is still open. Merge it, then run this again."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up toolchain
+        if: steps.pending.outputs.skip != 'true'
+        uses: ./.github/actions/setup
+
+      - name: Syndicate
+        if: steps.pending.outputs.skip != 'true'
+        env:
+          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
+          HASHNODE_TOKEN: ${{ secrets.HASHNODE_TOKEN }}
+          HASHNODE_PUBLICATION_ID: ${{ secrets.HASHNODE_PUBLICATION_ID }}
+          SKIP_GITHUB_STATS: "1"
+          SLUG: ${{ inputs.slug }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        run: |
+          args=()
+          if [ "$DRY_RUN" = "true" ]; then args+=(--dry-run); fi
+          if [ -n "$SLUG" ]; then args+=(--slug "$SLUG"); fi
+          pnpm syndicate "${args[@]}"
+
+      # Runs even when one target failed, so copies that were created are
+      # still recorded and never posted twice.
+      - name: Hand over the syndication record
+        id: record
+        if: ${{ !cancelled() && steps.pending.outputs.skip != 'true' }}
+        run: |
+          if git diff --quiet -- content/.syndication.json; then
+            echo "No new copies were created."
+          else
+            echo "state=$(base64 --wrap=0 content/.syndication.json)" >> "$GITHUB_OUTPUT"
+          fi
+
+  record:
+    name: "Record Copies"
+    needs: syndicate
+    if: ${{ !cancelled() && needs.syndicate.outputs.state != '' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write # push the branch that records syndicated copies
+      pull-requests: write # open the pull request for that branch
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Open a pull request with the syndication record
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: "syndication/${{ github.run_id }}"
+          STATE: ${{ needs.syndicate.outputs.state }}
+        run: |
+          echo "$STATE" | base64 --decode > content/.syndication.json
+          # The file must be the JSON record and nothing else.
+          jq --exit-status 'type == "object"' content/.syndication.json > /dev/null
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add content/.syndication.json
+          git commit -m "chore(blog): record syndicated copies"
+          git push origin "$BRANCH"
+          gh pr create \
+            --title "chore(blog): record syndicated copies" \
+            --body "Records the copies created by the syndication run so they are never posted twice. Merge this to add the \"Also published on\" links." \
+            --base main --head "$BRANCH"

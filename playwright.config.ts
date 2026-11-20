@@ -1,11 +1,14 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const PORT = 3000;
-const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? `http://localhost:${PORT}`;
+import { E2E_PORT, e2eEnv } from "./tests/e2e/env";
+
+const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? `http://localhost:${E2E_PORT}`;
 const isCI = Boolean(process.env.CI);
+const SERVER_START_TIMEOUT_MS = 300_000;
 
 export default defineConfig({
   testDir: "tests/e2e",
+  testMatch: "**/*.spec.ts",
   fullyParallel: true,
   forbidOnly: isCI,
   retries: isCI ? 2 : 0,
@@ -16,14 +19,19 @@ export default defineConfig({
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   // When PLAYWRIGHT_BASE_URL points at an already running site (for example a
-  // preview deployment), no local server is started.
+  // preview deployment), no local server is started. Only the public specs
+  // make sense there, because the private ones rely on the seeded database.
   webServer: process.env.PLAYWRIGHT_BASE_URL
     ? undefined
     : {
-        // CI tests the production build; locally the dev server is faster.
-        command: isCI ? "pnpm start" : "pnpm dev",
+        // The production build runs with the private areas switched on, an
+        // in-process database, local storage and the development sign-in
+        // driver (see tests/e2e/env.ts). The database is seeded before the
+        // server starts because only one process can open it.
+        command: "pnpm build && pnpm e2e:seed && pnpm start",
+        env: e2eEnv,
         url: baseURL,
-        reuseExistingServer: !isCI,
-        timeout: 120_000,
+        reuseExistingServer: false,
+        timeout: SERVER_START_TIMEOUT_MS,
       },
 });
