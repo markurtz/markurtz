@@ -1,0 +1,24 @@
+# Normalize line endings to LF for all text files.
+* text=auto eol=lf
+
+# Lockfile: collapse in diffs and exclude from GitHub language stats.
+pnpm-lock.yaml linguist-generated=true -diff
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.avif binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.mp4 binary
+*.webm binary
+*.stl binary
+*.3mf binary
+*.glb binary

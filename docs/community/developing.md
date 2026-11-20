@@ -1,1 +1,0 @@
---8<-- "DEVELOPING.md"

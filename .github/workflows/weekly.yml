@@ -2,37 +2,40 @@
 # weekly.yml — The Janitor
 #
 # Trigger:  Cron 00:00 UTC every Sunday + manual workflow_dispatch
-# Purpose:  Dependency hygiene, full test suite regression.
+# Purpose:  Catch drift that no commit triggered: newly disclosed
+#           vulnerabilities, broken external links, and test regressions.
 # =============================================================================
 name: "CI — Weekly Housekeeping"
 
 on:
   schedule:
-    - cron: "0 0 * * 0"  # 00:00 UTC every Sunday
-  workflow_dispatch:       # Allow manual trigger
+    - cron: "0 0 * * 0" # 00:00 UTC every Sunday
+  workflow_dispatch: # Allow manual trigger
 
 permissions:
   contents: read
-  security-events: write
 
 jobs:
-
   # ── Stage 1: Security Audit ────────────────────────────────────────────────
   security:
     name: "Security Audit"
     uses: ./.github/workflows/_security.yml
+    permissions:
+      contents: read
+      security-events: write
 
   # ── Stage 2: Full Test Suite ───────────────────────────────────────────────
-  test:
+  tests:
     name: "Full Verification Suite"
     uses: ./.github/workflows/_tests.yml
     with:
-      test_matrix: >-
-        [
-          {"level": "unit", "types": "smoke, sanity, regression"},
-          {"level": "integration", "types": "smoke, sanity, regression"},
-          {"level": "e2e", "types": "smoke, sanity, regression"}
-        ]
+      test_levels: '["unit", "integration", "e2e"]'
       generate_coverage: true
-      publish_results: true
       retention_days: 14
+
+  # ── Stage 3: Link Check ────────────────────────────────────────────────────
+  link-check:
+    name: "Link Check"
+    uses: ./.github/workflows/_link-check.yml
+    with:
+      fail_on_error: true

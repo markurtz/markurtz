@@ -1,13 +1,13 @@
-name: Feature Request
-description: Suggest an idea for {{project_name}}
+name: ✨ Feature Request
+description: Suggest an idea or improvement for the website
 labels: ["enhancement"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to suggest a feature for {{project_name}}!
-        
-        Before submitting, please ensure you have searched our existing [Issues](https://github.com/{{organization}}/{{project_name}}/issues) and [Discussions](https://github.com/{{organization}}/{{project_name}}/discussions) to see if this feature has already been requested.
+        Thanks for taking the time to suggest an improvement!
+
+        Before submitting, please search the existing [issues](https://github.com/markurtz/markurtz/issues) to see if it has already been requested.
   - type: textarea
     id: problem
     attributes:
@@ -21,7 +21,6 @@ body:
     attributes:
       label: Describe the solution you'd like
       description: A clear and concise description of what you want to happen.
-      placeholder: "Ex. I would like an API that allows me to [...]"
     validations:
       required: true
   - type: textarea
@@ -29,13 +28,11 @@ body:
     attributes:
       label: Describe alternatives you've considered
       description: A clear and concise description of any alternative solutions or features you've considered.
-      placeholder: "Ex. I tried using feature X, but it didn't work because [...]"
   - type: textarea
     id: additional
     attributes:
       label: Additional context
-      description: Add any other context or screenshots about the feature request here.
-      placeholder: "Add any mockups, log snippets, or other context here..."
+      description: Add any other context, mockups, or screenshots about the feature request here.
   - type: checkboxes
     id: contribute
     attributes:

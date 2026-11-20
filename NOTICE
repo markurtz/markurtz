@@ -1,11 +1,17 @@
-{{project_name}}
-Copyright {{year}} {{organization}}
+markurtz
+Copyright 2026 Mark Kurtz
 
-This product includes software developed by {{organization}} 
-(https://github.com/{{organization}}/{{project_name}}).
+This product includes software developed by Mark Kurtz
+(https://github.com/markurtz/markurtz).
+
+The Apache License, Version 2.0 applies to the source code in this repository.
+Unless a file states otherwise, written content, photographs, and other media
+published through the website are not covered by that license and remain
+Copyright Mark Kurtz, all rights reserved.
 
 =========================================================================
 Third-Party Attributions
 =========================================================================
 
-[ Add third-party attributions, licenses, and notices here ]
+Third-party dependencies are listed in package.json and pnpm-lock.yaml and are
+distributed under their own licenses.

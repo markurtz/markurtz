@@ -1,0 +1,64 @@
+{
+  "name": "markurtz",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Source for Mark Kurtz's personal website and GitHub profile README.",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/markurtz/markurtz#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markurtz/markurtz.git"
+  },
+  "bugs": {
+    "url": "https://github.com/markurtz/markurtz/issues"
+  },
+  "type": "module",
+  "packageManager": "pnpm@12.21.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run",
+    "test:unit": "vitest run --project unit",
+    "test:integration": "vitest run --project integration",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "check": "pnpm lint && pnpm format:check && pnpm typecheck && pnpm test",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,mjs,cjs,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,mdx,css,yml,yaml}": "prettier --write"
+  },
+  "dependencies": {
+    "next": "^16.4.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitest/coverage-v8": "^5.1.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.4.6",
+    "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.1",
+    "prettier": "^3.10.1",
+    "typescript": "~6.0.3",
+    "vitest": "^5.1.0"
+  }
+}

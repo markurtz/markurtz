@@ -1,69 +1,63 @@
-# Contributing to {{project_name}}
+# Contributing to `markurtz`
 
-First off, thank you for considering contributing to `{{project_name}}`! It's people like you that make this project great.
+This is the source for a personal website, so most changes come from its owner. Corrections and improvements from others are still very welcome. Thank you for taking the time!
 
 ## Code of Conduct
 
-By participating in this project, you are expected to uphold our [Code of Conduct](CODE_OF_CONDUCT.md). Please report any unacceptable behavior to the project team.
+By participating in this project, you are expected to uphold the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Security Vulnerabilities
 
 > [!IMPORTANT]
 > **Please do not report security vulnerabilities through public GitHub issues.**
 
-If you discover a security issue, please refer to our [Security Policy](SECURITY.md) for instructions on how to safely report it.
+If you discover a security issue, please refer to the [Security Policy](SECURITY.md) for instructions on how to safely report it.
 
 ## How Can I Contribute?
 
-There are many ways to contribute to `{{project_name}}`, and not all of them involve writing code:
+- **Reporting Bugs:** Something broken on the site? Open a [bug report](https://github.com/markurtz/markurtz/issues/new/choose).
+- **Correcting Content:** Found a typo, a broken link, or a factual error? Open a content correction issue or a pull request.
+- **Suggesting Features:** Ideas for the site are welcome as feature requests.
+- **Writing Code:** Bug fixes and small improvements are welcome as pull requests. For anything larger, please open an issue first to talk it over.
 
-- **Reporting Bugs:** Help us improve by submitting detailed bug reports via our issue tracker.
-- **Suggesting Features:** Propose new features or enhancements that could benefit the project.
-- **Improving Documentation:** Fix typos, add examples, or write new guides.
-- **Writing Code:** Fix bugs, implement features, or improve performance.
-- **Helping Others:** Answer questions in [Discussions](https://github.com/{{organization}}/{{project_name}}/discussions) or issue comments.
+> [!NOTE]
+> The written content, photographs, and other media on the site are personal work. Please do not submit new posts, pages, or media; corrections to existing content are welcome.
 
 For general questions and help, please see [SUPPORT.md](SUPPORT.md).
 
 ## Contributing Code
 
-If you are contributing code, please follow these structured steps:
-
 ### 1. Development Setup
 
-Before you start coding, please refer to our [Development Guide](DEVELOPING.md) (`DEVELOPING.md`) for detailed instructions on:
+Refer to the [Development Guide](DEVELOPING.md) for detailed instructions on:
+
 - Setting up your local environment
 - Installing dependencies
 - Running the test suite
 - Code formatting and linting standards
 
-### 2. Finding an Issue
+### 2. Making Changes
 
-- Look for issues tagged with `good first issue` or `help wanted` if you are a new contributor.
-- If you plan to work on a major feature, please open an issue or discussion first to talk it over with the maintainers.
-
-### 3. Making Changes
-
-1. **Fork the Repository:** Fork the `{{project_name}}` repository to your GitHub account.
-2. **Create a Branch:** Create a new branch from `main` for your work (e.g., `git checkout -b feat/add-new-feature`).
+1. **Fork the Repository:** Fork `markurtz/markurtz` to your GitHub account.
+2. **Create a Branch:** Create a new branch from `main` for your work (e.g., `git checkout -b bugfix/broken-link`).
 3. **Write Code:** Implement your changes, adhering to the project's coding standards.
-4. **Write Tests:** Add unit tests or integration tests for your changes to ensure stability.
-5. **Run Tests:** Ensure all tests and linters pass locally before committing.
+4. **Write Tests:** Add or update tests for behavior changes.
+5. **Run Checks:** Run `pnpm check` and make sure it passes before committing.
 
-### 4. Committing Your Changes
+### 3. Committing Your Changes
 
 - Write clear, concise commit messages.
-- We recommend using [Conventional Commits](https://www.conventionalcommits.org/) (e.g., `feat: add support for X`, `fix: resolve issue with Y`).
-- If you are adding a new file, please include the appropriate Apache 2.0 copyright and license header at the top.
+- Follow [Conventional Commits](https://www.conventionalcommits.org/) (e.g., `feat: add support for X`, `fix: resolve issue with Y`).
+- The pre-commit hook lints and formats staged files automatically.
 
-### 5. Submitting a Pull Request
+### 4. Submitting a Pull Request
 
 1. **Push your branch:** `git push origin your-branch-name`.
-2. **Open a Pull Request:** Open a PR against the `main` branch of the upstream repository.
-3. **Fill out the PR Template:** Provide a clear description of your changes, link to any relevant issues (e.g., `Closes #123`), and complete any required checklists.
+2. **Open a Pull Request:** Open a PR against the `main` branch.
+3. **Fill out the PR Template:** Provide a clear description of your changes, link to any relevant issues (e.g., `Closes #123`), and complete the checklist.
 4. **Pass CI:** Ensure all GitHub Actions CI checks pass.
-5. **Review:** Address any feedback from the maintainers. Once approved and checks pass, a maintainer will merge your PR.
+5. **Review:** Address any feedback. Once approved and checks pass, the maintainer will merge your PR.
 
 ## Licensing
 
-By contributing to `{{project_name}}`, you agree that your contributions will be licensed under its [Apache 2.0 License](LICENSE).
+By contributing to `markurtz`, you agree that your contributions will be licensed under its [Apache 2.0 License](LICENSE).

@@ -1,9 +1,10 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # _security.yml — Reusable Security Audit
 #
-# Performs dependency vulnerability scanning and secret scanning.
+# Performs secret scanning, dependency vulnerability scanning, dependency
+# review of pull request changes, and CodeQL static analysis.
 #
-# Callers: development.yml, main.yml, nightly.yml, release.yml, weekly.yml
+# Callers: development.yml, main.yml, weekly.yml
 # ─────────────────────────────────────────────────────────────────────────────
 name: "Security Audit (Reusable)"
 
@@ -12,52 +13,80 @@ on:
 
 permissions:
   contents: read
-  security-events: write  # Upload SARIF to GitHub Security tab
 
 jobs:
-
   secret-scan:
     name: "Secret Scan"
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout repository
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+          persist-credentials: false
 
-      - name: "# TODO: Run your secret scanner"
-        run: |
-          # ───────────────────────────────────────────────────────────────────
-          # PLACEHOLDER — Perform a repository secret scan.
-          # Examples:
-          #   TruffleHog: https://github.com/trufflesecurity/trufflehog
-          #   Gitleaks:   https://github.com/gitleaks/gitleaks-action
-          # ───────────────────────────────────────────────────────────────────
-          echo "TODO: run secret scan"
-          # exit 1
+      - name: Run TruffleHog
+        uses: trufflesecurity/trufflehog@d232362a64a09a9e7d58267b8f5acef00ae90e23 # v3.100.0
+        with:
+          extra_args: --results=verified,unknown
 
   dependency-audit:
     name: "Dependency Vulnerability Scan"
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout repository
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
-
-      - name: "# TODO: Run your deep dependency vulnerability scan"
-        run: |
-          # ───────────────────────────────────────────────────────────────────
-          # PLACEHOLDER — Perform a deep SCA scan of your dependency tree.
-          # Examples:
-          #   Python:   pip install pip-audit && pip-audit --output json -o audit.json
-          #   Node.js:  npm audit --json > audit.json
-          # ───────────────────────────────────────────────────────────────────
-          echo "TODO: run SCA dependency audit"
-          # exit 1
-
-      - name: Upload SCA results
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          name: sca-results-${{ github.run_id }}
-          path: audit.json
-          retention-days: 30
-          if-no-files-found: ignore
+          persist-credentials: false
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+
+      - name: Audit dependencies
+        run: pnpm audit --audit-level=high
+
+  dependency-review:
+    name: "Dependency Review"
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Review dependency changes
+        uses: actions/dependency-review-action@bbc44d14a204704ccc493733616cd1e93a0321ec # v5.0.1
+        with:
+          fail-on-severity: high
+
+  codeql:
+    name: "CodeQL (${{ matrix.language }})"
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      security-events: write # Upload results to the GitHub Security tab
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [javascript-typescript, actions]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: none
+
+      - name: Run CodeQL analysis
+        uses: github/codeql-action/analyze@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          category: "/language:${{ matrix.language }}"
