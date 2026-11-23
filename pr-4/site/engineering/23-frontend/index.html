@@ -1,0 +1,1437 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="{{ project_description }}">
+      
+      
+        <meta name="author" content="{{ org_name }}">
+      
+      
+        <link rel="canonical" href="https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/engineering/23-frontend/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>23 · Front-end implementation - {{ project_name }}</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#23-front-end-implementation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="{{ project_name }}" class="md-header__button md-logo" aria-label="{{ project_name }}" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            {{ project_name }}
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              23 · Front-end implementation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/{{ org_name }}/{{ project_name }}" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    {{ org_name }}/{{ project_name }}
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../getting-started/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../guides/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guides
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../examples/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Examples
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../community/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Community
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="{{ project_name }}" class="md-nav__button md-logo" aria-label="{{ project_name }}" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    {{ project_name }}
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/{{ org_name }}/{{ project_name }}" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    {{ org_name }}/{{ project_name }}
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../community/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Community
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Community
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../community/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../community/developing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../community/agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agent Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../community/code-of-conduct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code of Conduct
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../community/security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../community/support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-component-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Component inventory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-islands-and-their-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Islands and their behaviour
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Islands and their behaviour">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-filters-and-search-listcontrols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List filters and search (&lt;ListControls&gt;)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contact-dialog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contact dialog
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theme
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-item-actions-copy-link-embed-more" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Item actions: Copy link · Embed · More
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-viewer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Viewer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-client-app-clientapp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Client app (&lt;ClientApp&gt;)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-page-transitions-print-and-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Page transitions, print and machines
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-porting-checklist-per-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Porting checklist per page
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/{{ org_name }}/{{ project_name }}/edit/main/docs/site/engineering/23-frontend.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="23-front-end-implementation">23 · Front-end implementation<a class="headerlink" href="#23-front-end-implementation" title="Permanent link">&para;</a></h1>
+<p>Status: behaviour <strong>Locked</strong> (mock v51 is the reference); component boundaries <strong>Default</strong>.</p>
+<p>The mock is real HTML, CSS and JavaScript generated by a dependency-free Node script
+(<code>site-mock/</code>). Production ports it to React server components with small client islands. Port
+markup and CSS faithfully; the look was approved on the mock, not on a description of it.</p>
+<h2 id="1-rules">1. Rules<a class="headerlink" href="#1-rules" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>FE-1 Server components by default.</strong> <code>"use client"</code> only for the islands in § 3.</li>
+<li><strong>FE-2 HTML first.</strong> Every list renders every item in HTML; scripts only hide and show. Links,
+  filters (as links with query strings), the contact form and downloads work without JavaScript.</li>
+<li><strong>FE-3 Port the CSS, don't restyle.</strong> <code>tokens.css</code> is generated from <code>tokens.json</code> (W3C DTCG) and
+  never hand-edited. <code>site.css</code> is split into one file per component; selectors and values stay
+  the same. Cascade layers: <code>reset, tokens, base, components, utilities</code>. (The mock keeps its CSS
+  unlayered only because the artifact host injects its own body font; production does not need that.)</li>
+<li><strong>FE-4 One icon helper.</strong> <code>icon(name, label, size)</code> from <code>icons.mjs</code> becomes <code>&lt;Icon name label size&gt;</code>;
+  inline SVG, <code>currentColor</code>, <code>aria-hidden</code> unless labelled (<a href="../../design/32-mark-icons/">32</a>).</li>
+<li><strong>FE-5 Reserve space.</strong> Every image and video has <code>width</code>/<code>height</code> or <code>aspect-ratio</code>.</li>
+<li><strong>FE-6 Motion respects the user.</strong> <code>prefers-reduced-motion</code> sets every duration to 0 and art to
+  stills.</li>
+<li><strong>FE-7 One strings file.</strong> Interface copy lives in <code>src/lib/strings.ts</code>, not inline.</li>
+</ul>
+<h2 id="2-component-inventory">2. Component inventory<a class="headerlink" href="#2-component-inventory" title="Permanent link">&para;</a></h2>
+<p>Mock function (in <code>site-mock/src/components.mjs</code> unless noted) → production component.</p>
+<table>
+<thead>
+<tr>
+<th>Mock</th>
+<th>Component</th>
+<th>Kind</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>layout</code>, <code>header</code>, <code>footer</code>, <code>lockup</code></td>
+<td><code>&lt;SiteLayout&gt;</code>, <code>&lt;SiteHeader&gt;</code>, <code>&lt;SiteFooter&gt;</code>, <code>&lt;Lockup&gt;</code></td>
+<td>Server</td>
+<td>Header becomes bordered on scroll (tiny client hook); transparent over the home hero</td>
+</tr>
+<tr>
+<td><code>pageHeader</code>, <code>hero</code>, <code>kickLine</code>, <code>crumbs</code>, <code>heroArt</code>, <code>ART</code></td>
+<td><code>&lt;PageHeader role title path lede meta actions art&gt;</code></td>
+<td>Server</td>
+<td>Path title "Parent / Page" (option B). Art is inlined SVG (<code>.ph-art</code>)</td>
+</tr>
+<tr>
+<td><code>section</code>, <code>more</code></td>
+<td><code>&lt;Section&gt;</code>, <code>&lt;SeeAll&gt;</code></td>
+<td>Server</td>
+<td></td>
+</tr>
+<tr>
+<td><code>listTemplate</code></td>
+<td><code>&lt;ListPage&gt;</code></td>
+<td>Server + island</td>
+<td>Pinned band, toolbar, jump bar, year rail, empty state, strip</td>
+</tr>
+<tr>
+<td><code>jumpBar</code>, <code>yearMarks</code></td>
+<td><code>&lt;JumpBar&gt;</code></td>
+<td>Server + island</td>
+<td>Highlights the stop in view (IntersectionObserver)</td>
+</tr>
+<tr>
+<td><code>repoCard</code></td>
+<td><code>&lt;RepoCard&gt;</code></td>
+<td>Server</td>
+<td>Stars and release from build data</td>
+</tr>
+<tr>
+<td><code>researchEntry</code></td>
+<td><code>&lt;ResearchEntry&gt;</code></td>
+<td>Server + Cite island</td>
+<td>Cite copies formatted citation</td>
+</tr>
+<tr>
+<td><code>talkCard</code>, <code>video</code></td>
+<td><code>&lt;TalkCard&gt;</code>, <code>&lt;YouTubeOnClick&gt;</code></td>
+<td>Server + island</td>
+<td><code>youtube-nocookie.com</code> iframe only after press</td>
+</tr>
+<tr>
+<td><code>compactCard</code>, <code>smallCard</code></td>
+<td><code>&lt;SmallCard&gt;</code></td>
+<td>Server</td>
+<td>Icon tile or 64 px thumb</td>
+</tr>
+<tr>
+<td><code>photoCard</code>, <code>projectCard</code>, <code>studioCard</code></td>
+<td><code>&lt;PhotoCard variant="framed" \| "title-on-photo"&gt;</code></td>
+<td>Server</td>
+<td>Mosaic for 3+ photos (<code>.gc-mos</code>, "+N")</td>
+</tr>
+<tr>
+<td><code>featuredCard</code></td>
+<td><code>&lt;FeaturedCard&gt;</code></td>
+<td>Server</td>
+<td>Short split, capped at 300 px</td>
+</tr>
+<tr>
+<td><code>postRow</code>, <code>postEntry</code>, <code>postCard</code>, <code>blogStrip</code></td>
+<td><code>&lt;PostCard&gt;</code>, <code>&lt;BlogStrip&gt;</code></td>
+<td>Server</td>
+<td>External source pill ↗</td>
+</tr>
+<tr>
+<td>(home) <code>hc</code></td>
+<td><code>&lt;HomeCard&gt;</code></td>
+<td>Server</td>
+<td>16:9, eyebrow, 2-line title</td>
+</tr>
+<tr>
+<td><code>gallery</code></td>
+<td><code>&lt;JustifiedRows&gt;</code></td>
+<td>Server</td>
+<td>Rows computed at build from dimensions</td>
+</tr>
+<tr>
+<td><code>photoTimeline</code></td>
+<td><code>&lt;PhotoTimeline&gt;</code></td>
+<td>Server (Studio) / client (Clients)</td>
+<td>Rail unit fits the span: clock, days, months</td>
+</tr>
+<tr>
+<td><code>linkBtn</code> (+ More, Embed in <code>site.js</code>)</td>
+<td><code>&lt;ItemActions&gt;</code></td>
+<td>Island</td>
+<td>Copy link · Embed · More (§ 4)</td>
+</tr>
+<tr>
+<td><code>facts</code></td>
+<td><code>&lt;FactPanel&gt;</code></td>
+<td>Server</td>
+<td>Empty rows hidden</td>
+</tr>
+<tr>
+<td><code>pager</code></td>
+<td><code>&lt;Pager&gt;</code></td>
+<td>Server</td>
+<td>Previous/next on single-photo pages</td>
+</tr>
+<tr>
+<td><code>banner</code>, <code>ogImages</code></td>
+<td><code>generateMetadata</code> helpers</td>
+<td>Server</td>
+<td>Section banners and item crops</td>
+</tr>
+<tr>
+<td><code>site.js</code> viewer</td>
+<td><code>&lt;Viewer&gt;</code></td>
+<td>Island</td>
+<td>§ 5</td>
+</tr>
+<tr>
+<td><code>site.js</code> contact</td>
+<td><code>&lt;ContactDialog&gt;</code></td>
+<td>Island</td>
+<td><code>&lt;dialog&gt;</code>; <code>#contact</code> opens it</td>
+</tr>
+<tr>
+<td><code>site.js</code> theme</td>
+<td><code>&lt;ThemeButton&gt;</code> + inline <code>theme.js</code></td>
+<td>Island</td>
+<td>Runs before first paint</td>
+</tr>
+<tr>
+<td><code>site.js</code> film hover</td>
+<td><code>&lt;FilmCard&gt;</code></td>
+<td>Island</td>
+<td>Preview <code>src</code> on first hover; posters on touch</td>
+</tr>
+<tr>
+<td><code>site.js</code> client area</td>
+<td><code>&lt;ClientApp&gt;</code></td>
+<td>Island</td>
+<td>Token, collections, gallery, share sheet</td>
+</tr>
+<tr>
+<td><code>art-motion.js</code></td>
+<td><code>public/scripts/art-motion.js</code></td>
+<td>Module</td>
+<td>Loaded <code>defer</code>; <code>ArtMotion.init()</code> (<a href="../../design/33-page-art-motion/">33</a>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-islands-and-their-behaviour">3. Islands and their behaviour<a class="headerlink" href="#3-islands-and-their-behaviour" title="Permanent link">&para;</a></h2>
+<h3 id="list-filters-and-search-listcontrols">List filters and search (<code>&lt;ListControls&gt;</code>)<a class="headerlink" href="#list-filters-and-search-listcontrols" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Reads <code>q</code>, <code>year</code> and the page's filter keys from the URL on load; applies them by toggling
+  <code>hidden</code> on items and year groups; updates counts, the count line and the jump bar.</li>
+<li>Writes the URL with <code>history.replaceState</code> (no history entry per keystroke).</li>
+<li>Search: MiniSearch over the page's index JSON (titles, summaries, labels), prefix and fuzzy 0.2.
+  The index loads on first focus of the search box.</li>
+<li>Blog: section filter reveals its sub-label options.</li>
+<li>Without JavaScript: filter options are links to <code>?key=value</code>; the server-rendered page is the
+  full list, so the link still lands on the right page (filtering itself needs JS; acceptable).</li>
+</ul>
+<h3 id="contact-dialog">Contact dialog<a class="headerlink" href="#contact-dialog" title="Permanent link">&para;</a></h3>
+<p><code>&lt;dialog&gt;</code> with focus trap, Escape closes, focus returns to the opener. Turnstile loads when the
+dialog first opens. Errors in words under each field; submit disabled while sending; success
+message replaces the form.</p>
+<h3 id="theme">Theme<a class="headerlink" href="#theme" title="Permanent link">&para;</a></h3>
+<p>Three states (System, Light, Dark) on one icon button whose label says which. Stored in
+<code>localStorage</code> (<code>mk-theme</code>), applied as <code>data-theme</code> on <code>&lt;html&gt;</code> by an inline script before paint.</p>
+<h2 id="4-item-actions-copy-link-embed-more">4. Item actions: Copy link · Embed · More<a class="headerlink" href="#4-item-actions-copy-link-embed-more" title="Permanent link">&para;</a></h2>
+<p>One component for every photo and film on cards, item pages, the viewer and client galleries
+(<a href="../../product/04-clients-sharing-embeds/#6-the-three-buttons-on-every-photo-and-film">04 § 6</a>).</p>
+<ul>
+<li>Three 36 px round buttons, top right, on a translucent dark chip; visible on hover and focus on
+  pointer devices, always visible on touch.</li>
+<li>Copy uses <code>navigator.clipboard.writeText</code>; a toast (<code>role="status"</code>) confirms. Client copies
+  first <code>POST /api/links</code>, then copy; the toast offers "Change".</li>
+<li>Embed opens a small popover with the snippet in a read-only field and Copy; client embeds add the
+  warning line.</li>
+<li>More is a menu button (<code>aria-haspopup="menu"</code>), arrow keys move, Escape closes. Share… uses
+  <code>navigator.share</code> and is hidden where unsupported.</li>
+<li>The component takes <code>{ kind: "studio" | "client", href, embedSrc, title, credit, can }</code> and
+  renders only what <code>can</code> allows.</li>
+</ul>
+<h2 id="5-viewer">5. Viewer<a class="headerlink" href="#5-viewer" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>&lt;dialog&gt;</code> that is always dark, photo first, filling the viewport.</li>
+<li>Round 44 px previous and next buttons at the sides; <strong>Copy link, Embed, More and Close</strong> top
+  right (Mark, 2026-11-23).</li>
+<li>Bottom gradient with caption, mono "4 / 6" count and a thumbnail filmstrip; current thumbnail
+  outlined in teal; the strip hides under 600 px.</li>
+<li>Arrow keys and swipe move; Escape closes; focus returns to the opening thumbnail.</li>
+<li>Films sit in the same set with a play mark; they play in place with controls clear of the strip
+  and pause when the viewer moves on.</li>
+<li>The URL updates to the item page (<code>/studio/&lt;work&gt;/&lt;n&gt;/</code>) with <code>replaceState</code> while open, so a
+  copied address bar matches the photo; closing restores the work page URL.</li>
+<li>Client viewer: previews are the signed 2560 px images; next items preload one ahead.</li>
+</ul>
+<h2 id="6-client-app-clientapp">6. Client app (<code>&lt;ClientApp&gt;</code>)<a class="headerlink" href="#6-client-app-clientapp" title="Permanent link">&para;</a></h2>
+<p>A single island mounted on <code>/clients/</code>, <code>/clients/g/[id]/</code>, <code>/s/[id]/</code> and <code>/s/[id]/embed/</code>.</p>
+<ol>
+<li>On load: read and strip <code>location.hash</code>; merge into <code>__Host-mk_links</code>; pick the token for this
+   page (the share's own id on <code>/s/</code>, else the most recent root link that covers the collection).</li>
+<li>Fetch <code>/api/links/current</code> and, on a gallery, <code>/api/collections/:id</code>. On 404, go to
+   <code>/link-expired/</code>.</li>
+<li>Render with the same components as Studio (<code>&lt;PhotoTimeline&gt;</code>, <code>&lt;JustifiedRows&gt;</code>, <code>&lt;Viewer&gt;</code>,
+   <code>&lt;ItemActions kind="client"&gt;</code>).</li>
+<li>Facet filters: OR within a facet, AND across; <code>?f=stage:Ceremony,people:Family</code>; "Select all N"
+   selects what is shown; the selection bar is sticky at the bottom.</li>
+<li>Share sheet: <code>&lt;dialog&gt;</code> form (Name, three permissions limited by the current link, Keep it
+   updated when made from a filter, Show a preview), <code>POST /api/links</code>, copy the result.</li>
+<li>"Links you've made": list with Copy, Turn off (inline confirm), <code>DELETE /api/links/:id</code>.</li>
+<li>"Forget this browser" deletes this link's cookie entry and returns to "Open your photos".</li>
+</ol>
+<h2 id="7-page-transitions-print-and-machines">7. Page transitions, print and machines<a class="headerlink" href="#7-page-transitions-print-and-machines" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Cross-document view transitions (<code>@view-transition { navigation: auto; }</code>) with a short fade;
+  page art and the header keep stable <code>view-transition-name</code>s.</li>
+<li>Speculation rules prefetch same-origin links on hover (<code>eagerness: moderate</code>) for public pages
+  only; never for <code>/clients/</code>, <code>/s/</code>, <code>/api/</code>.</li>
+<li>Print CSS: <code>/professional/</code> prints as a résumé ("Download résumé" calls <code>window.print()</code>).</li>
+<li>Structured data (JSON-LD): <code>Person</code> on home and About; <code>ScholarlyArticle</code> per paper;
+  <code>CreativeWork</code> / <code>Photograph</code> / <code>VideoObject</code> on Studio items; <code>BlogPosting</code> on hosted posts;
+  <code>BreadcrumbList</code> from the path title.</li>
+</ul>
+<h2 id="8-porting-checklist-per-page">8. Porting checklist per page<a class="headerlink" href="#8-porting-checklist-per-page" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Copy markup from the mock's <code>dist/&lt;route&gt;/index.html</code> and the builder in
+   <code>site-mock/scripts/build.mjs</code>.</li>
+<li>Replace content literals with the typed content queries.</li>
+<li>Move the page's CSS from <code>site.css</code> into its components.</li>
+<li>Wire islands.</li>
+<li>Visual diff against the mock at 390, 768, 1280 and 1920 px, light and dark (Playwright
+   screenshots; tolerance 0.5%).</li>
+<li>axe: no violations. Keyboard pass: every control reachable and visible on focus.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="../../../scripts/extra.js"></script>
+      
+    
+  </body>
+</html>

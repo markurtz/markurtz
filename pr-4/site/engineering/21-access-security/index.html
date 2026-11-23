@@ -1,0 +1,1580 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="{{ project_description }}">
+      
+      
+        <meta name="author" content="{{ org_name }}">
+      
+      
+        <link rel="canonical" href="https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/engineering/21-access-security/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>21 · Access control and security - {{ project_name }}</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#21-access-control-and-security" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="{{ project_name }}" class="md-header__button md-logo" aria-label="{{ project_name }}" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            {{ project_name }}
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              21 · Access control and security
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/{{ org_name }}/{{ project_name }}" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    {{ org_name }}/{{ project_name }}
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../getting-started/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../guides/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guides
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../examples/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Examples
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../community/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Community
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="{{ project_name }}" class="md-nav__button md-logo" aria-label="{{ project_name }}" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    {{ project_name }}
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/{{ org_name }}/{{ project_name }}" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    {{ org_name }}/{{ project_name }}
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../community/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Community
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Community
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../community/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../community/developing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../community/agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agent Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../community/code-of-conduct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code of Conduct
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../community/security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../community/support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-principals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Principals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-link-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Link tokens
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Link tokens">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Addresses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-the-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In the browser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-the-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        On the server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Permissions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-turning-links-off" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Turning links off
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-rate-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Rate limits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-response-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Response headers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-threat-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Threat model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-review-findings-from-pr-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Review findings from PR #3
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Privacy
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/{{ org_name }}/{{ project_name }}/edit/main/docs/site/engineering/21-access-security.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="21-access-control-and-security">21 · Access control and security<a class="headerlink" href="#21-access-control-and-security" title="Permanent link">&para;</a></h1>
+<p>Status: the model is <strong>Locked</strong> (Mark, 2026-11-23: "token only, JWT after # in the link, saved to
+a cookie, sent via the auth header; per-token permissions"). Algorithms, lifetimes and limits are
+<strong>Default</strong>.</p>
+<h2 id="1-principals">1. Principals<a class="headerlink" href="#1-principals" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Who</th>
+<th>Proves it with</th>
+<th>Can</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Anyone</td>
+<td>—</td>
+<td>Public pages, feeds, Studio embeds</td>
+</tr>
+<tr>
+<td>Link holder</td>
+<td>A link token (JWT)</td>
+<td>What the link covers, with the link's three permissions</td>
+</tr>
+<tr>
+<td>Preview bot</td>
+<td>A share's path id only</td>
+<td>That share's og tags and preview crop, if the share is active and allows previews</td>
+</tr>
+<tr>
+<td>Mark</td>
+<td>Supabase Auth session, email on the allow-list</td>
+<td>Everything, through <code>/admin</code></td>
+</tr>
+</tbody>
+</table>
+<p>There are no client accounts, passwords or access codes.</p>
+<h2 id="2-link-tokens">2. Link tokens<a class="headerlink" href="#2-link-tokens" title="Permanent link">&para;</a></h2>
+<h3 id="format">Format<a class="headerlink" href="#format" title="Permanent link">&para;</a></h3>
+<p>A compact JWS (JWT), signed with <strong>ES256</strong> (P-256). Short, standard, verifiable without a
+database call, and rotatable by key id.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>header  { "alg": "ES256", "kid": "2026-11", "typ": "JWT" }
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>payload { "iss": "https://&lt;domain&gt;", "aud": "mk-links", "sub": "&lt;link id&gt;", "ver": 1, "iat": 1795400000 }
+</span></code></pre></div>
+<ul>
+<li><code>sub</code> is the link's id (also the <code>/s/&lt;id&gt;/</code> path id).</li>
+<li><code>ver</code> must equal <code>links.token_version</code>. Bumping it invalidates every copy of that link's token
+  without turning the link off (used for "reissue the link").</li>
+<li>No <code>exp</code>: links last until turned off (Locked P5.7). Expiry, when Mark sets one, is checked in
+  the database.</li>
+<li>Permissions are <strong>not</strong> in the token. The database is the only authority, so a change or a
+  turn-off applies on the next request.</li>
+</ul>
+<p>The token is about 250 characters; links stay short enough for email and chat.</p>
+<h3 id="addresses">Addresses<a class="headerlink" href="#addresses" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Link</th>
+<th>Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mark's root link for a collection</td>
+<td><code>https://&lt;domain&gt;/clients/#&lt;token&gt;</code></td>
+</tr>
+<tr>
+<td>A share made from a link</td>
+<td><code>https://&lt;domain&gt;/s/&lt;id&gt;/#&lt;token&gt;</code></td>
+</tr>
+<tr>
+<td>A share's embed</td>
+<td><code>https://&lt;domain&gt;/s/&lt;id&gt;/embed/#&lt;token&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="in-the-browser">In the browser<a class="headerlink" href="#in-the-browser" title="Permanent link">&para;</a></h3>
+<ol>
+<li>The page reads <code>location.hash</code>, accepts either a bare token or <code>code=&lt;token&gt;</code> (older links),
+   then removes the hash with <code>history.replaceState</code>.</li>
+<li>It stores the token in the cookie <strong><code>__Host-mk_links</code></strong> (<code>Secure; SameSite=Strict; Path=/;
+   Max-Age=34560000</code>, 400 days), a JSON map of link id → token so one browser can hold several
+   links. The cookie is deliberately <strong>not</strong> <code>HttpOnly</code>: the script reads it to set the header.</li>
+<li>Every API call sends <code>Authorization: Bearer &lt;token&gt;</code> for the link in use.</li>
+<li>"Forget this browser" deletes the cookie entry. It does not turn the link off.</li>
+</ol>
+<h3 id="on-the-server">On the server<a class="headerlink" href="#on-the-server" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The API <strong>reads only the <code>Authorization</code> header</strong>, never the cookie. Because a cross-site page
+  cannot set that header on a request to this origin, there is no CSRF path, and <code>SameSite=Strict</code>
+  keeps the cookie off cross-site requests anyway.</li>
+<li>Verification order: parse → check <code>alg</code> is ES256 and <code>kid</code> is known → verify signature →
+  <code>aud</code> and <code>iss</code> → load the link chain (<code>resolveLink</code>, <a href="../../data/11-database-schema/#4-effective-access">11 § 4</a>)
+  → <code>ver</code> matches → every link in the chain active and unexpired → collection live.</li>
+<li>Every failure returns the <strong>same</strong> <code>404 { "error": "link_unavailable" }</code> and the page shows
+  <code>/link-expired/</code>. Unknown id, bad signature, turned off and expired are indistinguishable.</li>
+<li>Logging: tokens are never logged. Request logging strips <code>Authorization</code> and the
+  <code>__Host-mk_links</code> cookie.</li>
+</ul>
+<h3 id="keys">Keys<a class="headerlink" href="#keys" title="Permanent link">&para;</a></h3>
+<p>Private keys live only in the environment (<code>LINK_SIGNING_KEYS</code>, JWK set with <code>kid</code>). The public
+keys are not secret but are not published. Rotation: add a new <code>kid</code>, sign new links with it, keep
+old keys for verification until their links are reissued or turned off.</p>
+<h2 id="3-permissions">3. Permissions<a class="headerlink" href="#3-permissions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Requires</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>View items covered by the link</td>
+<td>Active chain</td>
+</tr>
+<tr>
+<td>See signed thumbnails and previews</td>
+<td>Active chain</td>
+</tr>
+<tr>
+<td>Download one original or all</td>
+<td>Active chain and <code>can_download</code> on every link in the chain</td>
+</tr>
+<tr>
+<td>Copy a link to one photo or film (makes a view-only child share)</td>
+<td><code>can_share_single</code></td>
+</tr>
+<tr>
+<td>Embed a photo (makes a view-only child share)</td>
+<td><code>can_share_single</code></td>
+</tr>
+<tr>
+<td>Select and make a new share</td>
+<td><code>can_make_shares</code></td>
+</tr>
+<tr>
+<td>Give a child share a permission</td>
+<td>The holder has it (no escalation, invariant I2)</td>
+</tr>
+<tr>
+<td>See and turn off links made from this link</td>
+<td>Active chain (holder of an ancestor)</td>
+</tr>
+<tr>
+<td>Turn off this link itself</td>
+<td>Holder of its parent, or Mark</td>
+</tr>
+</tbody>
+</table>
+<p>Pure functions <code>evaluateLinkAccess(chain, action)</code> hold these rules and have unit tests for every
+row; route handlers call them, never re-implement them.</p>
+<h2 id="4-turning-links-off">4. Turning links off<a class="headerlink" href="#4-turning-links-off" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Turning a link off sets <code>revoked_at</code> on that link only. Its descendants fail the chain check on
+  their next request, so the cascade is immediate and needs no extra writes.</li>
+<li>Already-issued presigned URLs keep working for their lifetime (thumbnails and previews up to one
+  hour, downloads five minutes). Accepted; documented on the Privacy page.</li>
+<li>An embed made from a turned-off share stops loading.</li>
+</ul>
+<h2 id="5-rate-limits">5. Rate limits<a class="headerlink" href="#5-rate-limits" title="Permanent link">&para;</a></h2>
+<p>Atomic fixed windows in Postgres. Never check and then record: one statement both counts and
+decides (fixes the PR #3 race).</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">rate_limits</span><span class="w"> </span><span class="p">(</span><span class="k">key</span><span class="p">,</span><span class="w"> </span><span class="n">window_start</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="err">$</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">to_timestamp</span><span class="p">(</span><span class="n">floor</span><span class="p">(</span><span class="k">extract</span><span class="p">(</span><span class="n">epoch</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">now</span><span class="p">())</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="err">$</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">60</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="err">$</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">60</span><span class="p">)),</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w">   </span><span class="c1">-- $2 = window in minutes</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">on</span><span class="w"> </span><span class="n">conflict</span><span class="w"> </span><span class="p">(</span><span class="k">key</span><span class="p">,</span><span class="w"> </span><span class="n">window_start</span><span class="p">)</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="k">update</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="k">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rate_limits</span><span class="p">.</span><span class="k">count</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">returning</span><span class="w"> </span><span class="k">count</span><span class="p">;</span><span class="w">     </span><span class="c1">-- proceed only if count &lt;= limit</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Limit</th>
+<th>Window</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fail:&lt;ipHash&gt;</code> (failed token checks)</td>
+<td>20</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td><code>fail:&lt;linkId&gt;</code></td>
+<td>50</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td><code>share:&lt;linkId&gt;</code> (new shares from one link)</td>
+<td>60</td>
+<td>60 min</td>
+</tr>
+<tr>
+<td><code>download:&lt;linkId&gt;</code></td>
+<td>600</td>
+<td>60 min</td>
+</tr>
+<tr>
+<td><code>contact:&lt;ipHash&gt;</code></td>
+<td>5</td>
+<td>60 min</td>
+</tr>
+</tbody>
+</table>
+<p><code>ipHash</code> is HMAC-SHA-256 of the client IP with a server secret, taken only from
+<code>src/server/auth/request.ts</code>.</p>
+<h2 id="6-response-headers">6. Response headers<a class="headerlink" href="#6-response-headers" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Public pages</th>
+<th>Client pages, shares, API</th>
+<th>Embeds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Content-Security-Policy</code></td>
+<td>Strict (below), <code>frame-ancestors 'none'</code></td>
+<td>Same</td>
+<td>Same but <code>frame-ancestors *</code></td>
+</tr>
+<tr>
+<td><code>X-Robots-Tag</code> / meta robots</td>
+<td>index</td>
+<td><code>noindex, nofollow</code></td>
+<td><code>noindex</code></td>
+</tr>
+<tr>
+<td><code>Cache-Control</code></td>
+<td>Long, immutable assets</td>
+<td><code>no-store</code></td>
+<td>Public, short</td>
+</tr>
+<tr>
+<td><code>Referrer-Policy</code></td>
+<td><code>strict-origin-when-cross-origin</code></td>
+<td><code>no-referrer</code></td>
+<td><code>no-referrer</code></td>
+</tr>
+<tr>
+<td><code>Strict-Transport-Security</code></td>
+<td><code>max-age=63072000; includeSubDomains; preload</code></td>
+<td>Same</td>
+<td>Same</td>
+</tr>
+<tr>
+<td><code>Permissions-Policy</code></td>
+<td>camera=(), microphone=(), geolocation=(), …</td>
+<td>Same</td>
+<td>Same</td>
+</tr>
+<tr>
+<td><code>X-Content-Type-Options</code></td>
+<td><code>nosniff</code></td>
+<td>Same</td>
+<td>Same</td>
+</tr>
+<tr>
+<td><code>Cross-Origin-Opener-Policy</code></td>
+<td><code>same-origin</code></td>
+<td>Same</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>CSP (production; report-only for the first week, then enforced):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>default-src 'self';
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>script-src 'self' 'nonce-…' 'strict-dynamic' https://challenges.cloudflare.com;
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>style-src 'self';
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>img-src 'self' data: blob: https://media.&lt;domain&gt; https://&lt;private-r2-host&gt;;
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>media-src 'self' https://media.&lt;domain&gt; https://&lt;private-r2-host&gt;;
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>font-src 'self';
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>connect-src 'self' https://&lt;private-r2-host&gt;;
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>frame-src https://www.youtube-nocookie.com https://challenges.cloudflare.com;
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>base-uri 'none'; form-action 'self'; object-src 'none';
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>require-trusted-types-for 'script';
+</span></code></pre></div>
+<p>Because the link cookie is readable by script, XSS is the main risk to a link. The defences are
+this CSP (no inline scripts, no third-party scripts except Turnstile), Trusted Types, React's
+escaping, no <code>dangerouslySetInnerHTML</code> outside the MDX pipeline, and no user content rendered as
+HTML anywhere in the client area.</p>
+<h2 id="7-threat-model">7. Threat model<a class="headerlink" href="#7-threat-model" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Threat</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Guessing a link</td>
+<td>Forging a token means breaking an ES256 signature (about 128-bit security); path ids carry ~71 bits and open only a preview; uniform 404; per-IP and per-id failure limits</td>
+</tr>
+<tr>
+<td>A link leaks (forwarded email, screenshot)</td>
+<td>Holder or Mark turns it off; cascade; access log shows opens</td>
+</tr>
+<tr>
+<td>Token in server logs or Referer</td>
+<td>Token only after <code>#</code>; <code>no-referrer</code>; header and cookie stripped from logs</td>
+</tr>
+<tr>
+<td>Preview bot over-exposure</td>
+<td>Bots see only og tags and one small crop, only when the share allows previews</td>
+</tr>
+<tr>
+<td>Escalation through shares</td>
+<td>DB triggers and API checks: a child never exceeds its parent, never leaves its collection</td>
+</tr>
+<tr>
+<td>CSRF</td>
+<td>API authenticates only by <code>Authorization</code> header</td>
+</tr>
+<tr>
+<td>XSS stealing the cookie</td>
+<td>Strict CSP, Trusted Types, no third-party script</td>
+</tr>
+<tr>
+<td>Enumerating collections</td>
+<td>Short random ids; <code>/clients/g/&lt;id&gt;/</code> needs a token covering it; uniform errors</td>
+</tr>
+<tr>
+<td>Direct storage access</td>
+<td>Private bucket; presigned URLs minutes long, per item</td>
+</tr>
+<tr>
+<td>Hotlinking public media</td>
+<td>Accepted for CC BY-NC photos; Cloudflare caching absorbs cost</td>
+</tr>
+<tr>
+<td>Contact spam</td>
+<td>Turnstile, hidden trap, rate limit, server-side validation</td>
+</tr>
+<tr>
+<td>Admin takeover</td>
+<td>Allow-list of one email; short sessions; passkey (Open D2); <code>requireAdmin()</code> first everywhere</td>
+</tr>
+<tr>
+<td>Leaked private data in the public repo</td>
+<td>Never commit private media or dumps; secret scanning in CI; backup fix below</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-review-findings-from-pr-3">8. Review findings from PR #3<a class="headerlink" href="#8-review-findings-from-pr-3" title="Permanent link">&para;</a></h2>
+<p>The code review of PR #3 at <code>e2ee8b4</code> raised three <strong>High</strong> findings. Client galleries stay off in
+production until each is fixed and verified (launch criterion 4).</p>
+<table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Status in this design</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Unlock rate-limit race</strong>: the counter was read, then incremented, so parallel requests all passed</td>
+<td>Fixed by the atomic upsert in § 5; <code>consumeAttempt()</code> returns the decision from the same statement. Test: 50 parallel bad tokens admit at most the limit.</td>
+</tr>
+<tr>
+<td><strong>Database backup artifact on a public repo</strong>: <code>db-backup.yml</code> uploaded a plain dump as an Actions artifact</td>
+<td>Remove the artifact. Either encrypt with <code>age</code> to an offline key and store in the private bucket, or rely on Supabase backups (<a href="../../data/11-database-schema/#7-backups">11 § 7</a>).</td>
+</tr>
+<tr>
+<td><strong>Share links not revocable</strong></td>
+<td>Every share is a <code>links</code> row with <code>revoked_at</code>, checked on every request, cascading to descendants (§ 4).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-privacy">9. Privacy<a class="headerlink" href="#9-privacy" title="Permanent link">&para;</a></h2>
+<ul>
+<li>No cookies on public pages except the theme preference (<code>localStorage</code>) and, only for people who
+  opened a client link, <code>__Host-mk_links</code>.</li>
+<li>No third-party requests on public pages until the visitor presses play on a talk
+  (<code>youtube-nocookie.com</code>) or opens the contact popup (Turnstile).</li>
+<li>Page counts: none at launch, or a cookieless tool (<strong>Open</strong> D12).</li>
+<li>IPs are stored only as keyed hashes. Retention in <a href="../../data/11-database-schema/#6-retention">11 § 6</a>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="../../../scripts/extra.js"></script>
+      
+    
+  </body>
+</html>

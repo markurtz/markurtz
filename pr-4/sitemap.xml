@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/community/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/community/agents/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/community/code-of-conduct/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/community/contributing/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/community/developing/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/community/security/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/community/support/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/examples/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/getting-started/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/getting-started/installation/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/getting-started/quickstart/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/getting-started/workflows/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/guides/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/plans/website-implementation-plan/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/reference/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/data/10-content-model/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/data/11-database-schema/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/data/12-media-storage/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/design/30-design-system/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/design/31-components/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/design/32-mark-icons/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/design/33-page-art-motion/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/design/34-photo-video/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/engineering/20-system-architecture/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/engineering/21-access-security/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/engineering/22-routes-api/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/engineering/23-frontend/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/engineering/24-build-test-deploy/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/product/01-product-requirements/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/product/02-information-architecture/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/product/03-page-specs/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/product/04-clients-sharing-embeds/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/product/05-voice-copy-placeholders/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/product/06-open-decisions/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/records/decision-log/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/records/sources/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/records/page-content/about/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/records/page-content/blog/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/records/page-content/home/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/records/page-content/professional/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/records/page-content/studio/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/records/page-content/workshop/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+</urlset>

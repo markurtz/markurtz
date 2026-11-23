@@ -1,0 +1,2027 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="{{ project_description }}">
+      
+      
+        <meta name="author" content="{{ org_name }}">
+      
+      
+        <link rel="canonical" href="https://{{ org_name }}.github.io/{{ project_name }}/pr-4/site/product/03-page-specs/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>03 · Page specifications - {{ project_name }}</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#03-page-specifications" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="{{ project_name }}" class="md-header__button md-logo" aria-label="{{ project_name }}" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            {{ project_name }}
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              03 · Page specifications
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/{{ org_name }}/{{ project_name }}" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    {{ org_name }}/{{ project_name }}
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../getting-started/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../guides/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guides
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../examples/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Examples
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../community/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Community
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="{{ project_name }}" class="md-nav__button md-logo" aria-label="{{ project_name }}" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    {{ project_name }}
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/{{ org_name }}/{{ project_name }}" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    {{ org_name }}/{{ project_name }}
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../community/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Community
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Community
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../community/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../community/developing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../community/agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agent Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../community/code-of-conduct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code of Conduct
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../community/security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../community/support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#shared-parts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shared parts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Shared parts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#page-header-pg-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Page header (PG-1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-shared-list-template-pg-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The shared list template (PG-2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#home-card-pg-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Home card (PG-3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contact-popup-pg-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contact popup (PG-4)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#footer-pg-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Footer (PG-5)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#home" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Home
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#professional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Professional
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Professional">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#professional-pg-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /professional/ (PG-10)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#professionalsoftware-pg-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /professional/software/ (PG-11)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#professionalresearch-pg-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /professional/research/ (PG-12)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#professionalspeaking-pg-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /professional/speaking/ (PG-13)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workshop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workshop
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workshop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#workshop-pg-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /workshop/ (PG-20)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workshopbuilds-pg-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /workshop/builds/ (PG-21)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workshopdesigns-pg-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /workshop/designs/ (PG-22)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workshopcode-pg-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /workshop/code/ (PG-23)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-page-workshoppageproject-pg-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project page /workshop/&lt;page&gt;/&lt;project&gt;/ (PG-24)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#studio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Studio
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Studio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#studio-pg-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /studio/ (PG-30)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work-page-studiowork-pg-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Work page /studio/&lt;work&gt;/ (PG-31)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-photo-and-film-pages-studioworkn-studioworkfilm-pg-32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single photo and film pages /studio/&lt;work&gt;/&lt;n&gt;/, /studio/&lt;work&gt;/film/ (PG-32)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embed-page-embedstudioworkn-film-pg-33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embed page /embed/studio/&lt;work&gt;/&lt;n | film&gt;/ (PG-33)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Blog
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Blog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#blog-pg-40" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /blog/ (PG-40)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-blogslug-pg-41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post /blog/&lt;slug&gt;/ (PG-41)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#about-and-footer-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About and footer pages
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="About and footer pages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-pg-50" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /about/ (PG-50)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uses-my-kit-pg-51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /uses/ "My kit" (PG-51)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colophon-pg-52" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /colophon/ (PG-52)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#privacy-pg-53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /privacy/ (PG-53)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#edge-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edge pages
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Edge pages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#404-pg-60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /404 (PG-60)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#link-expired-pg-61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /link-expired/ (PG-61)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clients
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#machine-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Machine files
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/{{ org_name }}/{{ project_name }}/edit/main/docs/site/product/03-page-specs.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="03-page-specifications">03 · Page specifications<a class="headerlink" href="#03-page-specifications" title="Permanent link">&para;</a></h1>
+<p>Status: <strong>Locked</strong> (all page content finalised 2026-11-21 to 2026-11-22; header and role lines
+revised 2026-11-23). Copy in quotes is final unless marked <strong>Held</strong>. The exact copy and the review
+history for each page are in <a href="../records/page-content/">records/page-content/</a>; the mock (v51+)
+is the rendered reference.</p>
+<p>Contents: <a href="#shared-parts">Shared parts</a> · <a href="#home">Home</a> · <a href="#professional">Professional</a> ·
+<a href="#workshop">Workshop</a> · <a href="#studio">Studio</a> · <a href="#blog">Blog</a> · <a href="#about-and-footer-pages">About and footer pages</a> ·
+<a href="#edge-pages">Edge pages</a> · <a href="#clients">Clients</a> · <a href="#machine-files">Machine files</a></p>
+<hr />
+<h2 id="shared-parts">Shared parts<a class="headerlink" href="#shared-parts" title="Permanent link">&para;</a></h2>
+<h3 id="page-header-pg-1">Page header (PG-1)<a class="headerlink" href="#page-header-pg-1" title="Permanent link">&para;</a></h3>
+<p>Every inner page opens with the banner-style header, on the page background with <strong>no box,
+outline or panel</strong> (Locked 2026-11-22). Text is left-aligned with the site header's lockup.</p>
+<p>Top to bottom:</p>
+<ol>
+<li><strong>Role line</strong> in Geist Mono: three words separated by " · ". The first word is the home line's
+   best fit (Researcher, Engineer or Creator), then two role nouns (Locked 2026-11-23, table below).</li>
+<li><strong>Title</strong> in Inter 800, about 2.1 to 3.6 rem. On sub-pages the title is a <strong>path title</strong>:
+   "Professional / Software", where "Professional" links up and the slash is muted (option B,
+   Locked 2026-11-23). Studio work and photo pages use it too ("Studio / Iceland / Photo 2 of 3").</li>
+<li><strong>Lede</strong>: one muted Inter sentence.</li>
+<li><strong>Meta</strong> (optional): smaller muted line, e.g. "date · Mark Kurtz · 6 min read".</li>
+<li><strong>Actions</strong> (optional): the page's button pair.</li>
+<li><strong>Art</strong>: the page's Layers art, right-aligned, about 64% of the width, fading into the
+   background on every edge, subject in ink colour. On tablets and phones it becomes a faded band
+   above the text. It plays one motion loop on load (<a href="../../design/33-page-art-motion/">33</a>).</li>
+</ol>
+<p>Pages with their own tops: the home hero, Studio work pages with a film (cinema band), 404,
+link-expired, and the client "Open your photos" card.</p>
+<p>Role lines (Locked 2026-11-23):</p>
+<table>
+<thead>
+<tr>
+<th>Page</th>
+<th>Role line</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Home</td>
+<td>Researcher · Engineer · Creator</td>
+</tr>
+<tr>
+<td>Professional</td>
+<td>Researcher · Engineer · Speaker</td>
+</tr>
+<tr>
+<td>Software</td>
+<td>Engineer · Builder · Maintainer</td>
+</tr>
+<tr>
+<td>Research</td>
+<td>Researcher · Author · Inventor</td>
+</tr>
+<tr>
+<td>Speaking</td>
+<td>Researcher · Speaker · Teacher</td>
+</tr>
+<tr>
+<td>Workshop</td>
+<td>Creator · Woodworker · Maker</td>
+</tr>
+<tr>
+<td>Builds (and build projects)</td>
+<td>Creator · Woodworker · Builder</td>
+</tr>
+<tr>
+<td>Designs (and design projects)</td>
+<td>Creator · Designer · Modeler</td>
+</tr>
+<tr>
+<td>Code (and code projects)</td>
+<td>Engineer · Programmer · Toolmaker</td>
+</tr>
+<tr>
+<td>Studio</td>
+<td>Creator · Photographer · Filmmaker</td>
+</tr>
+<tr>
+<td>Studio work</td>
+<td>Creator · Traveler · Photographer (or Filmmaker when it has a film)</td>
+</tr>
+<tr>
+<td>Blog</td>
+<td>Creator · Writer · Storyteller</td>
+</tr>
+<tr>
+<td>About</td>
+<td>Engineer · Woodworker · Photographer</td>
+</tr>
+<tr>
+<td>Uses</td>
+<td>Creator · Tools · Gear</td>
+</tr>
+<tr>
+<td>Colophon</td>
+<td>Engineer · Type · Build</td>
+</tr>
+<tr>
+<td>Privacy</td>
+<td>Engineer · Logs · Counts</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Engineer · Missing · Moved</td>
+</tr>
+<tr>
+<td>Link expired</td>
+<td>Engineer · Expired · Revoked</td>
+</tr>
+<tr>
+<td>Clients</td>
+<td>Creator · Clients · Private</td>
+</tr>
+<tr>
+<td>Client gallery</td>
+<td>Creator · Private · Shareable</td>
+</tr>
+<tr>
+<td>Share page</td>
+<td>Creator · Shared · Photos</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-shared-list-template-pg-2">The shared list template (PG-2)<a class="headerlink" href="#the-shared-list-template-pg-2" title="Permanent link">&para;</a></h3>
+<p>Software, Research, Speaking, Builds, Designs, Code, Studio and Blog are one component that
+adapts its cards to the genre.</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pinned band</strong></td>
+<td>Directly under the page header, then 24 px of space before the toolbar. Soft teal-tinted band, label with a star ("Pinned"; "Featured" on Speaking; "Favorites" on Studio). Always the <strong>small icon card</strong>: icon tile or 64 px thumb, eyebrow, two-line title, no image on Professional and Workshop. Every pinned item also appears at full size in the timeline.</td>
+</tr>
+<tr>
+<td><strong>Toolbar</strong></td>
+<td>One segmented switch with a count per option in mono ("All 10 · Active 6 …"), then search (about 260 px) and the year menu on the same row; they wrap under it on narrow screens. Then a count line ("N posts"), except on Studio.</td>
+</tr>
+<tr>
+<td><strong>Jump bar</strong></td>
+<td>Above every timeline with three or more stops: a hairline track with teal dots sized by item count and mono labels; the stop in view is highlighted; stops filtered away fade; phones show end labels and the current one only.</td>
+</tr>
+<tr>
+<td><strong>Year rail</strong></td>
+<td>Every item newest first. Each year is a large muted numeral in a 96 px left rail beside that year's cards, no year headings. On phones the year stacks above its cards. Year groups carry <code>id="y-YYYY"</code>.</td>
+</tr>
+<tr>
+<td><strong>In progress</strong></td>
+<td>An "In progress" or "Coming soon" badge on the card, in the timeline and in the pinned band. No separate page.</td>
+</tr>
+<tr>
+<td><strong>Cards</strong></td>
+<td>Per genre: repo card (Software), research entry (Research), talk card (Speaking), framed photo card (Workshop, Blog), title-on-photo card (Studio). Sizes per item: compact, standard, featured (<a href="../../design/31-components/#cards">31</a>).</td>
+</tr>
+<tr>
+<td><strong>Empty result</strong></td>
+<td>"No posts match that. Try a different search, or clear all filters." (wording per page) with a Clear filters button.</td>
+</tr>
+<tr>
+<td><strong>Blog strip</strong></td>
+<td>"Written between projects" with "See all posts", using Home's card, four across, posts from this page's section first. Studio uses "What I shoot with" instead.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="home-card-pg-3">Home card (PG-3)<a class="headerlink" href="#home-card-pg-3" title="Permanent link">&para;</a></h3>
+<p>One card for every home row and every blog strip: framed, 16:9 media, a small pill top-left of the
+media for type cues (language, Paper/Patent, In progress, Film, source ↗), an eyebrow (one line,
+ellipsis) and a title clamped to two lines (always reserving two). No description. Four across
+from 960 px, two from 640 px, one below.</p>
+<h3 id="contact-popup-pg-4">Contact popup (PG-4)<a class="headerlink" href="#contact-popup-pg-4" title="Permanent link">&para;</a></h3>
+<p>Opened by the footer's Get in touch, by every section header's primary button, and by <code>#contact</code>.</p>
+<ul>
+<li>Title "Say hi". Intro: "Whether it's a project, a talk or a question about a build, I'd like to
+  hear about it. I reply to every message <strong>[Held: reply timing, or drop it]</strong>."</li>
+<li>Fields: Name, Email, Message (floating labels), a hidden trap field, a privacy-friendly challenge.</li>
+<li>Button "Send message". Note: "Protected by a privacy-friendly spam check. No tracking."</li>
+<li>Success replaces the form with a thank-you line; errors are in words next to the field.</li>
+<li>No list of reasons to write, no offer of commissions or shoots.</li>
+</ul>
+<h3 id="footer-pg-5">Footer (PG-5)<a class="headerlink" href="#footer-pg-5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Left: "Want to build something together?" and a small primary <strong>Get in touch</strong>.</li>
+<li>Right: Uses · Colophon · Privacy · Clients, then profile icon buttons with accessible names and
+  tooltips: GitHub, LinkedIn, Google Scholar, X, Instagram, Reddit, Medium, alphaXiv, RSS.</li>
+<li>Base row: small lockup; "© 2026 Mark Kurtz · Photos CC BY-NC · Code on GitHub".</li>
+</ul>
+<hr />
+<h2 id="home">Home<a class="headerlink" href="#home" title="Permanent link">&para;</a></h2>
+<p><code>/</code> · Locked 2026-11-22 (mock v15, rounds 1 to 3). Theme "Take it apart. Make it better."</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Section</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Hero</td>
+<td>Role line "Researcher · Engineer · Creator"; title <strong>Mark Kurtz</strong>; intro "Efficient AI at Red Hat. Former CTO of Neural Magic, acquired by Red Hat. Published researcher and open-source creator. Woodworker, photographer and tinkerer on the side."; headshot, no caption; <strong>no buttons</strong>. The header is transparent over the hero gradient until scroll. Hero art: the T4 monogram, signed in by the teal marker tip on load.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Stats</td>
+<td>9.2k GitHub stars · 10 papers, cited 811 times · 6 patent filings · 28 recorded talks. Stars summed across repos Mark created, fetched at build; the rest from content (<strong>Held</strong>: confirm counts).</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Doors</td>
+<td>Heading "Take it apart. Make it better." Intro "Same curiosity, different materials: code and math, wood and circuits, light." Three doors with art: <strong>Professional</strong> "Code and math: understanding how AI works, then building faster models, new techniques and useful software." <strong>Workshop</strong> "Wood, filament and circuits: furniture, printed parts and electronics for around the house." <strong>Studio</strong> "Light: photos and films of places and moments, from the Antarctic Peninsula to Black Rock City." Link word "Explore".</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Built in the open</td>
+<td>Intro "Open-source projects I've created, from research libraries to everyday developer tools." llm-compressor, guidellm, speculators, rustarium (eyebrow owner · role). "See all software". Tinted band.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Shared on stage</td>
+<td>GenAI at Scale; Lossless LLM inference acceleration with Speculators; State of LLM Compression from Research to Production; Neural Magic keynote at Cerebras AI Day (eyebrow tier · year). "See all talks".</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Published and patented</td>
+<td>Microscaling FP4 (ICLR 2026); "Give Me BF16 or Give Me Death"? (ACL 2025); Inducing and Exploiting Activation Sparsity (ICML 2020); US 11,797,855 (eyebrow venue, citations when known). "See all research". Tinted band.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Made in the workshop</td>
+<td>New furniture series; Parametric storage bin (<strong>Held</strong>: invented, swap for a real item); Pet shelf; Entryway bench (eyebrow sub-section · year). "See all projects".</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Captured on the road</td>
+<td>Antarctica; Burning Man; Iceland to Greenland eclipse cruise; Egypt and Jordan (eyebrow place · year; Film pill; preview plays on hover). "See all studio work". Tinted band.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Written between projects</td>
+<td>Four newest posts (external at launch): Speculators; Fly Eagle(3) fly; The hidden cost of large language models; GuideLLM (eyebrow section · month year; source pill). "See all posts".</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Footer invitation</td>
+<td>Site-wide.</td>
+</tr>
+</tbody>
+</table>
+<p>Order follows the doors and alternates text-heavy and image-heavy rows.</p>
+<hr />
+<h2 id="professional">Professional<a class="headerlink" href="#professional" title="Permanent link">&para;</a></h2>
+<p>Locked 2026-11-22 (five rounds). <strong>Held</strong> items are listed as "[confirm]" in content; launch waits
+on every one.</p>
+<h3 id="professional-pg-10"><code>/professional/</code> (PG-10)<a class="headerlink" href="#professional-pg-10" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Role line "Researcher · Engineer · Speaker"; title <strong>Professional</strong>; lede "AI research,
+  open-source software and talks. Red Hat today; formerly CTO of Neural Magic." Buttons <strong>Work with
+  me</strong> (primary, opens contact) and <strong>Download résumé</strong> (prints the page).</li>
+<li>Tiles with cover art: Software "Built in the open where I can." · 10 repositories; Research
+  "Published and patented: ICML, ACL, ICLR and more." · 10 papers · 6 patent filings; Speaking
+  "Shared on stage: keynotes, talks and webinars." · 28 recordings.</li>
+<li><strong>Experience</strong>: role cards on the year rail (by start year): organisation, years, titles with
+  dates, bullets, and up to six "Built here" icon cards. Red Hat (2025–now), Neural Magic
+  (2019–2025, three titles), then Burst, Aisle411, Answers.com, Mueller Prost (titles, dates and one
+  line each <strong>Held</strong>). "All from <org>" links to <code>?role=&lt;org&gt;</code> on the lists.</li>
+<li><strong>Education</strong>: degrees and years only. WashU MS Robotics Engineering and BS Mechanical
+  Engineering; Fontbonne BS Applied Mathematics (years <strong>Held</strong>).</li>
+<li>Blog strip. Meta description: "AI researcher, open-source engineer and speaker. Efficient AI at
+  Red Hat; former CTO of Neural Magic."</li>
+<li>Print: hides header art, navigation, footer, buttons and blog strip; one column; links printed
+  as text.</li>
+</ul>
+<h3 id="professionalsoftware-pg-11"><code>/professional/software/</code> (PG-11)<a class="headerlink" href="#professionalsoftware-pg-11" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Path title "Professional / Software"; lede "Built in the open where I can. Free to use."</li>
+<li>Pinned: llm-compressor, guidellm, speculators.</li>
+<li>Filters: All · Active · Research libraries · Developer tools · Archived · Not public, plus search
+  and year.</li>
+<li>Year rail of full repo cards by each repo's start year. Card: owner/name, tagline, role,
+  language, stars, latest release, status (Active or Archived). Taglines (Locked, set B):
+  llm-compressor "Smaller models, same answers." · guidellm "Know your load before you buy the
+  hardware." · speculators "Faster generation, same outputs." · agens "Agents get scheduling,
+  memory and tools." · rustarium "Run Python and WASM safely from Rust." · git-versioned "Let Git
+  set your version." · disdantic "Pydantic models that know their subclasses." · sparseml "Where
+  LLM Compressor started." · deepsparse "GPU speed on the CPU you have." · sparsify "Sparsity
+  without the code."</li>
+<li><strong>Not public</strong> work sits in its own year as a repo-style card with a lock icon and a "Not
+  public" badge, no GitHub link (entries <strong>Held</strong>).</li>
+<li>Stars and release fetched at build time from the GitHub API; the build keeps the last good
+  value if the API fails.</li>
+</ul>
+<h3 id="professionalresearch-pg-12"><code>/professional/research/</code> (PG-12)<a class="headerlink" href="#professionalresearch-pg-12" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Lede "Published and patented: ICML, ACL, ICLR and more."</li>
+<li>Pinned: Microscaling FP4 (ICLR 2026); Give Me BF16 or Give Me Death (ACL 2025); Inducing and
+  Exploiting Activation Sparsity (ICML 2020).</li>
+<li>Filters: All · Conference papers · Preprints · Patents.</li>
+<li>Compact entries in the year rail: top line kind badge, venue and citations, with a small <strong>Cite</strong>
+  button (papers only) that copies a formatted citation; linked title; authors with <strong>M. Kurtz</strong> in
+  bold. No result line, no link chips.</li>
+</ul>
+<h3 id="professionalspeaking-pg-13"><code>/professional/speaking/</code> (PG-13)<a class="headerlink" href="#professionalspeaking-pg-13" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Lede "Shared on stage: keynotes, talks and webinars."</li>
+<li>Pinned, labelled <strong>Featured</strong>: the three home talks.</li>
+<li>Filters: All · Talks · Lectures · Webinars · Podcasts.</li>
+<li>Three-across thumbnail cards in the year rail: thumbnail, eyebrow kind · year, title, venue.
+  Playing a talk swaps the thumbnail for a <code>youtube-nocookie.com</code> embed on click.</li>
+</ul>
+<hr />
+<h2 id="workshop">Workshop<a class="headerlink" href="#workshop" title="Permanent link">&para;</a></h2>
+<p>Locked 2026-11-22 (two rounds).</p>
+<h3 id="workshop-pg-20"><code>/workshop/</code> (PG-20)<a class="headerlink" href="#workshop-pg-20" title="Permanent link">&para;</a></h3>
+<p>Its own layout, not the list template.</p>
+<ol>
+<li>Header: role line "Creator · Woodworker · Maker"; title <strong>Workshop</strong>; lede "Furniture, printed
+   parts and the code behind them. Built on weekends, mostly by hand." (<strong>Held</strong>: confirm). Buttons
+   <strong>Build with me</strong>, <strong>See my tools</strong>.</li>
+<li>Tiles (name, colon, what's there, count): Builds "Built by hand: beds, tables, benches and the
+   odd flaming rig." · Designs "Drawn to share: the plans behind the builds." · Code "Written for the
+   shop: software for making things."</li>
+<li>Featured: the entertainment center (short split featured card).</li>
+<li>In progress: small cards, no images (New furniture series, MAV Grid, first real designs). No
+   "see all".</li>
+<li>Blog strip, Workshop posts first.</li>
+</ol>
+<h3 id="workshopbuilds-pg-21"><code>/workshop/builds/</code> (PG-21)<a class="headerlink" href="#workshopbuilds-pg-21" title="Permanent link">&para;</a></h3>
+<p>Lede "If I can't buy it, I build it." Pinned: entertainment center, dining room table, entryway
+bench. Filters: All · Has video · Has plans · In progress. Year rail of framed photo cards with
+one line each (years and lines other than the entertainment center <strong>Held</strong>).</p>
+<h3 id="workshopdesigns-pg-22"><code>/workshop/designs/</code> (PG-22)<a class="headerlink" href="#workshopdesigns-pg-22" title="Permanent link">&para;</a></h3>
+<p>Lede "Plans to make, change and make better." Coming-soon cards for real designs only (the mock's
+two are <strong>Held</strong> placeholders). Filters: All · Plans · 3D models.</p>
+<h3 id="workshopcode-pg-23"><code>/workshop/code/</code> (PG-23)<a class="headerlink" href="#workshopcode-pg-23" title="Permanent link">&para;</a></h3>
+<p>Lede "Software for the shop, in the open." One card: MAV Grid, "Every storage system invents its
+own grid. MAV Grid is one open grid for all of them." (<strong>Held</strong>: what MAV stands for, scope, link).</p>
+<h3 id="project-page-workshoppageproject-pg-24">Project page <code>/workshop/&lt;page&gt;/&lt;project&gt;/</code> (PG-24)<a class="headerlink" href="#project-page-workshoppageproject-pg-24" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Path title "Builds / Entryway bench"; lede; meta.</li>
+<li><strong>The build</strong>: steps with photos, only where a real log or video exists. Otherwise only the lede.</li>
+<li>Fact panel: Category, Year, Status, Materials, Time, Tools, Dimensions, Cost. Empty rows hidden.</li>
+<li>Downloads (designs) or repository link (code); external links such as "Watch the time-lapse on
+  Reddit" for the entertainment center.</li>
+<li>"More from the workshop": three small cards and "See all builds" (or the project's sub-page).</li>
+</ul>
+<hr />
+<h2 id="studio">Studio<a class="headerlink" href="#studio" title="Permanent link">&para;</a></h2>
+<p>Locked 2026-11-22; per-photo pages and share buttons added 2026-11-23.</p>
+<h3 id="studio-pg-30"><code>/studio/</code> (PG-30)<a class="headerlink" href="#studio-pg-30" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Role line "Creator · Photographer · Filmmaker"; title <strong>Studio</strong>; lede "Photo and video from the
+  places I've been lucky enough to reach, from the Antarctic Peninsula to Black Rock City."
+  Buttons <strong>Shoot with me</strong> (Open: wording), <strong>See my kit</strong>.</li>
+<li>Pinned <strong>Favorites</strong>: three works (<strong>Held</strong>: Mark's three).</li>
+<li>Filters by place: All · Polar · Europe · Americas · Africa and Middle East, with counts; search
+  "Search places"; year menu; no count line.</li>
+<li>Year rail of title-on-photo cards, two across (large grid). Line over the title: region and month,
+  "Nevada · August 2026" (months <strong>Held</strong>). Works with three or more photos show a mosaic. Films
+  show as a still poster with the play mark and length; <strong>no hover preview on this list</strong>.</li>
+<li>Foot: <strong>What I shoot with</strong>, a line naming camera and lenses, "See my kit" to <code>/uses/</code> (kit
+  <strong>Held</strong>). This replaces the blog strip.</li>
+</ul>
+<h3 id="work-page-studiowork-pg-31">Work page <code>/studio/&lt;work&gt;/</code> (PG-31)<a class="headerlink" href="#work-page-studiowork-pg-31" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Top: a film work opens with the <strong>cinema band</strong> (navy, up to 1100 px wide at 16:9, native
+   controls, poster), with the path title and meta under the film inside the band. A photo work
+   uses the page header with its first photo.</li>
+<li>Meta: Place · Month Year · "Film and N photos" ("Film and" only when there is a film).</li>
+<li>Lede, plain facts: "N days in <place>, <dates>." (<strong>Held</strong> per work).</li>
+<li>One first-person moment opens the story (<strong>Held</strong>; the mock's scene sentences are invented and go).</li>
+<li>Facts panel: Where · When · Camera · Lenses · Edited in. Empty rows hidden.</li>
+<li>Photos: justified rows on the <strong>day-by-day timeline rail</strong> built from capture dates (the same
+   component as the client gallery), with short story paragraphs between rows when written.</li>
+<li>Every photo and film carries <strong>Copy link · Embed · More</strong> (<a href="../04-clients-sharing-embeds/#studio-photos-and-films">04</a>).</li>
+<li>Licence line: "Photos and the film on this page are licensed CC BY-NC."</li>
+<li><strong>More from Studio</strong>: three small cards, newest first, "See all studio work". No previous/next.</li>
+</ol>
+<h3 id="single-photo-and-film-pages-studioworkn-studioworkfilm-pg-32">Single photo and film pages <code>/studio/&lt;work&gt;/&lt;n&gt;/</code>, <code>/studio/&lt;work&gt;/film/</code> (PG-32)<a class="headerlink" href="#single-photo-and-film-pages-studioworkn-studioworkfilm-pg-32" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Path title "Studio / <Work> / Photo 2 of 6" (or "Film").</li>
+<li>The photo or film large, with the three buttons, caption "<Photo n> · See all of <Work> ·
+  CC BY-NC", and previous/next links within the work.</li>
+<li><code>og:image</code> is that photo cropped to 1200 × 630 (the film's poster for films).</li>
+</ul>
+<h3 id="embed-page-embedstudioworkn-film-pg-33">Embed page <code>/embed/studio/&lt;work&gt;/&lt;n | film&gt;/</code> (PG-33)<a class="headerlink" href="#embed-page-embedstudioworkn-film-pg-33" title="Permanent link">&para;</a></h3>
+<p>A bare page: just the photo or film, filling the frame, and a credit line "<Title> · Mark Kurtz ↗"
+linking to the photo's page. No header, footer or scripts beyond the film player. <code>noindex</code>,
+framable from any origin.</p>
+<hr />
+<h2 id="blog">Blog<a class="headerlink" href="#blog" title="Permanent link">&para;</a></h2>
+<p>Locked 2026-11-22. <strong>Launches with external posts only</strong>; the hosted-post template stays.</p>
+<h3 id="blog-pg-40"><code>/blog/</code> (PG-40)<a class="headerlink" href="#blog-pg-40" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Role line "Creator · Writer · Storyteller"; title <strong>Blog</strong>, no kicker; lede "Compression, sawdust
+  and long trips. Everything I've written, in one timeline." (Open: is "Compression" the right
+  word). Meta "Subscribe: RSS · Atom · JSON". Buttons <strong>Write with me</strong>, <strong>Subscribe</strong>.</li>
+<li>Pinned band of two or three posts (<strong>Held</strong>: which).</li>
+<li>Filters show sections only (All · Professional · Workshop · Studio, with counts); picking one
+  reveals its sub-labels. Search "Search posts", year menu, "N posts".</li>
+<li>Every post under Mark's name plus team posts he wrote, including the four missing Red Hat
+  Developer articles. External cards carry an approved one-line summary (<strong>Held</strong>) and "Read on
+  <source> ↗".</li>
+</ul>
+<h3 id="post-blogslug-pg-41">Post <code>/blog/&lt;slug&gt;/</code> (PG-41)<a class="headerlink" href="#post-blogslug-pg-41" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Path title is section › sub-label (no "Blog"). A one-sentence hook under the title, which is also
+  the card summary and meta description. Meta: date · Mark Kurtz · N min read.</li>
+<li>Body in Source Serif 4 at 68 ch; every image captioned; code highlighted at build; math by KaTeX.</li>
+<li>Ends with a tinted "More from the <Section>" strip (Home's card, same section, newest first) and
+  "See all <Section> posts" to <code>/blog/?section=…</code>.</li>
+<li>Share image: the post's cover cropped to 1200 × 630, else the Blog banner.</li>
+<li>Open: can text-only posts skip a cover; co-authors in the meta line; should Workshop and Studio
+  posts link to their project page.</li>
+</ul>
+<hr />
+<h2 id="about-and-footer-pages">About and footer pages<a class="headerlink" href="#about-and-footer-pages" title="Permanent link">&para;</a></h2>
+<h3 id="about-pg-50"><code>/about/</code> (PG-50)<a class="headerlink" href="#about-pg-50" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Role line "Engineer · Woodworker · Photographer"; title <strong>Hi, I'm Mark.</strong>; lede "By day I help AI
+  run on less. The rest of the time I'm building furniture or chasing light somewhere far from home."</li>
+<li>Bio, three paragraphs beside the headshot (story first; schooling stays on Professional):</li>
+<li>"<strong>[Held: how Mark got into making AI efficient]</strong>. That question has been my job ever since."</li>
+<li>"It took me from Burst and Aisle411 to six years at Neural Magic, where I grew from engineering
+     manager to CTO, and on to Red Hat when it acquired Neural Magic in January 2025. Today I build
+     open-source tools in the vLLM project: LLM Compressor, GuideLLM and Speculators."</li>
+<li>"The same itch shows up off the clock. I build furniture, design and print parts, and plan trips
+     around the photos I want to take, from Antarctica to Burning Man."</li>
+<li><strong>Find me elsewhere</strong>: eight profile cards: GitHub, LinkedIn, Google Scholar ("811 citations",
+  <strong>Held</strong>), X, Instagram, Reddit, Medium (handle <strong>Held</strong>), alphaXiv.</li>
+</ul>
+<h3 id="uses-my-kit-pg-51"><code>/uses/</code> "My kit" (PG-51)<a class="headerlink" href="#uses-my-kit-pg-51" title="Permanent link">&para;</a></h3>
+<p>Lede "What I reach for at the desk, in the shop and on the road." plus an updated date. Five groups,
+in order: Desk, Software, Woodshop, 3D printing and electronics, Camera and editing (anchors
+<code>#uses-&lt;group&gt;</code>). Icon cards with the item, its exact model and one line on why. Empty groups
+hidden. Camera and editing must match Studio's "What I shoot with" and work-page facts. Any affiliate
+links are disclosed. Every item <strong>Held</strong>.</p>
+<h3 id="colophon-pg-52"><code>/colophon/</code> (PG-52)<a class="headerlink" href="#colophon-pg-52" title="Permanent link">&para;</a></h3>
+<p>Lede "Built by hand, like the furniture." Type and colour block: three type samples (Inter
+Display for headings, Source Serif 4 for reading, Geist Mono for dates and code) and five swatches
+(Teal #489D99, Teal text #387A77, Navy #121B30, Page #F8FAFC, Dark page #0B1220). Build list:
+Generator, Hosting, Photos, Source (<strong>Held</strong>). "All photos and films are mine. Public photos are
+shared under CC BY-NC, so you can use them for non-commercial work with credit. Ask if you'd like to
+use one another way." Stand-in credits and stand-in films are removed at launch.</p>
+<h3 id="privacy-pg-53"><code>/privacy/</code> (PG-53)<a class="headerlink" href="#privacy-pg-53" title="Permanent link">&para;</a></h3>
+<p>Lede "What this site collects, why, and how long it keeps it." One table:</p>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Why</th>
+<th>How long</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server logs</td>
+<td>Keep the site running</td>
+<td><strong>Held</strong> (14 days proposed)</td>
+</tr>
+<tr>
+<td>Page counts</td>
+<td>See what people read</td>
+<td>Anonymous; tool <strong>Held</strong> (or none)</td>
+</tr>
+<tr>
+<td>Contact messages</td>
+<td>Reply to you</td>
+<td><strong>Held</strong></td>
+</tr>
+<tr>
+<td>Client access log</td>
+<td>Keep client links safe</td>
+<td><strong>Held</strong></td>
+</tr>
+</tbody>
+</table>
+<p>One line under it: videos load from YouTube's privacy-enhanced domain only after you press play.</p>
+<hr />
+<h2 id="edge-pages">Edge pages<a class="headerlink" href="#edge-pages" title="Permanent link">&para;</a></h2>
+<h3 id="404-pg-60"><code>/404</code> (PG-60)<a class="headerlink" href="#404-pg-60" title="Permanent link">&para;</a></h3>
+<p>Title "This page isn't here"; lede "The address may be mistyped, or the page has moved. Try one of
+these, or search the blog." The three doors and a large search box (searches <code>/blog/</code>). Art: the
+digits 404. <code>noindex</code>.</p>
+<h3 id="link-expired-pg-61"><code>/link-expired/</code> (PG-61)<a class="headerlink" href="#link-expired-pg-61" title="Permanent link">&para;</a></h3>
+<p>Title "Gone, but not lost"; "This link was turned off. Ask whoever sent it, or write to me and I'll
+sort it out." Buttons <strong>Contact Mark</strong> (popup) and <strong>See Studio</strong>. Art: hourglass. <code>noindex</code>.</p>
+<hr />
+<h2 id="clients">Clients<a class="headerlink" href="#clients" title="Permanent link">&para;</a></h2>
+<p>Full behaviour in <a href="../04-clients-sharing-embeds/">04-clients-sharing-embeds.md</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Page</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/clients/</code> with no stored link</td>
+<td>Card with lock art; role line; title "Open your photos"; "Use the link I sent you. The link is the key: there is no account and no password." Field "Paste your link" with hint "The whole link from my message, or the code after its #." Button <strong>Open</strong>. "No link, or it stopped working? Write to me."</td>
+</tr>
+<tr>
+<td><code>/clients/</code> with a link</td>
+<td>Title "Your photos"; lede "Everything your link opens, and every link you've made from it." Button <strong>Forget this browser</strong>. "Your link lets you" with the three permission checks. "This browser keeps your link so you don't have to open it again. Forgetting it here doesn't turn it off; open the link again any time." Sections <strong>From Mark</strong> (collection cards: "2 new · More on the way", "N photos so far") and <strong>Links you've made</strong> (summary line; each link with name, photos, what it allows, Active or Turned off, Copy, Turn off). Note: "A link works until you turn it off. Turning it off ends access everywhere it was opened, along with any links made from it."</td>
+</tr>
+<tr>
+<td><code>/clients/g/&lt;id&gt;/</code></td>
+<td>Path title "Your photos / <Gallery>"; lede "Every photo from <the shoot>, in the order it happened. Copy a link to any of them, or download them all."; meta "N photos so far · N new · Next delivery <note>". Buttons <strong>Your photos</strong>, <strong>Download all</strong> (if allowed). Toolbar: All/New switch, dropdown checkbox menus (Part of the day, Where, Who, Kind), <strong>Select all N</strong>. Count line "N photos, in the order taken". Timeline rail of moments. Select bar "N selected · Clear · Make a link".</td>
+</tr>
+<tr>
+<td><code>/s/&lt;id&gt;/</code></td>
+<td>Role line; title = the share's name; "Photos by Mark Kurtz, shared with you. See more of my work". Note "This link lets you view[, download][, and copy a link to any one photo]. It works until the person who sent it turns it off." Download button if allowed.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="machine-files">Machine files<a class="headerlink" href="#machine-files" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/sitemap.xml</code></td>
+<td>Every indexed public page, with <code>lastmod</code> from git</td>
+</tr>
+<tr>
+<td><code>/robots.txt</code></td>
+<td><code>Disallow: /clients/</code> and <code>/admin/</code>; <strong><code>/s/</code> is allowed</strong> so preview bots can unfurl shares (they carry <code>noindex</code>); sitemap line</td>
+</tr>
+<tr>
+<td><code>/llms.txt</code></td>
+<td>Plain-language summary of who Mark is and links to each section; private pages left out; placeholders stripped</td>
+</tr>
+<tr>
+<td>Feeds</td>
+<td>RSS, Atom, JSON with full content for hosted posts and link entries for external ones</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="../../../scripts/extra.js"></script>
+      
+    
+  </body>
+</html>
