@@ -11,8 +11,8 @@ Build Six".
 Everything on the site is drawn by one marker. "markurtz" sounds like "markers", and the
 monogram is Mark's signature, so the page art is the same hand at work: **the monogram's teal
 marker tip draws each page's subject live**, over a quiet field of rising teal lines, then the
-subject does its job and settles. On page tops it then **stops**, locked in place; on cards it is
-rubbed out again and the cycle repeats with scroll.
+subject does its job and settles. On page tops it then **stops**, locked in place. Link cards rest
+as the finished still and play the draw once when hovered or focused.
 
 Polished, professional and clean: no web, halo, glow or fade.
 
@@ -112,18 +112,25 @@ Unchanged picks from 2026-11-23 (held internally as `PICK` in `art-motion.js`; n
   comes into view and does not restart on scroll or tab return.
 - **ART-1b** Page-top art sits in the **right column only**, beside the text, never full width and
   never behind the title, lede or buttons. The title, lede, meta and buttons fill the left column.
-- **ART-2** Cards follow scroll: 1400 px of scrolling = one cycle, backward on scroll up, eased
-  (**Open**, § 8).
+- **ART-2** Link cards with art (Home rows, blog strips, cover cards anywhere) **animate on hover,
+  not scroll** (Mark, 2026-11-24, settles D16). At rest each card shows the finished still. On
+  pointer hover or keyboard focus the marker draws the subject once from blank, it works and
+  settles, then holds; leaving the card returns it to the still. Scrolling never moves card art.
+  Touch screens show the still only.
+- **ART-2b** Sub-page tiles on Professional and Workshop carry **no drawing** (Mark, 2026-11-24,
+  pick D "Page top shows them"). Each tile is a hairline text card: icon, name, arrow, one-line
+  description and count (for example "10 repositories"). Hovering or focusing a tile redraws the
+  page-top art as that sub-page's subject (Software, Research, Speaking; Builds, Designs, Code),
+  played once to its settled still; leaving the tile row draws the section's own subject back.
 - **ART-3** Pictures rig lazily within 300 px of the viewport and pause off screen.
 - **ART-4** `prefers-reduced-motion: reduce` and no JavaScript show the **finished still**: subject
   in ink, both lines drawn, no movement.
-- **ART-5** Replay (cards only) restarts the clock; never re-mount.
+- **ART-5** Replay (hover) restarts the clock; never re-mount.
 
 ## 8. Open
 
 | # | Point | Current behaviour |
 | --- | --- | --- |
-| O1 | Cards following scroll is carried over from 2026-11-23; Mark reviewed cards only as stills this round | `data-page-art-mode="scroll"` on cards |
 | O2 | "Teal means live" is the art thread's reading, shown in builds four to six without objection | As in § 3 |
 
 ## 9. Files and sizes
@@ -142,7 +149,7 @@ container. Formats follow the SVG-first rule ([32](32-mark-icons.md#formats)); P
 
 | File | Role |
 | --- | --- |
-| `page-art.js` (~20 KB) | Draws and animates every picture (page tops once, cards with scroll) (`PageArt.init(root)`, `PageArt.still(subject, aspect, x)`) |
+| `page-art.js` (~20 KB) | Draws and animates every picture (page tops once, cards on hover) (`PageArt.init(root)`, `PageArt.still(subject, aspect, x)`) |
 | `page-art.css` (~1 KB) | Colours for both themes |
 | `field2.js` (~10 KB) | Field generator (`Field2.build`) |
 | `art-motion.js` (~91 KB) | Engine for each subject's working motion (`ArtMotion.rig`, `pose`); its web group is hidden by `page-art.css` |
@@ -150,8 +157,9 @@ container. Formats follow the SVG-first rule ([32](32-mark-icons.md#formats)); P
 
 ```html
 <div class="page-art" data-page-art="software" data-page-art-mode="once"></div>  <!-- page top: plays once, stops -->
-<div class="page-art" data-page-art="builds" data-page-art-mode="scroll"
-     data-page-art-aspect="1.6667"></div>                               <!-- card: follows scroll -->
+<div class="page-art" data-page-art="builds" data-page-art-mode="hover"
+     data-page-art-aspect="1.6667"></div>                               <!-- card: draws on hover -->
+<a class="tile" href="/professional/software/" data-page-art-target="software">…</a> <!-- tile: redraws the page top -->
 ```
 
 - The element sizes itself from its `aspect-ratio`; the picture fills it with
@@ -159,14 +167,15 @@ container. Formats follow the SVG-first rule ([32](32-mark-icons.md#formats)); P
   right-hand grid cell of `.ph` (about 46% of the header width at 1024 px and up), not an absolutely
   positioned full-width layer; the text column holds the left side.
 - `data-page-art-aspect`: `2` (headers and edge pages, default) or `1.6667` (cards).
-- `data-page-art-mode`: `once` (page tops and edge pages, default), `scroll` (cards) or `loop`
-  (review pages only; not used on the site).
+- `data-page-art-mode`: `once` (page tops and edge pages, default), `hover` (link cards) or `loop`
+  (review pages only; not used on the site). `scroll` is retired.
+- `data-page-art-target` on a tile names the subject the page-top art redraws as on hover or focus.
 - Do not use `data-art-motion` or call `ArtMotion.init` on these elements.
 
 ## Retired
 
 The elastic web (mesh, anchors, `WEB_STROKE`, `restyle`), the art's own Layers network, loop
 candidates as a user choice, page-top looping while visible (Build Six, reversed by Mark the same
-day), full-width header art, cover variants `-2/-3`, the scrim gradient in hero
+day), full-width header art, card art that follows scroll, cover art on sub-page tiles, cover variants `-2/-3`, the scrim gradient in hero
 SVGs, the left-side signal pulse, and the art round 7 requests of 2026-11-23 (superseded by the
 rebuild).

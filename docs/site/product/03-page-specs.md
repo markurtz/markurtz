@@ -137,7 +137,8 @@ on every one.
 - Role line "Researcher · Engineer · Speaker"; title **Professional**; lede "AI research,
   open-source software and talks. Red Hat today; formerly CTO of Neural Magic." Buttons **Work with
   me** (primary, opens contact) and **Download résumé** (prints the page).
-- Tiles with cover art: Software "Built in the open where I can." · 10 repositories; Research
+- Tiles (hairline text cards, no art: icon, name, arrow, one-line description, count; hovering one
+  redraws the page-top art as that page, [33 § 7](../design/33-page-art-motion.md#7-behaviour)): Software "Built in the open where I can." · 10 repositories; Research
   "Published and patented: ICML, ACL, ICLR and more." · 10 papers · 6 patent filings; Speaking
   "Shared on stage: keynotes, talks and webinars." · 28 recordings.
 - **Experience**: role cards on the year rail (by start year): organisation, years, titles with
@@ -201,7 +202,8 @@ Its own layout, not the list template.
 1. Header: role line "Creator · Woodworker · Maker"; title **Workshop**; lede "Furniture, printed
    parts and the code behind them. Built on weekends, mostly by hand." (**Held**: confirm). Buttons
    **Build with me**, **See my tools**.
-2. Tiles (name, colon, what's there, count): Builds "Built by hand: beds, tables, benches and the
+2. Tiles, the same hairline text cards as Professional with no art (hover redraws the page top as
+   that page; name, colon, what's there, count): Builds "Built by hand: beds, tables, benches and the
    odd flaming rig." · Designs "Drawn to share: the plans behind the builds." · Code "Written for the
    shop: software for making things."
 3. Featured: the entertainment center (short split featured card).

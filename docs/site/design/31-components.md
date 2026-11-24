@@ -73,7 +73,8 @@ and the current one.
 | Card | Used on | Anatomy |
 | --- | --- | --- |
 | **Small (icon) card** `.cp` | Pinned bands, "Built here", In progress, related strips | 64 px icon tile or thumb, eyebrow, title (2 lines) |
-| **Home card** `.hm-c` | Home rows, blog strips | Framed; 16:9 media with a type pill; eyebrow (1 line); title (2 lines reserved); no description; 4/2/1 across at 960/640 px |
+| **Sub-page tile** | Professional and Workshop hubs | Hairline border, no fill, no art: icon, name, arrow, one-line description, count. Hover or focus redraws the page-top art as that page |
+| **Home card** `.hm-c` | Home rows, blog strips | Framed; 16:9 media with a type pill; art is a still that draws once on hover; eyebrow (1 line); title (2 lines reserved); no description; 4/2/1 across at 960/640 px |
 | **Repo card** | Software | GitHub-style: owner/name, tagline, role, language dot, stars, release, Active/Archived; "Not public" variant with lock and no link |
 | **Research entry** `.rc` | Research | Year in the rail only; top line kind badge · venue · citations, Cite button right; linked title; authors with Mark bold. Featured adds a figure and the key result in a teal-ruled quote |
 | **Talk card** | Speaking | 16:9 thumbnail with play mark, eyebrow kind · year, title, venue; three across |
