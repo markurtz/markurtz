@@ -1117,7 +1117,7 @@ markup and CSS faithfully; the look was approved on the mock, not on a descripti
   inline SVG, <code>currentColor</code>, <code>aria-hidden</code> unless labelled (<a href="../../design/32-mark-icons/">32</a>).</li>
 <li><strong>FE-5 Reserve space.</strong> Every image and video has <code>width</code>/<code>height</code> or <code>aspect-ratio</code>.</li>
 <li><strong>FE-6 Motion respects the user.</strong> <code>prefers-reduced-motion</code> sets every duration to 0 and art to
-  stills.</li>
+  its finished still (the server-rendered SVG, so no-JS shows the same).</li>
 <li><strong>FE-7 One strings file.</strong> Interface copy lives in <code>src/lib/strings.ts</code>, not inline.</li>
 </ul>
 <h2 id="2-component-inventory">2. Component inventory<a class="headerlink" href="#2-component-inventory" title="Permanent link">&para;</a></h2>
@@ -1142,7 +1142,7 @@ markup and CSS faithfully; the look was approved on the mock, not on a descripti
 <td><code>pageHeader</code>, <code>hero</code>, <code>kickLine</code>, <code>crumbs</code>, <code>heroArt</code>, <code>ART</code></td>
 <td><code>&lt;PageHeader role title path lede meta actions art&gt;</code></td>
 <td>Server</td>
-<td>Path title "Parent / Page" (option B). Art is inlined SVG (<code>.ph-art</code>)</td>
+<td>Path title "Parent / Page" (option B). Art is a <code>&lt;PageArt&gt;</code> (<code>.page-art</code>)</td>
 </tr>
 <tr>
 <td><code>section</code>, <code>more</code></td>
@@ -1277,10 +1277,10 @@ markup and CSS faithfully; the look was approved on the mock, not on a descripti
 <td>Token, collections, gallery, share sheet</td>
 </tr>
 <tr>
-<td><code>art-motion.js</code></td>
-<td><code>public/scripts/art-motion.js</code></td>
-<td>Module</td>
-<td>Loaded <code>defer</code>; <code>ArtMotion.init()</code> (<a href="../../design/33-page-art-motion/">33</a>)</td>
+<td><code>art-motion.js</code> (+ Build Six <code>page-art.js</code>)</td>
+<td><code>&lt;PageArt subject mode aspect&gt;</code> + <code>public/scripts/{page-art,field2,art-motion}.js</code>, <code>page-art.css</code></td>
+<td>Island</td>
+<td>Renders the still SVG on the server (<code>PageArt.still</code>), then the runtime animates it; inlines only the page's own subject from <code>subjects.js</code> (<a href="../../design/33-page-art-motion/#10-runtime-and-markup">33</a>)</td>
 </tr>
 </tbody>
 </table>

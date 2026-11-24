@@ -948,10 +948,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-what-the-art-is" class="md-nav__link">
+  <a href="#1-the-idea" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. What the art is
+        1. The idea
       
     </span>
   </a>
@@ -959,10 +959,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-subjects" class="md-nav__link">
+  <a href="#2-parts-of-a-picture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Subjects
+        2. Parts of a picture
       
     </span>
   </a>
@@ -970,10 +970,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-motion-rules" class="md-nav__link">
+  <a href="#3-colour" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Motion rules
+        3. Colour
       
     </span>
   </a>
@@ -981,10 +981,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-the-elastic-web-rounds-4-to-6" class="md-nav__link">
+  <a href="#4-draw-order" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. The elastic web (rounds 4 to 6)
+        4. Draw order
       
     </span>
   </a>
@@ -992,10 +992,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#open-art-round-7" class="md-nav__link">
+  <a href="#5-timing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Open: art round 7
+        5. Timing
       
     </span>
   </a>
@@ -1003,10 +1003,65 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-generating-the-art" class="md-nav__link">
+  <a href="#6-working-motions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Generating the art
+        6. Working motions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Behaviour
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-open" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Open
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-files-and-sizes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Files and sizes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-runtime-and-markup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Runtime and markup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retired" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retired
       
     </span>
   </a>
@@ -1039,226 +1094,396 @@
 
 
 <h1 id="33-page-art-and-motion">33 · Page art and motion<a class="headerlink" href="#33-page-art-and-motion" title="Permanent link">&para;</a></h1>
-<p>Status: subjects <strong>Locked</strong> 2026-11-21; art style A (marker subject over the network) <strong>Locked</strong>
-2026-11-23; loops <strong>Locked</strong> 2026-11-23 (all picks made); the elastic web is <strong>in progress</strong>
-(round 6 shipped in mock v50; round 7 requested 2026-11-23, below). Runtime source:
-<code>site-mock/src/scripts/art-motion.js</code>, kept in sync with <code>imagery/motion/art-motion.js</code>.</p>
-<h2 id="1-what-the-art-is">1. What the art is<a class="headerlink" href="#1-what-the-art-is" title="Permanent link">&para;</a></h2>
-<p><strong>"Layers"</strong>: a quiet network of slate and teal strands and nodes, with one subject per page
-resting on it like a weight on a web. The subject is drawn in the J1 hand (one chisel marker
-stroke with dots at corners and ends; the monogram without dots). No centre marker.</p>
+<p>Status: <strong>Locked</strong> by Mark on 2026-11-24, 2:02 PM CT (Build Six). This replaces the Layers
+network art, the elastic web and its motion everywhere: page headers, home doors, cards, edge
+pages and banners. Two points are <strong>Open</strong> (§ 8). Handoff source: <code>imagery/rebuild/final/</code>
+in project files (<a href="../../records/sources/#imagery">sources</a>); approved review page "Page Art
+Build Six".</p>
+<h2 id="1-the-idea">1. The idea<a class="headerlink" href="#1-the-idea" title="Permanent link">&para;</a></h2>
+<p>Everything on the site is drawn by one marker. "markurtz" sounds like "markers", and the
+monogram is Mark's signature, so the page art is the same hand at work: <strong>the monogram's teal
+marker tip draws each page's subject live</strong>, over a quiet field of rising teal lines, then the
+subject does its job, settles, and is rubbed out again.</p>
+<p>Polished, professional and clean: no web, halo, glow or fade.</p>
+<h2 id="2-parts-of-a-picture">2. Parts of a picture<a class="headerlink" href="#2-parts-of-a-picture" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Subject</strong></td>
+<td>Mark's drawn J1 chisel-marker subjects, unchanged, at medium size (about half the frame height). Cards use the same treatment as headers.</td>
+</tr>
+<tr>
+<td><strong>Field</strong></td>
+<td>Quiet teal rising lines at about 7.5°, 50% strength. Rows have breaks with end dots and small 45° steps.</td>
+</tr>
+<tr>
+<td><strong>Shared rows</strong></td>
+<td>70% of the rows are the exact same pattern in every picture, so all page art reads as one family.</td>
+</tr>
+<tr>
+<td><strong>Motif rows</strong></td>
+<td>Rows 1, 4 and 8 of every 10 carry the subject's <strong>group motif</strong> (table below). Always the same rows.</td>
+</tr>
+<tr>
+<td><strong>Clear room</strong></td>
+<td>Every row stops before the subject's outline and starts again after it, each with an end dot.</td>
+</tr>
+<tr>
+<td><strong>Marker line</strong></td>
+<td>One smooth line comes in from off the left edge, curves down into the subject's top-left corner, draws the subject, leaves from its bottom-right corner on a smooth curve and runs off the right edge. It stays attached to its corner while the subject moves.</td>
+</tr>
+</tbody>
+</table>
+<p>Group motifs, derived from the subject key (no content field needed):</p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Motif</th>
+<th>Subjects</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Professional</td>
+<td>Gantt bars</td>
+<td>professional, software, research, speaking</td>
+</tr>
+<tr>
+<td>Workshop</td>
+<td>Ruler</td>
+<td>workshop, builds, designs, code</td>
+</tr>
+<tr>
+<td>Studio</td>
+<td>Focus marks</td>
+<td>studio</td>
+</tr>
+<tr>
+<td>General</td>
+<td>Dashes and dots</td>
+<td>home, about, blog, 404, link-expired, clients-sign-in</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-colour">3. Colour<a class="headerlink" href="#3-colour" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Dark theme</th>
+<th>Light theme</th>
+<th>Token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Field lines</td>
+<td>#50AFAA</td>
+<td>#387A77</td>
+<td><code>--plate-line</code></td>
+</tr>
+<tr>
+<td>Marker line and tip</td>
+<td>#7CCBC6</td>
+<td>#2F8C87</td>
+<td><code>--mk</code></td>
+</tr>
+<tr>
+<td>Subject at rest</td>
+<td>ink #EDEEF1</td>
+<td>ink #121B30</td>
+<td><code>currentColor</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Teal means live</strong> (<strong>Open</strong>, see § 8): the marker line is always teal; the subject is teal while
+it is being drawn and while it works, then settles to ink.</p>
+<p>Banners are fixed dark (navy <code>#0B1220</code>).</p>
+<h2 id="4-draw-order">4. Draw order<a class="headerlink" href="#4-draw-order" title="Permanent link">&para;</a></h2>
+<ul>
+<li>One pass in logical order with the fewest marker lifts. Pieces that touch continue from where the
+  last ended; the tip lifts only between separate pieces.</li>
+<li>Small details ride along with the line beside them (the briefcase latch with the seam, knobs,
+  feet, window buttons). Thin bars are drawn along both long edges at once (saw base, hourglass
+  caps, dresser top).</li>
+<li><strong>The marker draws only the frame where the content has its own motion:</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Subject</th>
+<th>Marker draws</th>
+<th>Then</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Software</td>
+<td>The window</td>
+<td>The cursor types the characters</td>
+</tr>
+<tr>
+<td>Code</td>
+<td>Only the connecting lines</td>
+<td>The cursor types</td>
+</tr>
+<tr>
+<td>Research</td>
+<td>The axis</td>
+<td>Points land, the trend line draws</td>
+</tr>
+<tr>
+<td>Designs</td>
+<td>The box</td>
+<td>Bore and dimension appear once; nothing is removed</td>
+</tr>
+<tr>
+<td>Link expired</td>
+<td>Frame and glass</td>
+<td>Sand falls and builds the lower pile</td>
+</tr>
+<tr>
+<td>Home</td>
+<td>The connecting lines</td>
+<td>The monogram signs in with its own tip</td>
+</tr>
+<tr>
+<td>404</td>
+<td>4, then 0, then 4</td>
+<td></td>
+</tr>
+<tr>
+<td>Builds</td>
+<td>The dresser</td>
+<td>Leaves from the bottom-right corner of the body</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-timing">5. Timing<a class="headerlink" href="#5-timing" title="Permanent link">&para;</a></h2>
+<p>Every picture loops in exactly <strong>6.0 s</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Length</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Line in, subject, line out</td>
+<td>At one even marker speed, <strong>0.36 icon units per ms</strong> (an icon unit is 1/100 of the subject's larger side), identical in every picture</td>
+</tr>
+<tr>
+<td>Working motion</td>
+<td>The time left, 0.9 to 2.6 s, capped per subject</td>
+</tr>
+<tr>
+<td>Settle to ink</td>
+<td>0.25 s</td>
+</tr>
+<tr>
+<td>Hold</td>
+<td>Short, whatever remains</td>
+</tr>
+<tr>
+<td><strong>Undraw</strong></td>
+<td>0.8 s: line in, then the subject in drawing order, then line out, each rubbed out along its own stroke, left to right. No fade, no wipe.</td>
+</tr>
+<tr>
+<td>Blank</td>
+<td>0.3 s</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-working-motions">6. Working motions<a class="headerlink" href="#6-working-motions" title="Permanent link">&para;</a></h2>
+<p>Unchanged picks from 2026-11-23 (held internally as <code>PICK</code> in <code>art-motion.js</code>; not a user choice):</p>
+<table>
+<thead>
+<tr>
+<th>Subject</th>
+<th>Motion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Home</td>
+<td>Quick sign (S): the monogram signs in with the teal tip</td>
+</tr>
+<tr>
+<td>Professional</td>
+<td>Off to work: the briefcase opens, shuts, lifts and swings on its handle</td>
+</tr>
+<tr>
+<td>Software, Code</td>
+<td>Typewriter: the cursor types <code>&lt; / &gt;</code></td>
+</tr>
+<tr>
+<td>Research</td>
+<td>Scatter, then sweep</td>
+</tr>
+<tr>
+<td>Speaking</td>
+<td>Roll: one full wave per loop</td>
+</tr>
+<tr>
+<td>Workshop</td>
+<td>Dust only: the saw spins up, throws dust, coasts down</td>
+</tr>
+<tr>
+<td>Builds</td>
+<td>Drawers one by one</td>
+</tr>
+<tr>
+<td>Designs</td>
+<td>Bore cut and dimension</td>
+</tr>
+<tr>
+<td>Studio</td>
+<td>Focus and shutter</td>
+</tr>
+<tr>
+<td>Blog</td>
+<td>Page drifts under the writing pencil</td>
+</tr>
+<tr>
+<td>About</td>
+<td>Look around</td>
+</tr>
+<tr>
+<td>404</td>
+<td>The zero spins (rocks); the fours bounce</td>
+</tr>
+<tr>
+<td>Link expired</td>
+<td>Shake and fall; the sand pile grows</td>
+</tr>
+<tr>
+<td>Client sign-in</td>
+<td>Open, hold, shut</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-behaviour">7. Behaviour<a class="headerlink" href="#7-behaviour" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>ART-1</strong> Page tops and edge pages <strong>loop while visible</strong> (replaces "play once on load").</li>
+<li><strong>ART-2</strong> Cards follow scroll: 1400 px of scrolling = one cycle, backward on scroll up, eased
+  (<strong>Open</strong>, § 8).</li>
+<li><strong>ART-3</strong> Pictures rig lazily within 300 px of the viewport and pause off screen.</li>
+<li><strong>ART-4</strong> <code>prefers-reduced-motion: reduce</code> and no JavaScript show the <strong>finished still</strong>: subject
+  in ink, both lines drawn, no movement.</li>
+<li><strong>ART-5</strong> Replay restarts the clock only; never re-mount.</li>
+</ul>
+<h2 id="8-open">8. Open<a class="headerlink" href="#8-open" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Point</th>
+<th>Current behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>O1</td>
+<td>Cards following scroll is carried over from 2026-11-23; Mark reviewed cards only as stills this round</td>
+<td><code>data-page-art-mode="scroll"</code> on cards</td>
+</tr>
+<tr>
+<td>O2</td>
+<td>"Teal means live" is the art thread's reading, shown in builds four to six without objection</td>
+<td>As in § 3</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-files-and-sizes">9. Files and sizes<a class="headerlink" href="#9-files-and-sizes" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
 <th>Use</th>
 <th>Size</th>
-<th>Where</th>
+<th>File</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Page-header art</td>
-<td>1920 × 660</td>
-<td><code>.ph-art</code>, right-aligned, faded on every edge, subject in ink</td>
+<td>Page-header still</td>
+<td>1920 × 660, subject centre at 68% of the width, transparent</td>
+<td><code>heroes/&lt;subject&gt;.svg</code> (12: home, professional, software, research, speaking, workshop, builds, designs, code, studio, blog, about)</td>
 </tr>
 <tr>
-<td>Card covers</td>
-<td>640 × 384 (three compositions per kind)</td>
-<td>Professional and Workshop tiles, external posts</td>
+<td>Card cover still</td>
+<td>640 × 384 (5:3), centred</td>
+<td><code>covers/&lt;subject&gt;.svg</code> (7: software, research, speaking, builds, designs, code, blog). One per subject; the old <code>-1/-2/-3</code> variants are retired.</td>
 </tr>
 <tr>
-<td>Edge art</td>
-<td>960 × 440</td>
-<td>404, link-expired, "Open your photos"</td>
+<td>Edge still</td>
+<td>960 × 440, centred</td>
+<td><code>edge/{404,link-expired,clients-sign-in}.svg</code></td>
 </tr>
 <tr>
-<td>Share banners</td>
-<td>1200 × 630</td>
-<td>og:image (PNG copies)</td>
-</tr>
-<tr>
-<td>Home doors</td>
-<td>Hero art cropped (<code>viewBox 900 10 1000 625</code>)</td>
-<td>Home</td>
+<td>Banner</td>
+<td>1200 × 630, navy filled, subject at 70%, <strong>no text</strong></td>
+<td><code>banners/{default,professional,workshop,studio,blog}.svg</code> and <code>png/banners/*.png</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="2-subjects">2. Subjects<a class="headerlink" href="#2-subjects" title="Permanent link">&para;</a></h2>
+<p>Stills are the resting frame and use <code>currentColor</code> for the subject, so set <code>color</code> on the
+container. Formats follow the SVG-first rule (<a href="../32-mark-icons/#formats">32</a>); PNG only for banners.</p>
+<h2 id="10-runtime-and-markup">10. Runtime and markup<a class="headerlink" href="#10-runtime-and-markup" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Page</th>
-<th>Subject</th>
-<th>Loop (picked)</th>
+<th>File</th>
+<th>Role</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Home</td>
-<td>the T4 monogram</td>
-<td>Cards: <strong>B</strong> quick rewrite. Page top: <strong>S</strong>, signed in from empty by the teal marker tip, ending where the tip rests</td>
+<td><code>page-art.js</code> (~20 KB)</td>
+<td>Draws, animates and loops every picture (<code>PageArt.init(root)</code>, <code>PageArt.still(subject, aspect, x)</code>)</td>
 </tr>
 <tr>
-<td>Professional</td>
-<td>briefcase</td>
-<td><strong>A</strong> off to work: opens, shuts, then lifts and swings on its handle. The lid moves as its own rectangle; the band line is duplicated so one stays with the base and one rises with the lid; web shows through the handle</td>
+<td><code>page-art.css</code> (~1 KB)</td>
+<td>Colours for both themes</td>
 </tr>
 <tr>
-<td>Software</td>
-<td>app window with code</td>
-<td><strong>A</strong> typewriter: <code>&lt; / &gt;</code> types in, then out, with a teal caret</td>
+<td><code>field2.js</code> (~10 KB)</td>
+<td>Field generator (<code>Field2.build</code>)</td>
 </tr>
 <tr>
-<td>Research</td>
-<td>trade-off frontier</td>
-<td><strong>B</strong> scatter, then sweep: points land in any order; the line sweeps through and lights the frontier points</td>
+<td><code>art-motion.js</code> (~91 KB)</td>
+<td>Engine for each subject's working motion (<code>ArtMotion.rig</code>, <code>pose</code>); its web group is hidden by <code>page-art.css</code></td>
 </tr>
 <tr>
-<td>Speaking</td>
-<td>waveform</td>
-<td><strong>B</strong> roll: one full wave per loop</td>
-</tr>
-<tr>
-<td>Workshop</td>
-<td>circular saw</td>
-<td><strong>B</strong> dust only: spins up, hums and throws dust, coasts to a stop</td>
-</tr>
-<tr>
-<td>Builds</td>
-<td>dresser</td>
-<td><strong>A</strong> one by one: drawers slide out in turn, then all close; the web stretches as they pull out</td>
-</tr>
-<tr>
-<td>Designs</td>
-<td>CAD part with a bore</td>
-<td><strong>A</strong> sketch and extrude: edges sketch in, the bore is cut, the dimension is added; the top face clears once the box closes</td>
-</tr>
-<tr>
-<td>Code</td>
-<td>brackets</td>
-<td><strong>A</strong> typewriter (as Software)</td>
-</tr>
-<tr>
-<td>Studio</td>
-<td>mirrorless camera</td>
-<td><strong>B</strong> focus and shutter: the lens focuses, the shutter presses and blinks in the lens</td>
-</tr>
-<tr>
-<td>Blog</td>
-<td>pencil writing a line</td>
-<td><strong>A</strong> page drifts: writes along the line as the page drifts, lifts in an arc back to the start</td>
-</tr>
-<tr>
-<td>About</td>
-<td>person</td>
-<td><strong>C</strong> look around: the head looks left and right, shoulders follow</td>
-</tr>
-<tr>
-<td>404</td>
-<td>the digits 404</td>
-<td><strong>B</strong>: the zero rocks 45° each way and back; the fours bounce in turn</td>
-</tr>
-<tr>
-<td>Link expired</td>
-<td>hourglass</td>
-<td><strong>A</strong> shake and fall: shakes as the last grains fall; never flips</td>
-</tr>
-<tr>
-<td>Client sign-in / Open your photos</td>
-<td>lock</td>
-<td><strong>B</strong> open, hold, shut: unlocks, stays open, snaps shut</td>
+<td><code>subjects.js</code> (~165 KB)</td>
+<td>The 15 drawn subjects; <strong>split per page in production</strong> so a page inlines only its own</td>
 </tr>
 </tbody>
 </table>
-<p><code>PICK</code> in <code>art-motion.js</code> holds these; <code>data-art-motion-loop</code> overrides per picture.</p>
-<h2 id="3-motion-rules">3. Motion rules<a class="headerlink" href="#3-motion-rules" title="Permanent link">&para;</a></h2>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"page-art"</span> <span class="na">data-page-art</span><span class="o">=</span><span class="s">"software"</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>                  <span class="cm">&lt;!-- page top: loops --&gt;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"page-art"</span> <span class="na">data-page-art</span><span class="o">=</span><span class="s">"builds"</span> <span class="na">data-page-art-mode</span><span class="o">=</span><span class="s">"scroll"</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>     <span class="na">data-page-art-aspect</span><span class="o">=</span><span class="s">"1.6667"</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>                               <span class="cm">&lt;!-- card: follows scroll --&gt;</span>
+</span></code></pre></div>
 <ul>
-<li><strong>ART-1 Loops.</strong> Every motion is a loop that starts and ends on the approved still.</li>
-<li><strong>ART-2 Page-top art</strong> (<code>.ph-art</code>, edge art) plays <strong>one cycle on load</strong> (3.2 s), then rests.</li>
-<li><strong>ART-3 Everything else</strong> advances its loop with scroll: 1400 px of scrolling per loop, backward
-  when scrolling up, stopping where it is when scrolling stops.</li>
-<li><strong>ART-4 Strength</strong> "Subtle" (k = 0.6), mode "Parts + signal": the subject's working part moves,
-  and a colour ring runs through the network.</li>
-<li><strong>ART-5 Cost.</strong> Only pictures on screen update; each frame changes only transforms and the
-  strand paths. Target ≥ 50 fps on a mid-range laptop (the review page holds about 54).</li>
-<li><strong>ART-6 Reduced motion</strong> shows the stills. No JavaScript shows the static SVG files.</li>
-<li><strong>ART-7 Markup.</strong> <code>&lt;div class="ph-art" data-art-motion="&lt;subject&gt;" data-art-motion-view="page"&gt;</code>
-  with the hero inlined, or <code>&lt;img src="…/covers/&lt;kind&gt;-2.svg" data-art-motion="&lt;subject&gt;"&gt;</code>, which
-  the script swaps for inline SVG. Any CSS styling those images as <code>img</code> must include <code>svg</code>.</li>
+<li>The element sizes itself from its <code>aspect-ratio</code>; the picture fills it with
+  <code>preserveAspectRatio="xMidYMid slice"</code>, subject centred. For right-aligned headers, size and place
+  the element on the right.</li>
+<li><code>data-page-art-aspect</code>: <code>2</code> (headers and edge pages, default) or <code>1.6667</code> (cards).</li>
+<li><code>data-page-art-mode</code>: <code>loop</code> (default) or <code>scroll</code>.</li>
+<li>Do not use <code>data-art-motion</code> or call <code>ArtMotion.init</code> on these elements.</li>
 </ul>
-<h2 id="4-the-elastic-web-rounds-4-to-6">4. The elastic web (rounds 4 to 6)<a class="headerlink" href="#4-the-elastic-web-rounds-4-to-6" title="Permanent link">&para;</a></h2>
-<p>At runtime the art's own network is hidden and replaced by one generated web:</p>
-<ul>
-<li><strong>One symmetric triangular mesh</strong>, densest at the centre and opening toward the edges (an even
-  lattice pulled in radially, <code>rho → rho · (0.42 + 0.58 rho)</code>), fading out toward the edges.</li>
-<li><strong>Pieces are weights.</strong> Each subject part pulls the web toward it (Gaussian pull); strands catch
-  on at points all along every line, so the web is <strong>skinned to the piece</strong>: it moves with the
-  piece and stretches out to the still web further away. Pieces pull hard.</li>
-<li><strong>Elastic response.</strong> Every change overshoots a little and settles (a damped kernel), the same
-  mechanics on every picture; because the response is a function of loop phase, loops still meet
-  their stills.</li>
-<li><strong>Enclosed space is clear.</strong> Inside closed shapes (the saw blade and guard, camera body, lock
-  shackle, pencil, app window, the 4s and the 0, CAD faces once closed) there is no web, checked
-  where the piece is now and at rest. Line drawings keep web through them (monogram, research,
-  code). Shapes that close a space but are not solid keep web (the briefcase handle).</li>
-<li><strong>In-place spins don't drag the web</strong> (saw blade, lens rings, the key).</li>
-<li><strong>Colour</strong> comes from two sources (round 6): a smooth <strong>ring</strong> that runs in from the outside each
-  loop and settles into the <strong>resting gradient</strong> (more colour and density in the middle, lighter at
-  the edges), plus <strong>stress</strong>: strands colour in where they are stretched by a piece or still
-  moving after a piece arrives or moves.</li>
-<li>Static art files (no JavaScript) still show the original generated network.</li>
-</ul>
-<h2 id="open-art-round-7">Open: art round 7<a class="headerlink" href="#open-art-round-7" title="Permanent link">&para;</a></h2>
-<p>Requested by Mark on 2026-11-23 (in the mock thread, which owns the work). Requirements, in his
-words where possible:</p>
-<table>
-<thead>
-<tr>
-<th>#</th>
-<th>Requirement</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>R7-1</td>
-<td><strong>Edge to edge.</strong> The network takes up the full surrounding image, edge to edge, so the lines pull from the edges and stay anchored there, and the strands <strong>fade fully out by the time they reach the edge</strong>.</td>
-</tr>
-<tr>
-<td>R7-2</td>
-<td><strong>One base network.</strong> Every image shares the same base network underneath, so they are uniform, but it stretches, shapes and colours differently based on the content within it at any moment.</td>
-</tr>
-<tr>
-<td>R7-3</td>
-<td><strong>Marker or pencil strokes.</strong> Generate a few options with network strokes drawn like a marker or pencil, to iterate toward a better match with the site's theme.</td>
-</tr>
-<tr>
-<td>R7-4</td>
-<td><strong>Lock</strong>: the shackle (top curved bar) is not filled in as an object; the network should surround that piece completely.</td>
-</tr>
-<tr>
-<td>R7-5</td>
-<td><strong>No vanishing strands.</strong> Software app window: pieces of the web disappear at the top, as if a strand vanishes when its vertex is covered. Once an object is stuck into the network, those vertices are <strong>fixed to the object</strong>; strands must not disappear.</td>
-</tr>
-<tr>
-<td>R7-6</td>
-<td><strong>Saw</strong>: same disappearing edges. And as the saw vibrates, the surrounding connection points move with it.</td>
-</tr>
-<tr>
-<td>R7-7</td>
-<td><strong>Camera</strong>: same disappearing edges outside the main body.</td>
-</tr>
-<tr>
-<td>R7-8</td>
-<td><strong>Pencil</strong>: keeps its connections (same disappearing problem), but the network is nowhere near edge to edge and centres only on the pencil.</td>
-</tr>
-</tbody>
-</table>
-<p>When round 7 lands, update § 4 and the decision log.</p>
-<h2 id="5-generating-the-art">5. Generating the art<a class="headerlink" href="#5-generating-the-art" title="Permanent link">&para;</a></h2>
-<p><code>imagery/final/gen-art.mjs</code> runs the Layers generator (<code>round-5/network-icons.html</code>) in Chromium
-and writes <code>out/</code>: <code>mark/</code>, <code>heroes/&lt;page&gt;.svg</code>, <code>covers/&lt;kind&gt;-&lt;1..3&gt;.svg</code>, <code>edge/</code>,
-<code>banners/</code>, and PNG copies in <code>png/</code>. <code>art-joints.mjs</code> applies the J1 subject stroke (option A).
-In the production repo this becomes <code>pnpm art</code>, writing to <code>public/art/</code>.</p>
+<h2 id="retired">Retired<a class="headerlink" href="#retired" title="Permanent link">&para;</a></h2>
+<p>The elastic web (mesh, anchors, <code>WEB_STROKE</code>, <code>restyle</code>), the art's own Layers network, loop
+candidates as a user choice, page-top play-once, cover variants <code>-2/-3</code>, the scrim gradient in hero
+SVGs, the left-side signal pulse, and the art round 7 requests of 2026-11-23 (superseded by the
+rebuild).</p>
 
 
 
