@@ -1,105 +1,162 @@
 # 33 · Page art and motion
 
-Status: subjects **Locked** 2026-11-21; art style A (marker subject over the network) **Locked**
-2026-11-23; loops **Locked** 2026-11-23 (all picks made); the elastic web is **in progress**
-(round 6 shipped in mock v50; round 7 requested 2026-11-23, below). Runtime source:
-`site-mock/src/scripts/art-motion.js`, kept in sync with `imagery/motion/art-motion.js`.
+Status: **Locked** by Mark on 2026-11-24, 2:02 PM CT (Build Six). This replaces the Layers
+network art, the elastic web and its motion everywhere: page headers, home doors, cards, edge
+pages and banners. Two points are **Open** (§ 8). Handoff source: `imagery/rebuild/final/`
+in project files ([sources](../records/sources.md#imagery)); approved review page "Page Art
+Build Six".
 
-## 1. What the art is
+## 1. The idea
 
-**"Layers"**: a quiet network of slate and teal strands and nodes, with one subject per page
-resting on it like a weight on a web. The subject is drawn in the J1 hand (one chisel marker
-stroke with dots at corners and ends; the monogram without dots). No centre marker.
+Everything on the site is drawn by one marker. "markurtz" sounds like "markers", and the
+monogram is Mark's signature, so the page art is the same hand at work: **the monogram's teal
+marker tip draws each page's subject live**, over a quiet field of rising teal lines, then the
+subject does its job, settles, and is rubbed out again.
 
-| Use | Size | Where |
-| --- | --- | --- |
-| Page-header art | 1920 × 660 | `.ph-art`, right-aligned, faded on every edge, subject in ink |
-| Card covers | 640 × 384 (three compositions per kind) | Professional and Workshop tiles, external posts |
-| Edge art | 960 × 440 | 404, link-expired, "Open your photos" |
-| Share banners | 1200 × 630 | og:image (PNG copies) |
-| Home doors | Hero art cropped (`viewBox 900 10 1000 625`) | Home |
+Polished, professional and clean: no web, halo, glow or fade.
 
-## 2. Subjects
+## 2. Parts of a picture
 
-| Page | Subject | Loop (picked) |
-| --- | --- | --- |
-| Home | the T4 monogram | Cards: **B** quick rewrite. Page top: **S**, signed in from empty by the teal marker tip, ending where the tip rests |
-| Professional | briefcase | **A** off to work: opens, shuts, then lifts and swings on its handle. The lid moves as its own rectangle; the band line is duplicated so one stays with the base and one rises with the lid; web shows through the handle |
-| Software | app window with code | **A** typewriter: `< / >` types in, then out, with a teal caret |
-| Research | trade-off frontier | **B** scatter, then sweep: points land in any order; the line sweeps through and lights the frontier points |
-| Speaking | waveform | **B** roll: one full wave per loop |
-| Workshop | circular saw | **B** dust only: spins up, hums and throws dust, coasts to a stop |
-| Builds | dresser | **A** one by one: drawers slide out in turn, then all close; the web stretches as they pull out |
-| Designs | CAD part with a bore | **A** sketch and extrude: edges sketch in, the bore is cut, the dimension is added; the top face clears once the box closes |
-| Code | brackets | **A** typewriter (as Software) |
-| Studio | mirrorless camera | **B** focus and shutter: the lens focuses, the shutter presses and blinks in the lens |
-| Blog | pencil writing a line | **A** page drifts: writes along the line as the page drifts, lifts in an arc back to the start |
-| About | person | **C** look around: the head looks left and right, shoulders follow |
-| 404 | the digits 404 | **B**: the zero rocks 45° each way and back; the fours bounce in turn |
-| Link expired | hourglass | **A** shake and fall: shakes as the last grains fall; never flips |
-| Client sign-in / Open your photos | lock | **B** open, hold, shut: unlocks, stays open, snaps shut |
-
-`PICK` in `art-motion.js` holds these; `data-art-motion-loop` overrides per picture.
-
-## 3. Motion rules
-
-- **ART-1 Loops.** Every motion is a loop that starts and ends on the approved still.
-- **ART-2 Page-top art** (`.ph-art`, edge art) plays **one cycle on load** (3.2 s), then rests.
-- **ART-3 Everything else** advances its loop with scroll: 1400 px of scrolling per loop, backward
-  when scrolling up, stopping where it is when scrolling stops.
-- **ART-4 Strength** "Subtle" (k = 0.6), mode "Parts + signal": the subject's working part moves,
-  and a colour ring runs through the network.
-- **ART-5 Cost.** Only pictures on screen update; each frame changes only transforms and the
-  strand paths. Target ≥ 50 fps on a mid-range laptop (the review page holds about 54).
-- **ART-6 Reduced motion** shows the stills. No JavaScript shows the static SVG files.
-- **ART-7 Markup.** `<div class="ph-art" data-art-motion="<subject>" data-art-motion-view="page">`
-  with the hero inlined, or `<img src="…/covers/<kind>-2.svg" data-art-motion="<subject>">`, which
-  the script swaps for inline SVG. Any CSS styling those images as `img` must include `svg`.
-
-## 4. The elastic web (rounds 4 to 6)
-
-At runtime the art's own network is hidden and replaced by one generated web:
-
-- **One symmetric triangular mesh**, densest at the centre and opening toward the edges (an even
-  lattice pulled in radially, `rho → rho · (0.42 + 0.58 rho)`), fading out toward the edges.
-- **Pieces are weights.** Each subject part pulls the web toward it (Gaussian pull); strands catch
-  on at points all along every line, so the web is **skinned to the piece**: it moves with the
-  piece and stretches out to the still web further away. Pieces pull hard.
-- **Elastic response.** Every change overshoots a little and settles (a damped kernel), the same
-  mechanics on every picture; because the response is a function of loop phase, loops still meet
-  their stills.
-- **Enclosed space is clear.** Inside closed shapes (the saw blade and guard, camera body, lock
-  shackle, pencil, app window, the 4s and the 0, CAD faces once closed) there is no web, checked
-  where the piece is now and at rest. Line drawings keep web through them (monogram, research,
-  code). Shapes that close a space but are not solid keep web (the briefcase handle).
-- **In-place spins don't drag the web** (saw blade, lens rings, the key).
-- **Colour** comes from two sources (round 6): a smooth **ring** that runs in from the outside each
-  loop and settles into the **resting gradient** (more colour and density in the middle, lighter at
-  the edges), plus **stress**: strands colour in where they are stretched by a piece or still
-  moving after a piece arrives or moves.
-- Static art files (no JavaScript) still show the original generated network.
-
-## Open: art round 7
-
-Requested by Mark on 2026-11-23 (in the mock thread, which owns the work). Requirements, in his
-words where possible:
-
-| # | Requirement |
+| Part | Rule |
 | --- | --- |
-| R7-1 | **Edge to edge.** The network takes up the full surrounding image, edge to edge, so the lines pull from the edges and stay anchored there, and the strands **fade fully out by the time they reach the edge**. |
-| R7-2 | **One base network.** Every image shares the same base network underneath, so they are uniform, but it stretches, shapes and colours differently based on the content within it at any moment. |
-| R7-3 | **Marker or pencil strokes.** Generate a few options with network strokes drawn like a marker or pencil, to iterate toward a better match with the site's theme. |
-| R7-4 | **Lock**: the shackle (top curved bar) is not filled in as an object; the network should surround that piece completely. |
-| R7-5 | **No vanishing strands.** Software app window: pieces of the web disappear at the top, as if a strand vanishes when its vertex is covered. Once an object is stuck into the network, those vertices are **fixed to the object**; strands must not disappear. |
-| R7-6 | **Saw**: same disappearing edges. And as the saw vibrates, the surrounding connection points move with it. |
-| R7-7 | **Camera**: same disappearing edges outside the main body. |
-| R7-8 | **Pencil**: keeps its connections (same disappearing problem), but the network is nowhere near edge to edge and centres only on the pencil. |
+| **Subject** | Mark's drawn J1 chisel-marker subjects, unchanged, at medium size (about half the frame height). Cards use the same treatment as headers. |
+| **Field** | Quiet teal rising lines at about 7.5°, 50% strength. Rows have breaks with end dots and small 45° steps. |
+| **Shared rows** | 70% of the rows are the exact same pattern in every picture, so all page art reads as one family. |
+| **Motif rows** | Rows 1, 4 and 8 of every 10 carry the subject's **group motif** (table below). Always the same rows. |
+| **Clear room** | Every row stops before the subject's outline and starts again after it, each with an end dot. |
+| **Marker line** | One smooth line comes in from off the left edge, curves down into the subject's top-left corner, draws the subject, leaves from its bottom-right corner on a smooth curve and runs off the right edge. It stays attached to its corner while the subject moves. |
 
-When round 7 lands, update § 4 and the decision log.
+Group motifs, derived from the subject key (no content field needed):
 
-## 5. Generating the art
+| Group | Motif | Subjects |
+| --- | --- | --- |
+| Professional | Gantt bars | professional, software, research, speaking |
+| Workshop | Ruler | workshop, builds, designs, code |
+| Studio | Focus marks | studio |
+| General | Dashes and dots | home, about, blog, 404, link-expired, clients-sign-in |
 
-`imagery/final/gen-art.mjs` runs the Layers generator (`round-5/network-icons.html`) in Chromium
-and writes `out/`: `mark/`, `heroes/<page>.svg`, `covers/<kind>-<1..3>.svg`, `edge/`,
-`banners/`, and PNG copies in `png/`. `art-joints.mjs` applies the J1 subject stroke (option A).
-In the production repo this becomes `pnpm art`, writing to `public/art/`.
+## 3. Colour
+
+| Element | Dark theme | Light theme | Token |
+| --- | --- | --- | --- |
+| Field lines | #50AFAA | #387A77 | `--plate-line` |
+| Marker line and tip | #7CCBC6 | #2F8C87 | `--mk` |
+| Subject at rest | ink #EDEEF1 | ink #121B30 | `currentColor` |
+
+**Teal means live** (**Open**, see § 8): the marker line is always teal; the subject is teal while
+it is being drawn and while it works, then settles to ink.
+
+Banners are fixed dark (navy `#0B1220`).
+
+## 4. Draw order
+
+- One pass in logical order with the fewest marker lifts. Pieces that touch continue from where the
+  last ended; the tip lifts only between separate pieces.
+- Small details ride along with the line beside them (the briefcase latch with the seam, knobs,
+  feet, window buttons). Thin bars are drawn along both long edges at once (saw base, hourglass
+  caps, dresser top).
+- **The marker draws only the frame where the content has its own motion:**
+
+| Subject | Marker draws | Then |
+| --- | --- | --- |
+| Software | The window | The cursor types the characters |
+| Code | Only the connecting lines | The cursor types |
+| Research | The axis | Points land, the trend line draws |
+| Designs | The box | Bore and dimension appear once; nothing is removed |
+| Link expired | Frame and glass | Sand falls and builds the lower pile |
+| Home | The connecting lines | The monogram signs in with its own tip |
+| 404 | 4, then 0, then 4 | |
+| Builds | The dresser | Leaves from the bottom-right corner of the body |
+
+## 5. Timing
+
+Every picture loops in exactly **6.0 s**:
+
+| Phase | Length |
+| --- | --- |
+| Line in, subject, line out | At one even marker speed, **0.36 icon units per ms** (an icon unit is 1/100 of the subject's larger side), identical in every picture |
+| Working motion | The time left, 0.9 to 2.6 s, capped per subject |
+| Settle to ink | 0.25 s |
+| Hold | Short, whatever remains |
+| **Undraw** | 0.8 s: line in, then the subject in drawing order, then line out, each rubbed out along its own stroke, left to right. No fade, no wipe. |
+| Blank | 0.3 s |
+
+## 6. Working motions
+
+Unchanged picks from 2026-11-23 (held internally as `PICK` in `art-motion.js`; not a user choice):
+
+| Subject | Motion |
+| --- | --- |
+| Home | Quick sign (S): the monogram signs in with the teal tip |
+| Professional | Off to work: the briefcase opens, shuts, lifts and swings on its handle |
+| Software, Code | Typewriter: the cursor types `< / >` |
+| Research | Scatter, then sweep |
+| Speaking | Roll: one full wave per loop |
+| Workshop | Dust only: the saw spins up, throws dust, coasts down |
+| Builds | Drawers one by one |
+| Designs | Bore cut and dimension |
+| Studio | Focus and shutter |
+| Blog | Page drifts under the writing pencil |
+| About | Look around |
+| 404 | The zero spins (rocks); the fours bounce |
+| Link expired | Shake and fall; the sand pile grows |
+| Client sign-in | Open, hold, shut |
+
+## 7. Behaviour
+
+- **ART-1** Page tops and edge pages **loop while visible** (replaces "play once on load").
+- **ART-2** Cards follow scroll: 1400 px of scrolling = one cycle, backward on scroll up, eased
+  (**Open**, § 8).
+- **ART-3** Pictures rig lazily within 300 px of the viewport and pause off screen.
+- **ART-4** `prefers-reduced-motion: reduce` and no JavaScript show the **finished still**: subject
+  in ink, both lines drawn, no movement.
+- **ART-5** Replay restarts the clock only; never re-mount.
+
+## 8. Open
+
+| # | Point | Current behaviour |
+| --- | --- | --- |
+| O1 | Cards following scroll is carried over from 2026-11-23; Mark reviewed cards only as stills this round | `data-page-art-mode="scroll"` on cards |
+| O2 | "Teal means live" is the art thread's reading, shown in builds four to six without objection | As in § 3 |
+
+## 9. Files and sizes
+
+| Use | Size | File |
+| --- | --- | --- |
+| Page-header still | 1920 × 660, subject centre at 68% of the width, transparent | `heroes/<subject>.svg` (12: home, professional, software, research, speaking, workshop, builds, designs, code, studio, blog, about) |
+| Card cover still | 640 × 384 (5:3), centred | `covers/<subject>.svg` (7: software, research, speaking, builds, designs, code, blog). One per subject; the old `-1/-2/-3` variants are retired. |
+| Edge still | 960 × 440, centred | `edge/{404,link-expired,clients-sign-in}.svg` |
+| Banner | 1200 × 630, navy filled, subject at 70%, **no text** | `banners/{default,professional,workshop,studio,blog}.svg` and `png/banners/*.png` |
+
+Stills are the resting frame and use `currentColor` for the subject, so set `color` on the
+container. Formats follow the SVG-first rule ([32](32-mark-icons.md#formats)); PNG only for banners.
+
+## 10. Runtime and markup
+
+| File | Role |
+| --- | --- |
+| `page-art.js` (~20 KB) | Draws, animates and loops every picture (`PageArt.init(root)`, `PageArt.still(subject, aspect, x)`) |
+| `page-art.css` (~1 KB) | Colours for both themes |
+| `field2.js` (~10 KB) | Field generator (`Field2.build`) |
+| `art-motion.js` (~91 KB) | Engine for each subject's working motion (`ArtMotion.rig`, `pose`); its web group is hidden by `page-art.css` |
+| `subjects.js` (~165 KB) | The 15 drawn subjects; **split per page in production** so a page inlines only its own |
+
+```html
+<div class="page-art" data-page-art="software"></div>                  <!-- page top: loops -->
+<div class="page-art" data-page-art="builds" data-page-art-mode="scroll"
+     data-page-art-aspect="1.6667"></div>                               <!-- card: follows scroll -->
+```
+
+- The element sizes itself from its `aspect-ratio`; the picture fills it with
+  `preserveAspectRatio="xMidYMid slice"`, subject centred. For right-aligned headers, size and place
+  the element on the right.
+- `data-page-art-aspect`: `2` (headers and edge pages, default) or `1.6667` (cards).
+- `data-page-art-mode`: `loop` (default) or `scroll`.
+- Do not use `data-art-motion` or call `ArtMotion.init` on these elements.
+
+## Retired
+
+The elastic web (mesh, anchors, `WEB_STROKE`, `restyle`), the art's own Layers network, loop
+candidates as a user choice, page-top play-once, cover variants `-2/-3`, the scrim gradient in hero
+SVGs, the left-side signal pulse, and the art round 7 requests of 2026-11-23 (superseded by the
+rebuild).

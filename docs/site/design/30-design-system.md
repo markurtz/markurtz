@@ -8,7 +8,7 @@ JSON, never the CSS. The interactive brand system page is listed in [sources](..
 ## 1. Idea
 
 **Exploration**: curious, rigorous, hands-on. A quiet, modern page (slate neutrals, hairlines,
-generous space) carrying hand-drawn marks: a chisel-marker monogram, marker icons and network art.
+generous space) carrying hand-drawn marks: a chisel-marker monogram, marker icons and page art drawn live by the same marker over a field of rising teal lines.
 Teal is the one accent, used for marks, links and the primary action, never for large fills.
 
 ## 2. Colour
@@ -108,5 +108,4 @@ duration to 0 and art to stills.
 ## 8. Tokens pipeline
 
 `design/tokens.json` (W3C DTCG) → `pnpm tokens` → `src/styles/tokens.css` (custom properties with
-the OKLCH value in a comment). The same JSON feeds the art generator's palette, so the network
-teal and slate match the interface.
+the OKLCH value in a comment). The same JSON feeds the page-art palette (`--plate-line`, `--mk`), so the art's teal matches the interface.

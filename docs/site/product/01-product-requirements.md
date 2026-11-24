@@ -16,7 +16,7 @@ closes every page with the same answer: "Want to build something together?"
 
 **Idea and character (Locked, brand system 1.0):** exploration; curious, rigorous, hands-on. The
 look is a modern personal site, not a document: statement type, real photos, hand-drawn marker
-marks over a quiet teal network.
+marks drawn live by the same marker over a quiet field of teal lines.
 
 ## 2. Audiences and what each needs
 
@@ -85,7 +85,7 @@ IDs are stable. "Must" is required for launch, "Should" is expected at launch un
 | PRD-3 | A "Say hi" contact popup opened by the footer button, by each section header's primary button, and at `#contact`. Name, Email, Message, privacy-friendly challenge and a hidden trap field. | Must |
 | PRD-4 | System, light and dark themes; choice remembered per browser; no flash of the wrong theme. | Must |
 | PRD-5 | Every inner page opens with the banner-style page header (path title, role line, lede, meta, actions, art). | Must |
-| PRD-6 | Page-top art plays one motion loop on load; card art loops with scroll; reduced motion shows stills. | Must |
+| PRD-6 | Page art is drawn live by the marker in a 6 s loop: page tops loop while visible, cards follow scroll (Open); reduced motion and no-JS show the finished still. | Must |
 | PRD-7 | Every list page uses the shared template ([03 § list template](03-page-specs.md#the-shared-list-template-pg-2)). | Must |
 | PRD-8 | Search over titles, descriptions and labels on list pages, client-side, from a build-time index. | Must |
 | PRD-9 | Feeds: `/blog/feed.xml` (RSS), `/blog/atom.xml`, `/blog/feed.json`. | Must |

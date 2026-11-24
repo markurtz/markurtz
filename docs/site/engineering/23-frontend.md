@@ -19,7 +19,7 @@ markup and CSS faithfully; the look was approved on the mock, not on a descripti
   inline SVG, `currentColor`, `aria-hidden` unless labelled ([32](../design/32-mark-icons.md)).
 - **FE-5 Reserve space.** Every image and video has `width`/`height` or `aspect-ratio`.
 - **FE-6 Motion respects the user.** `prefers-reduced-motion` sets every duration to 0 and art to
-  stills.
+  its finished still (the server-rendered SVG, so no-JS shows the same).
 - **FE-7 One strings file.** Interface copy lives in `src/lib/strings.ts`, not inline.
 
 ## 2. Component inventory
@@ -29,7 +29,7 @@ Mock function (in `site-mock/src/components.mjs` unless noted) → production co
 | Mock | Component | Kind | Notes |
 | --- | --- | --- | --- |
 | `layout`, `header`, `footer`, `lockup` | `<SiteLayout>`, `<SiteHeader>`, `<SiteFooter>`, `<Lockup>` | Server | Header becomes bordered on scroll (tiny client hook); transparent over the home hero |
-| `pageHeader`, `hero`, `kickLine`, `crumbs`, `heroArt`, `ART` | `<PageHeader role title path lede meta actions art>` | Server | Path title "Parent / Page" (option B). Art is inlined SVG (`.ph-art`) |
+| `pageHeader`, `hero`, `kickLine`, `crumbs`, `heroArt`, `ART` | `<PageHeader role title path lede meta actions art>` | Server | Path title "Parent / Page" (option B). Art is a `<PageArt>` (`.page-art`) |
 | `section`, `more` | `<Section>`, `<SeeAll>` | Server | |
 | `listTemplate` | `<ListPage>` | Server + island | Pinned band, toolbar, jump bar, year rail, empty state, strip |
 | `jumpBar`, `yearMarks` | `<JumpBar>` | Server + island | Highlights the stop in view (IntersectionObserver) |
@@ -52,7 +52,7 @@ Mock function (in `site-mock/src/components.mjs` unless noted) → production co
 | `site.js` theme | `<ThemeButton>` + inline `theme.js` | Island | Runs before first paint |
 | `site.js` film hover | `<FilmCard>` | Island | Preview `src` on first hover; posters on touch |
 | `site.js` client area | `<ClientApp>` | Island | Token, collections, gallery, share sheet |
-| `art-motion.js` | `public/scripts/art-motion.js` | Module | Loaded `defer`; `ArtMotion.init()` ([33](../design/33-page-art-motion.md)) |
+| `art-motion.js` (+ Build Six `page-art.js`) | `<PageArt subject mode aspect>` + `public/scripts/{page-art,field2,art-motion}.js`, `page-art.css` | Island | Renders the still SVG on the server (`PageArt.still`), then the runtime animates it; inlines only the page's own subject from `subjects.js` ([33](../design/33-page-art-motion.md#10-runtime-and-markup)) |
 
 ## 3. Islands and their behaviour
 

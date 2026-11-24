@@ -289,3 +289,4 @@ on works, so the three never drift.
 | Talk thumbnails | YouTube `i.ytimg.com`, saved to public storage | Media CLI, once per talk |
 | og:image crops | Photo + `focus` | Media CLI |
 | Reading time | Post body | Build |
+| Page-art subject and motif | The page's or item kind's subject key (e.g. `builds`); the group motif is derived from the key ([33](../design/33-page-art-motion.md#2-parts-of-a-picture)). No content field. | Build |

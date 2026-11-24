@@ -32,7 +32,8 @@ Paths in backticks are in the project's shared files, not in this repository.
 | --- | --- |
 | Final icons and imagery board | https://claude.ai/artifact/GHxUGdZ21gupg8wuYcBcuf |
 | Source and guide | `imagery/final/README.md`, `icons.mjs`, `mk-study.mjs`, `gen-art.mjs`, `art-joints.mjs`, `out/` |
-| Motion | `imagery/motion/README.md`, `art-motion.js` |
+| Page art, final (Build Six) | `imagery/rebuild/final/README.md`, `page-art.js`, `page-art.css`, `field2.js`, `art-motion.js`, `subjects.js`, `out/`; review page https://claude.ai/artifact/VfENMn2jP2oCz9ojpC1K4F |
+| Earlier motion (retired) | `imagery/motion/README.md` |
 | Loop review | https://claude.ai/artifact/Eip2RQdXWJF5svrhiVCSsf (`imagery/motion/loop-review/`) |
 | Scroll-motion prototype | https://claude.ai/artifact/8jxwv5WTqqhCUvmHu684WQ |
 

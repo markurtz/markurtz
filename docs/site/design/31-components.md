@@ -28,9 +28,9 @@ Code on GitHub" right.
 On the page background, no box. Min height `clamp(300px, 30vw, 440px)`. Text column up to 54% (660 px),
 gap 14 px: role line (Geist Mono 500, `clamp(.82rem, …, .95rem)`, tracking .04em, muted), path
 title (`.ph-title`; parent part `.ph-up` muted 700, separator `.ph-sep` in `--color-line-strong`),
-lede (`.ph-lede`, display font, muted), meta, actions. Art (`.ph-art`) right-aligned at ~64% width,
-fading on all four edges with a mask; subject in ink, network slate and teal. Below 1024 px the art
-becomes a faded band above the text.
+lede (`.ph-lede`, display font, muted), meta, actions. Art (`.page-art`, `data-page-art="<subject>"`) right-aligned at ~64% width,
+on the field of rising teal lines; the marker draws the subject live and it loops while visible ([33](33-page-art-motion.md)). Below 1024 px the art
+becomes a band above the text.
 
 ## Buttons, pills and badges
 

@@ -24,7 +24,8 @@ names, delete the row here, and add a line to the [decision log](../records/deci
 | D13 | Privacy | Does Speaking keep its own YouTube note? | Privacy page only |
 | D14 | Hosting | Vercel Hobby or Pro (Hobby terms exclude commercial use; paid client work may need Pro) | Hobby until the first paid delivery |
 | D15 | Clients | Files (non-media) at launch? | Photos and films only |
-| D16 | Art | Network strokes as marker or pencil: options to be generated in art round 7 ([33](../design/33-page-art-motion.md#open-art-round-7)) | Current smooth strokes |
+| D16 | Art | Cards follow scroll, or loop like page tops? (carried over from 2026-11-23; Mark saw cards only as stills in Build Six) | Follow scroll |
+| D17 | Art | Confirm "teal means live": the subject is teal while drawn and working, then settles to ink | As described |
 
 ## Facts (launch blockers)
 
@@ -114,5 +115,5 @@ names, delete the row here, and add a line to the [decision log](../records/deci
 | E1 | Fix the three High review findings before client galleries switch on (rate-limit race, DB backup artifact on the public repo, revocable shares) | [21](../engineering/21-access-security.md#8-review-findings-from-pr-3) |
 | E2 | Bring PR #3 in line with the routes, schema and access model here | [24](../engineering/24-build-test-deploy.md#gap-against-pr-3) |
 | E3 | Viewer shows only Copy link and Close; add Embed and More (in progress in the mock) | [04 § 6](04-clients-sharing-embeds.md#6-the-three-buttons-on-every-photo-and-film) |
-| E4 | Art round 7: edge-to-edge web, one shared base network, strands fixed to the subject, per-subject fixes | [33](../design/33-page-art-motion.md#open-art-round-7) |
+| E4 | Roll Build Six page art into the mock and the build (replace Layers art, `art-motion.js` wiring and cover variants) | [33](../design/33-page-art-motion.md) |
 | E5 | Self-host fonts (the mock loads Google Fonts) | [30](../design/30-design-system.md#3-typography) |

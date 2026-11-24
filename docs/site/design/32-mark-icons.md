@@ -20,7 +20,7 @@ line end; the monogram does not. The teal marker tip belongs to the monogram alo
 - A **teal marker tip** rests at the end of the stroke.
 - On a navy tile for the app icon and lockup; plain (`currentColor`) where a tile does not fit.
 - No joint dots on the monogram, in any use (static or animated).
-- The animated home hero signs the stroke in from empty with the teal tip ([33](33-page-art-motion.md)).
+- In page art the same teal tip draws every subject; on the home hero the monogram signs itself in ([33](33-page-art-motion.md)).
 
 Generator: `mk-study.mjs` (`MK_FINAL = "t4"`, `mkBody()`), read by `gen-art.mjs`.
 
@@ -82,6 +82,7 @@ heroes, covers and edge art are SVG only.
 
 ## 6. Share banners
 
-1200 × 630 per section (`banners/<section>.svg`, PNG copies in `png/banners/`): the section's art
-with title and role line set in Inter and Geist Mono. Wording is placeholder until Mark approves.
+1200 × 630 (`banners/{default,professional,workshop,studio,blog}.svg`, PNG copies in
+`png/banners/`): Build Six art only, navy filled, subject at 70%, **no text**. A wordmark or copy
+can be added later if wanted.
 Used as `og:image` for pages without their own image.

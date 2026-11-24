@@ -36,7 +36,7 @@ conversations that produced them.
 | 30 | [Design system](design/30-design-system.md) | Tokens: colour, type, spacing, layout, radius, motion, themes |
 | 31 | [Components](design/31-components.md) | Visual rules for header, footer, page header, cards, toolbar, rail, viewer, forms |
 | 32 | [Mark and icons](design/32-mark-icons.md) | The MK monogram, wordmark, J1 marker icons, favicons, formats |
-| 33 | [Page art and motion](design/33-page-art-motion.md) | Layers network art, subjects, the elastic web, loops, open art round |
+| 33 | [Page art and motion](design/33-page-art-motion.md) | Marker-drawn page art (Build Six): field, subjects, the 6 s loop, files and runtime |
 | 34 | [Photography and video](design/34-photo-video.md) | Photo treatment, galleries, films, captions and licensing |
 | | **Records** | |
 | R | [Decision log](records/decision-log.md) | Every locked decision with its date, newest first |

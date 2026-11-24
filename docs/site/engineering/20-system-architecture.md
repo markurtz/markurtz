@@ -65,7 +65,7 @@ flowchart LR
 | Rendering | Static generation for public routes (`generateStaticParams`, `dynamic = "error"`); route handlers for the API; server components for `/admin` | Locked |
 | Content | Velite 0.4 (Zod schemas, typed JSON), behind `src/lib/content/` | Locked |
 | Styling | **Port the mock's CSS** (`tokens.css` + `site.css`, split per component) as plain CSS with cascade layers. Tailwind is not needed for the approved look. | **Default** (replaces the plan's Tailwind + shadcn: the mock CSS is the approved design, and a utility rewrite risks drift) |
-| Interactivity | Small client components per island (filters, search, viewer, share buttons, contact popup, client app); `art-motion.js` as a deferred module | Default |
+| Interactivity | Small client components per island (filters, search, viewer, share buttons, contact popup, client app); the page-art runtime (`page-art.js`, `field2.js`, `art-motion.js`) as deferred scripts | Default |
 | Search | MiniSearch over a build-time index per list page | Locked (plan) |
 | Database | Supabase Postgres via Drizzle ORM; PGlite in tests | Locked |
 | Admin auth | Supabase Auth for Mark only (email code or passkey, **Open** D2) | Locked / Open |

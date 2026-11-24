@@ -25,7 +25,7 @@ New:
 | --- | --- |
 | `pnpm content:check-held` | Fails on any `⟦…⟧`, `[confirm` or `tbd` in content; run in the production build |
 | `pnpm tokens` | Regenerates `tokens.css` from `design/tokens.json` |
-| `pnpm art` | Regenerates page art, covers, banners and PNG copies from the art sources |
+| `pnpm art` | Regenerates page-art stills (heroes, covers, edge, banners and banner PNGs) and the per-page subject files from the Build Six sources |
 | `pnpm test:visual` | Screenshot diff against the approved mock at four widths, two themes |
 | `pnpm lhci` | Lighthouse CI against budgets |
 
@@ -97,7 +97,7 @@ the three High findings live there.
 | 6 | Content folders | `content/data`, `papers`, `projects`, `albums` | Mirror the site ([10](../data/10-content-model.md)) with `labels.yaml` | [10](../data/10-content-model.md) |
 | 7 | List template | Separate list pages | One `<ListPage>` with pinned band, segmented filters, year rail, jump bar | [23](23-frontend.md) |
 | 8 | Styling | Tailwind + shadcn | Port the mock's CSS and tokens | [20 § 3](20-system-architecture.md#3-stack), [30](../design/30-design-system.md) |
-| 9 | Icons and art | Lucide placeholders | J1 icons, T4 monogram, Layers art with motion | [32](../design/32-mark-icons.md), [33](../design/33-page-art-motion.md) |
+| 9 | Icons and art | Lucide placeholders | J1 icons, T4 monogram, Build Six marker-drawn page art | [32](../design/32-mark-icons.md), [33](../design/33-page-art-motion.md) |
 | 10 | Video | None | Films: MP4, poster, preview, cinema band, viewer | [34](../design/34-photo-video.md) |
 | 11 | Studio items | None | Per-photo pages, og crops, embeds, oEmbed, item actions | [04](../product/04-clients-sharing-embeds.md) |
 | 12 | Feature flags | `FEATURE_CLIENT_GALLERIES`, `FEATURE_GATED_PAGES` | `FEATURE_CLIENTS` only | [20 § 7](20-system-architecture.md#7-environments) |

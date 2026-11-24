@@ -3,22 +3,28 @@
 Every locked decision, newest first. Times are US Eastern. "Mock vN" is the mock version that
 first showed it. Add new decisions at the top, then update the document they touch.
 
+## 2026-11-24
+
+| Decision | Detail | Docs |
+| --- | --- | --- |
+| **Page art rebuilt: Build Six** (2:02 PM CT) | Replaces Layers art, the elastic web and its motion. The monogram's teal marker draws each J1 subject live over a field of rising teal lines (70% shared rows, motif rows 1/4/8 of 10 by group, rows stop at the subject outline); one marker line in from the left, out to the right; fewest lifts; marker draws only the frame where content has its own motion; every picture loops in 6.0 s at one marker speed (0.36 icon units/ms); undraw along each stroke, no fade; page tops loop while visible; reduced motion shows the finished still; one cover per subject; banners without text. Open: cards follow scroll, teal-means-live. Supersedes the art round 7 requests | [33](../design/33-page-art-motion.md) |
+
 ## 2026-11-23
 
 | Decision | Detail | Docs |
 | --- | --- | --- |
 | Photo viewer gets all three buttons | Copy link, Embed and More in the single photo/video viewer, not just Copy link and Close | [04 § 6](../product/04-clients-sharing-embeds.md#6-the-three-buttons-on-every-photo-and-film) |
-| Art round 7 requested | Edge-to-edge web anchored at the edges and fading out by them; one shared base network; marker or pencil stroke options; per-subject fixes (lock, app window, saw, camera, pencil) | [33](../design/33-page-art-motion.md#open-art-round-7) |
+| Art round 7 requested (superseded 2026-11-24 by Build Six) | Edge-to-edge web anchored at the edges and fading out by them; one shared base network; marker or pencil stroke options; per-subject fixes (lock, app window, saw, camera, pencil) | [33](../design/33-page-art-motion.md#retired) |
 | Embed and More buttons (mock v51) | Every photo and film: Copy link, Embed (iframe of `/embed/…`), More (Share…, Open its page / Download, Copy credit line / Make a link with options) | [04](../product/04-clients-sharing-embeds.md) |
-| Web round 6 (mock v50) | Colour = resting gradient + inward ring + stress; 404 zero rocks ±45°; briefcase lid as its own rectangle, web through the handle; designs top face clears when the box closes; drawers stretch the web | [33](../design/33-page-art-motion.md) |
-| Web round 5 (mock v49) | Densest at the centre; web skinned to pieces; stronger pull; no web inside closed shapes | [33](../design/33-page-art-motion.md) |
+| Web round 6 (mock v50) (superseded 2026-11-24 by Build Six) | Colour = resting gradient + inward ring + stress; 404 zero rocks ±45°; briefcase lid as its own rectangle, web through the handle; designs top face clears when the box closes; drawers stretch the web | [33](../design/33-page-art-motion.md) |
+| Web round 5 (mock v49) (superseded 2026-11-24 by Build Six) | Densest at the centre; web skinned to pieces; stronger pull; no web inside closed shapes | [33](../design/33-page-art-motion.md) |
 | **Clients: link only, no sign-in** (mock v48) | Every link = `/clients/#<JWT>` or `/s/<id>#<JWT>`; JWT kept in a cookie and sent in the Authorization header; no link/code distinction; three permissions per link (Download, Share single photos, Make new shares), never more than the source, turning off cascades; copy-link button on every photo and film; per-item Studio pages with og crops; path id so preview bots can unfurl; "Show a preview" per share; `/s/` allowed in robots (noindex) | [04](../product/04-clients-sharing-embeds.md), [21](../engineering/21-access-security.md) |
 | Role lines | Every page's line leads with Researcher, Engineer or Creator, then two role nouns | [03](../product/03-page-specs.md#page-header-pg-1) |
 | Parent link option B (mock v44) | Path title "Professional / Software", also on Studio work tops; no separate breadcrumb | [03](../product/03-page-specs.md) |
 | Professional page title | "Professional" | [03](../product/03-page-specs.md#professional) |
-| All art loops picked (mock v41) | Picks per subject; home page top signed in by the marker tip | [33](../design/33-page-art-motion.md#2-subjects) |
-| Art motion = loops (mock v39) | Every motion loops from and to the still; page-top plays once on load; other art loops with scroll | [33](../design/33-page-art-motion.md#3-motion-rules) |
-| Page art option A (5:49 AM) | Subject in the J1 marker stroke with dots over the unchanged network | [33](../design/33-page-art-motion.md) |
+| All art loops picked (mock v41) | Picks per subject; home page top signed in by the marker tip | [33](../design/33-page-art-motion.md#6-working-motions) |
+| Art motion = loops (mock v39) (superseded 2026-11-24 by Build Six) | Every motion loops from and to the still; page-top plays once on load; other art loops with scroll | [33](../design/33-page-art-motion.md#7-behaviour) |
+| Page art option A (5:49 AM) (superseded 2026-11-24 by Build Six) | Subject in the J1 marker stroke with dots over the unchanged network | [33](../design/33-page-art-motion.md) |
 | Icons J1 (5:41 AM) | One-colour chisel marker stroke, 10° lean, ink dots at corners and ends, no teal | [32](../design/32-mark-icons.md#4-icons-j1) |
 | Header without Get in touch (mock v36) | Contact via footer and page-header primary buttons | [02](../product/02-information-architecture.md#2-navigation) |
 
@@ -36,14 +42,14 @@ first showed it. Add new decisions at the top, then update the document they tou
 | Workshop final | Hub with tiles, featured and In progress; three list pages; project pages with build log and fact panel | [03](../product/03-page-specs.md#workshop) |
 | Home final (rounds 2–3) | One home card in rows of four; no hero buttons; tinted bands; transparent header over the hero | [03](../product/03-page-specs.md#home) |
 | Page header (mock v10) | Banner type stack on the page background, no box; art right, faded | [03](../product/03-page-specs.md#page-header-pg-1) |
-| Scroll motion approved | "Parts + signal" at Subtle | [33](../design/33-page-art-motion.md) |
+| Scroll motion approved (superseded 2026-11-24 by Build Six) | "Parts + signal" at Subtle | [33](../design/33-page-art-motion.md) |
 
 ## 2026-11-21
 
 | Decision | Detail | Docs |
 | --- | --- | --- |
 | Home final (9:47 PM) | Theme "Take it apart. Make it better."; six made-things sections | [03](../product/03-page-specs.md#home) |
-| Imagery set approved | Layers art, subjects per page, SVG-first format rule | [32](../design/32-mark-icons.md), [33](../design/33-page-art-motion.md) |
+| Imagery set approved (superseded 2026-11-24 by Build Six) | Layers art, subjects per page, SVG-first format rule | [32](../design/32-mark-icons.md), [33](../design/33-page-art-motion.md) |
 | Self-hosted films | MP4 + poster + preview clip; hover preview on cards; cinema band | [34](../design/34-photo-video.md) |
 | Shared components final (5:10 PM) | Underline header, segmented toolbar, pinned band + year rail, card set, mosaic, short-split featured, side-by-side footer, filmstrip viewer | [31](../design/31-components.md) |
 | Site structure: all 34 picks locked (11:45 AM) | See the P-table below | [02](../product/02-information-architecture.md) |
