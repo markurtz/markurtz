@@ -1154,7 +1154,7 @@ markup and CSS faithfully; the look was approved on the mock, not on a descripti
 <td><code>listTemplate</code></td>
 <td><code>&lt;ListPage&gt;</code></td>
 <td>Server + island</td>
-<td>Pinned band, toolbar, jump bar, year rail, empty state, strip</td>
+<td>Pinned band, toolbar, jump links, sticky year rail, empty state, strip</td>
 </tr>
 <tr>
 <td><code>jumpBar</code>, <code>yearMarks</code></td>
@@ -1288,7 +1288,7 @@ markup and CSS faithfully; the look was approved on the mock, not on a descripti
 <h3 id="list-filters-and-search-listcontrols">List filters and search (<code>&lt;ListControls&gt;</code>)<a class="headerlink" href="#list-filters-and-search-listcontrols" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Reads <code>q</code>, <code>year</code> and the page's filter keys from the URL on load; applies them by toggling
-  <code>hidden</code> on items and year groups; updates counts, the count line and the jump bar.</li>
+  <code>hidden</code> on items and year groups; updates counts, the count line and the jump links.</li>
 <li>Writes the URL with <code>history.replaceState</code> (no history entry per keystroke).</li>
 <li>Search: MiniSearch over the page's index JSON (titles, summaries, labels), prefix and fuzzy 0.2.
   The index loads on first focus of the search box.</li>
