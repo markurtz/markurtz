@@ -11,7 +11,8 @@ Build Six".
 Everything on the site is drawn by one marker. "markurtz" sounds like "markers", and the
 monogram is Mark's signature, so the page art is the same hand at work: **the monogram's teal
 marker tip draws each page's subject live**, over a quiet field of rising teal lines, then the
-subject does its job, settles, and is rubbed out again.
+subject does its job and settles. On page tops it then **stops**, locked in place; on cards it is
+rubbed out again and the cycle repeats with scroll.
 
 Polished, professional and clean: no web, halo, glow or fade.
 
@@ -70,14 +71,15 @@ Banners are fixed dark (navy `#0B1220`).
 
 ## 5. Timing
 
-Every picture loops in exactly **6.0 s**:
+Every picture runs exactly **6.0 s**. Page tops and edge pages play the first four phases once
+and stop at the settled frame; the undraw and blank phases apply only where a picture repeats (cards):
 
 | Phase | Length |
 | --- | --- |
 | Line in, subject, line out | At one even marker speed, **0.36 icon units per ms** (an icon unit is 1/100 of the subject's larger side), identical in every picture |
 | Working motion | The time left, 0.9 to 2.6 s, capped per subject |
 | Settle to ink | 0.25 s |
-| Hold | Short, whatever remains |
+| Hold | Short, whatever remains. **On page tops the picture stops here for good.** |
 | **Undraw** | 0.8 s: line in, then the subject in drawing order, then line out, each rubbed out along its own stroke, left to right. No fade, no wipe. |
 | Blank | 0.3 s |
 
@@ -104,13 +106,18 @@ Unchanged picks from 2026-11-23 (held internally as `PICK` in `art-motion.js`; n
 
 ## 7. Behaviour
 
-- **ART-1** Page tops and edge pages **loop while visible** (replaces "play once on load").
+- **ART-1** Page tops and edge pages **play once and stop** (Mark, 2026-11-24, replaces "loop while
+  visible"). The marker draws the subject, it works, it settles in ink (white in dark mode), and the
+  animation ends there: no undraw, no repeat, no further work. Playback starts when the art first
+  comes into view and does not restart on scroll or tab return.
+- **ART-1b** Page-top art sits in the **right column only**, beside the text, never full width and
+  never behind the title, lede or buttons. The title, lede, meta and buttons fill the left column.
 - **ART-2** Cards follow scroll: 1400 px of scrolling = one cycle, backward on scroll up, eased
   (**Open**, § 8).
 - **ART-3** Pictures rig lazily within 300 px of the viewport and pause off screen.
 - **ART-4** `prefers-reduced-motion: reduce` and no JavaScript show the **finished still**: subject
   in ink, both lines drawn, no movement.
-- **ART-5** Replay restarts the clock only; never re-mount.
+- **ART-5** Replay (cards only) restarts the clock; never re-mount.
 
 ## 8. Open
 
@@ -135,28 +142,31 @@ container. Formats follow the SVG-first rule ([32](32-mark-icons.md#formats)); P
 
 | File | Role |
 | --- | --- |
-| `page-art.js` (~20 KB) | Draws, animates and loops every picture (`PageArt.init(root)`, `PageArt.still(subject, aspect, x)`) |
+| `page-art.js` (~20 KB) | Draws and animates every picture (page tops once, cards with scroll) (`PageArt.init(root)`, `PageArt.still(subject, aspect, x)`) |
 | `page-art.css` (~1 KB) | Colours for both themes |
 | `field2.js` (~10 KB) | Field generator (`Field2.build`) |
 | `art-motion.js` (~91 KB) | Engine for each subject's working motion (`ArtMotion.rig`, `pose`); its web group is hidden by `page-art.css` |
 | `subjects.js` (~165 KB) | The 15 drawn subjects; **split per page in production** so a page inlines only its own |
 
 ```html
-<div class="page-art" data-page-art="software"></div>                  <!-- page top: loops -->
+<div class="page-art" data-page-art="software" data-page-art-mode="once"></div>  <!-- page top: plays once, stops -->
 <div class="page-art" data-page-art="builds" data-page-art-mode="scroll"
      data-page-art-aspect="1.6667"></div>                               <!-- card: follows scroll -->
 ```
 
 - The element sizes itself from its `aspect-ratio`; the picture fills it with
-  `preserveAspectRatio="xMidYMid slice"`, subject centred. For right-aligned headers, size and place
-  the element on the right.
+  `preserveAspectRatio="xMidYMid slice"`, subject centred. In page headers the element is the
+  right-hand grid cell of `.ph` (about 46% of the header width at 1024 px and up), not an absolutely
+  positioned full-width layer; the text column holds the left side.
 - `data-page-art-aspect`: `2` (headers and edge pages, default) or `1.6667` (cards).
-- `data-page-art-mode`: `loop` (default) or `scroll`.
+- `data-page-art-mode`: `once` (page tops and edge pages, default), `scroll` (cards) or `loop`
+  (review pages only; not used on the site).
 - Do not use `data-art-motion` or call `ArtMotion.init` on these elements.
 
 ## Retired
 
 The elastic web (mesh, anchors, `WEB_STROKE`, `restyle`), the art's own Layers network, loop
-candidates as a user choice, page-top play-once, cover variants `-2/-3`, the scrim gradient in hero
+candidates as a user choice, page-top looping while visible (Build Six, reversed by Mark the same
+day), full-width header art, cover variants `-2/-3`, the scrim gradient in hero
 SVGs, the left-side signal pulse, and the art round 7 requests of 2026-11-23 (superseded by the
 rebuild).

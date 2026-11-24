@@ -24,7 +24,7 @@ names, delete the row here, and add a line to the [decision log](../records/deci
 | D13 | Privacy | Does Speaking keep its own YouTube note? | Privacy page only |
 | D14 | Hosting | Vercel Hobby or Pro (Hobby terms exclude commercial use; paid client work may need Pro) | Hobby until the first paid delivery |
 | D15 | Clients | Files (non-media) at launch? | Photos and films only |
-| D16 | Art | Cards follow scroll, or loop like page tops? (carried over from 2026-11-23; Mark saw cards only as stills in Build Six) | Follow scroll |
+| D16 | Art | Cards follow scroll, or play once like page tops? (carried over from 2026-11-23; Mark saw cards only as stills in Build Six) | Follow scroll |
 | D17 | Art | Confirm "teal means live": the subject is teal while drawn and working, then settles to ink | As described |
 
 ## Facts (launch blockers)

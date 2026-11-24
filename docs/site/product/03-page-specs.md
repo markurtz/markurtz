@@ -28,9 +28,11 @@ Top to bottom:
 3. **Lede**: one muted Inter sentence.
 4. **Meta** (optional): smaller muted line, e.g. "date · Mark Kurtz · 6 min read".
 5. **Actions** (optional): the page's button pair.
-6. **Art**: the page's marker-drawn art ([33](../design/33-page-art-motion.md)), right-aligned, about 64% of the width, on the
-   page background, subject in ink at rest. On tablets and phones it becomes a band above the text.
-   The teal marker draws the subject live, and the 6 s loop repeats while the header is visible.
+6. **Art**: the page's marker-drawn art ([33](../design/33-page-art-motion.md)), in the right column only, on the
+   page background, beside the text: the title, lede and buttons fill the left side, and the art is
+   never full width or behind them. On tablets and phones it becomes a band above the text.
+   The teal marker draws the subject live once; the animation stops as soon as the subject locks in
+   place in ink (white in dark mode). It does not loop.
 
 Pages with their own tops: the home hero, Studio work pages with a film (cinema band), 404,
 link-expired, and the client "Open your photos" card.

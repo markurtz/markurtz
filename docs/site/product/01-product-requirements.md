@@ -85,7 +85,7 @@ IDs are stable. "Must" is required for launch, "Should" is expected at launch un
 | PRD-3 | A "Say hi" contact popup opened by the footer button, by each section header's primary button, and at `#contact`. Name, Email, Message, privacy-friendly challenge and a hidden trap field. | Must |
 | PRD-4 | System, light and dark themes; choice remembered per browser; no flash of the wrong theme. | Must |
 | PRD-5 | Every inner page opens with the banner-style page header (path title, role line, lede, meta, actions, art). | Must |
-| PRD-6 | Page art is drawn live by the marker in a 6 s loop: page tops loop while visible, cards follow scroll (Open); reduced motion and no-JS show the finished still. | Must |
+| PRD-6 | Page art is drawn live by the marker in 6 s: page tops play once and stop when the subject locks in ink, in the right column beside the text; cards follow scroll (Open); reduced motion and no-JS show the finished still. | Must |
 | PRD-7 | Every list page uses the shared template ([03 § list template](03-page-specs.md#the-shared-list-template-pg-2)). | Must |
 | PRD-8 | Search over titles, descriptions and labels on list pages, client-side, from a build-time index. | Must |
 | PRD-9 | Feeds: `/blog/feed.xml` (RSS), `/blog/atom.xml`, `/blog/feed.json`. | Must |
