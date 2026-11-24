@@ -60,13 +60,18 @@ holding small cards in an auto-fill grid (250 px min).
 ## Year rail (`.rail`, `.rail-y`)
 
 Two columns: a 96 px rail with the year as a large muted numeral, then that year's cards. No
-headings over hairlines. On phones the year sits above its cards. Each group has `id="y-YYYY"`.
+headings over hairlines. From 900 px up the year numeral is **sticky**: it stays pinned at the top
+of its rail while that year's cards scroll by, then hands off to the next year. Below 900 px the
+year sits above its cards. Each group has `id="y-YYYY"`.
 
-## Jump bar
+## Jump links (`.jump`)
 
-Above every timeline with three or more stops: hairline track; teal dots sized by item count; mono
-labels; the stop in view highlighted; filtered-away stops faded. Phones show the two end labels
-and the current one.
+Replaces the clickable year timeline (the full-width line with dots), retired on all 11 pages that
+had it (Mark, 2026-11-24). A quiet row beside the count line: "Jump to" then small Geist Mono year
+links (days, "Day 3", on Studio work pages), muted, newest first. The year in view is in ink with a
+teal underline (`aria-current="true"`); years filtered away are hidden. Each link goes to `#y-YYYY`
+(`#d-N` for days). On narrow screens the row scrolls sideways inside itself. It only navigates:
+the year menu in the toolbar stays the filter (`?year=`).
 
 ## Cards
 
@@ -92,7 +97,8 @@ lift.
 - **Justified rows** (`<JustifiedRows>`): rows filled edge to edge at a target height (about 280 px
   desktop, 180 px phone), photos never cropped or retouched ("untouched", Locked), 3 px gaps.
 - **Photo timeline** (`<PhotoTimeline>`): the year-rail look for moments; rail labels in the unit
-  that fits the span (clock times, "Day 3", months); a range strip on top places each moment.
+  that fits the span (clock times, "Day 3", months); Jump links to each day or month sit beside the
+  count, as on list pages.
 
 ## Item actions
 

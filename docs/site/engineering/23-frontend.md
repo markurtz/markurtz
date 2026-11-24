@@ -31,7 +31,7 @@ Mock function (in `site-mock/src/components.mjs` unless noted) → production co
 | `layout`, `header`, `footer`, `lockup` | `<SiteLayout>`, `<SiteHeader>`, `<SiteFooter>`, `<Lockup>` | Server | Header becomes bordered on scroll (tiny client hook); transparent over the home hero |
 | `pageHeader`, `hero`, `kickLine`, `crumbs`, `heroArt`, `ART` | `<PageHeader role title path lede meta actions art>` | Server | Path title "Parent / Page" (option B). Art is a `<PageArt>` (`.page-art`) |
 | `section`, `more` | `<Section>`, `<SeeAll>` | Server | |
-| `listTemplate` | `<ListPage>` | Server + island | Pinned band, toolbar, jump bar, year rail, empty state, strip |
+| `listTemplate` | `<ListPage>` | Server + island | Pinned band, toolbar, jump links, sticky year rail, empty state, strip |
 | `jumpBar`, `yearMarks` | `<JumpBar>` | Server + island | Highlights the stop in view (IntersectionObserver) |
 | `repoCard` | `<RepoCard>` | Server | Stars and release from build data |
 | `researchEntry` | `<ResearchEntry>` | Server + Cite island | Cite copies formatted citation |
@@ -59,7 +59,7 @@ Mock function (in `site-mock/src/components.mjs` unless noted) → production co
 ### List filters and search (`<ListControls>`)
 
 - Reads `q`, `year` and the page's filter keys from the URL on load; applies them by toggling
-  `hidden` on items and year groups; updates counts, the count line and the jump bar.
+  `hidden` on items and year groups; updates counts, the count line and the jump links.
 - Writes the URL with `history.replaceState` (no history entry per keystroke).
 - Search: MiniSearch over the page's index JSON (titles, summaries, labels), prefix and fuzzy 0.2.
   The index loads on first focus of the search box.

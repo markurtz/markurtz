@@ -95,7 +95,7 @@ the three High findings live there.
 | 4 | Backup | Dump as Actions artifact | Encrypted to private bucket, or Supabase only | [11 § 7](../data/11-database-schema.md#7-backups) |
 | 5 | Routes | `/work`, `/research`, `/projects`, `/photos`, `/contact`, `/blog/tags/*`, `/blog/page/*`, `/p/[key]`, `/clients/c/[token]` | Routes in [02](../product/02-information-architecture.md); no tag or paged lists | [22](22-routes-api.md) |
 | 6 | Content folders | `content/data`, `papers`, `projects`, `albums` | Mirror the site ([10](../data/10-content-model.md)) with `labels.yaml` | [10](../data/10-content-model.md) |
-| 7 | List template | Separate list pages | One `<ListPage>` with pinned band, segmented filters, year rail, jump bar | [23](23-frontend.md) |
+| 7 | List template | Separate list pages | One `<ListPage>` with pinned band, segmented filters, sticky year rail, jump links | [23](23-frontend.md) |
 | 8 | Styling | Tailwind + shadcn | Port the mock's CSS and tokens | [20 § 3](20-system-architecture.md#3-stack), [30](../design/30-design-system.md) |
 | 9 | Icons and art | Lucide placeholders | J1 icons, T4 monogram, Build Six marker-drawn page art | [32](../design/32-mark-icons.md), [33](../design/33-page-art-motion.md) |
 | 10 | Video | None | Films: MP4, poster, preview, cinema band, viewer | [34](../design/34-photo-video.md) |

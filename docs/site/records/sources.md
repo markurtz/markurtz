@@ -23,6 +23,7 @@ Paths in backticks are in the project's shared files, not in this repository.
 | Component Workbench | https://claude.ai/artifact/HsFpuku5nGVHJyX5JFP8qM (decisions `components-workbench/component-decisions.md`) |
 | Page reviews | Home https://claude.ai/artifact/Fm1vHBtEQgcJEz1RZVheJa · Professional https://claude.ai/artifact/3cQ1mdk4bNUGUhHx8P7x2F · Workshop https://claude.ai/artifact/8WTvk3YAWyDJFhSARB6vgQ · Studio https://claude.ai/artifact/27mxsyT1sR5sy4yM52LoY4 · Blog https://claude.ai/artifact/VgN6YsvV14dvmBvvLNw6kr · About https://claude.ai/artifact/U8LgbaZzbMJGeFkwCGADJY |
 | Page finals | `page-review/<page>/final.md`, copied to [page-content/](page-content/) |
+| Year timeline to jump links review | https://claude.ai/artifact/LjPpy5PxtQo1m1V2svENWu |
 | Parent-link options | https://claude.ai/artifact/TF151GuE2YAPXHMy3pcKt9 |
 | Research report "Modern Web Best Practices, Late 2026" | https://claude.ai/artifact/1ikcTBbrkRcLM91RiJFQaw (`research/modern-web-best-practices-2026.md`) |
 

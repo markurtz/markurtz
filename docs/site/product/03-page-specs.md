@@ -72,8 +72,8 @@ adapts its cards to the genre.
 | --- | --- |
 | **Pinned band** | Directly under the page header, then 24 px of space before the toolbar. Soft teal-tinted band, label with a star ("Pinned"; "Featured" on Speaking; "Favorites" on Studio). Always the **small icon card**: icon tile or 64 px thumb, eyebrow, two-line title, no image on Professional and Workshop. Every pinned item also appears at full size in the timeline. |
 | **Toolbar** | One segmented switch with a count per option in mono ("All 10 · Active 6 …"), then search (about 260 px) and the year menu on the same row; they wrap under it on narrow screens. Then a count line ("N posts"), except on Studio. |
-| **Jump bar** | Above every timeline with three or more stops: a hairline track with teal dots sized by item count and mono labels; the stop in view is highlighted; stops filtered away fade; phones show end labels and the current one only. |
-| **Year rail** | Every item newest first. Each year is a large muted numeral in a 96 px left rail beside that year's cards, no year headings. On phones the year stacks above its cards. Year groups carry `id="y-YYYY"`. |
+| **Jump links** | A quiet row of small mono "Jump to" year links beside the count (days on Studio work pages). The year in view is in ink with a teal underline. Replaces the clickable year timeline with dots, retired on all 11 pages (2026-11-24). Links only navigate; the year menu stays the filter. |
+| **Year rail** | Every item newest first. Each year is a large muted numeral in a 96 px left rail beside that year's cards, no year headings. From 900 px up the year stays pinned while its cards scroll by. Below that the year stacks above its cards. Year groups carry `id="y-YYYY"`. |
 | **In progress** | An "In progress" or "Coming soon" badge on the card, in the timeline and in the pinned band. No separate page. |
 | **Cards** | Per genre: repo card (Software), research entry (Research), talk card (Speaking), framed photo card (Workshop, Blog), title-on-photo card (Studio). Sizes per item: compact, standard, featured ([31](../design/31-components.md#cards)). |
 | **Empty result** | "No posts match that. Try a different search, or clear all filters." (wording per page) with a Clear filters button. |
@@ -265,7 +265,7 @@ Locked 2026-11-22; per-photo pages and share buttons added 2026-11-23.
 3. Lede, plain facts: "N days in <place>, <dates>." (**Held** per work).
 4. One first-person moment opens the story (**Held**; the mock's scene sentences are invented and go).
 5. Facts panel: Where · When · Camera · Lenses · Edited in. Empty rows hidden.
-6. Photos: justified rows on the **day-by-day timeline rail** built from capture dates (the same
+6. Photos: justified rows on the **day-by-day rail** (day labels pinned while their photos scroll, "Jump to" day links beside the count) built from capture dates (the same
    component as the client gallery), with short story paragraphs between rows when written.
 7. Every photo and film carries **Copy link · Embed · More** ([04](04-clients-sharing-embeds.md#studio-photos-and-films)).
 8. Licence line: "Photos and the film on this page are licensed CC BY-NC."
