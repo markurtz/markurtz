@@ -1,0 +1,147 @@
+/* Mark Kurtz brand tokens: theme.css. Generated from tokens.json (W3C Design Tokens 2025.10). Edit tokens.json, not this file. */
+:root {
+  --palette-teal-400: #50AFAA; /* oklch(69.6% 0.090 190.6) */
+  --palette-teal-500: #489D99; /* oklch(64.3% 0.082 191.2) */
+  --palette-teal-600: #387A77; /* oklch(53.6% 0.067 191.4) */
+  --palette-navy-700: #1A2742; /* oklch(27.6% 0.053 263.8) */
+  --palette-navy-900: #121B30; /* oklch(22.5% 0.043 265.5) */
+  --palette-navy-950: #0B1220; /* oklch(18.3% 0.031 263.4) */
+  --palette-slate-50: #F8FAFC; /* oklch(98.4% 0.003 247.9) */
+  --palette-slate-100: #EDEEF1; /* oklch(94.9% 0.004 271.4) */
+  --palette-slate-200: #E2E8F0; /* oklch(92.9% 0.013 255.5) */
+  --palette-slate-400: #94A3B8; /* oklch(71.1% 0.035 256.8) */
+  --palette-slate-500: #64748B; /* oklch(55.4% 0.041 257.4) */
+  --palette-slate-600: #475569; /* oklch(44.6% 0.037 257.3) */
+  --palette-slate-800: #24314A; /* oklch(31.4% 0.048 262.8) */
+  --palette-white: #FFFFFF; /* oklch(100.0% 0 0) */
+  --palette-green-600: #2E7D4F; /* oklch(52.9% 0.106 154.6) */
+  --palette-green-300: #7BCB9A; /* oklch(77.7% 0.106 156.0) */
+  --palette-amber-700: #9A6A12; /* oklch(56.1% 0.112 75.8) */
+  --palette-amber-300: #E3B45A; /* oklch(79.5% 0.121 81.7) */
+  --palette-red-600: #B53A24; /* oklch(52.5% 0.163 32.5) */
+  --palette-red-300: #F08A73; /* oklch(73.8% 0.130 33.7) */
+  --palette-data-2: #C7782A; /* oklch(64.5% 0.133 60.5) */
+  --palette-data-2d: #E3A45A; /* oklch(76.4% 0.118 68.9) */
+  --palette-data-3: #4F6FA6; /* oklch(54.2% 0.094 260.8) */
+  --palette-data-3d: #8FB0E0; /* oklch(75.0% 0.079 257.7) */
+  --color-bg: var(--palette-slate-50);
+  --color-surface: var(--palette-white);
+  --color-surface-raised: var(--palette-white);
+  --color-surface-sunken: var(--palette-slate-100);
+  --color-line: var(--palette-slate-200);
+  --color-line-strong: var(--palette-slate-500);
+  --color-ink: var(--palette-navy-900);
+  --color-ink-muted: var(--palette-slate-500);
+  --color-link: var(--palette-teal-600);
+  --color-mark: var(--palette-teal-500);
+  --color-band: var(--palette-navy-900);
+  --color-selected: var(--palette-navy-900);
+  --color-on-selected: var(--palette-slate-100);
+  --color-on-band: var(--palette-slate-100);
+  --color-on-accent: var(--palette-white);
+  --color-accent-fill: var(--palette-teal-600);
+  --color-success: var(--palette-green-600);
+  --color-warning: var(--palette-amber-700);
+  --color-danger: var(--palette-red-600);
+  --color-data-1: var(--palette-teal-500);
+  --color-data-2: var(--palette-data-2);
+  --color-data-3: var(--palette-data-3);
+  --color-data-4: var(--palette-slate-500);
+  --font-display: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --text-small: clamp(0.885rem, 0.902rem + -0.075vw, 0.844rem);
+  --text-body: clamp(1.062rem, 1.037rem + 0.114vw, 1.125rem);
+  --text-lead: clamp(1.275rem, 1.183rem + 0.408vw, 1.500rem);
+  --text-h4: clamp(1.530rem, 1.338rem + 0.853vw, 1.999rem);
+  --text-h3: clamp(1.836rem, 1.497rem + 1.507vw, 2.665rem);
+  --text-h2: clamp(2.203rem, 1.651rem + 2.452vw, 3.552rem);
+  --text-h1: clamp(2.644rem, 1.788rem + 3.802vw, 4.735rem);
+  --text-display: clamp(3.173rem, 1.889rem + 5.707vw, 6.312rem);
+  --leading-body: 1.6;
+  --leading-heading: 1.1;
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.5rem; /* 24px */
+  --space-6: 2rem; /* 32px */
+  --space-7: 3rem; /* 48px */
+  --space-8: 4rem; /* 64px */
+  --space-9: 6rem; /* 96px */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 999px;
+  --frame: 1200px;
+  --measure: 68ch;
+  --target: 44px;
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+  --ease-out: cubic-bezier(.2,.7,.2,1);
+  --ease-in-out: cubic-bezier(.6,0,.2,1);
+  --shadow-overlay: 0 12px 32px rgb(11 18 32 / .18), 0 2px 6px rgb(11 18 32 / .08);
+  --focus-ring: 2px solid var(--color-mark);
+  --focus-offset: 2px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg: var(--palette-navy-950);
+    --color-surface: var(--palette-navy-900);
+    --color-surface-raised: var(--palette-navy-700);
+    --color-surface-sunken: var(--palette-navy-900);
+    --color-line: var(--palette-slate-800);
+    --color-line-strong: var(--palette-slate-400);
+    --color-ink: var(--palette-slate-100);
+    --color-ink-muted: var(--palette-slate-400);
+    --color-link: var(--palette-teal-400);
+    --color-mark: var(--palette-teal-500);
+    --color-band: var(--palette-navy-700);
+    --color-selected: var(--palette-teal-400);
+    --color-on-selected: var(--palette-navy-950);
+    --color-on-band: var(--palette-slate-100);
+    --color-on-accent: var(--palette-navy-950);
+    --color-accent-fill: var(--palette-teal-400);
+    --color-success: var(--palette-green-300);
+    --color-warning: var(--palette-amber-300);
+    --color-danger: var(--palette-red-300);
+    --color-data-1: var(--palette-teal-400);
+    --color-data-2: var(--palette-data-2d);
+    --color-data-3: var(--palette-data-3d);
+    --color-data-4: var(--palette-slate-400);
+    --shadow-overlay: 0 12px 32px rgb(0 0 0 / .5);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --color-bg: var(--palette-navy-950);
+  --color-surface: var(--palette-navy-900);
+  --color-surface-raised: var(--palette-navy-700);
+  --color-surface-sunken: var(--palette-navy-900);
+  --color-line: var(--palette-slate-800);
+  --color-line-strong: var(--palette-slate-400);
+  --color-ink: var(--palette-slate-100);
+  --color-ink-muted: var(--palette-slate-400);
+  --color-link: var(--palette-teal-400);
+  --color-mark: var(--palette-teal-500);
+  --color-band: var(--palette-navy-700);
+  --color-selected: var(--palette-teal-400);
+  --color-on-selected: var(--palette-navy-950);
+  --color-on-band: var(--palette-slate-100);
+  --color-on-accent: var(--palette-navy-950);
+  --color-accent-fill: var(--palette-teal-400);
+  --color-success: var(--palette-green-300);
+  --color-warning: var(--palette-amber-300);
+  --color-danger: var(--palette-red-300);
+  --color-data-1: var(--palette-teal-400);
+  --color-data-2: var(--palette-data-2d);
+  --color-data-3: var(--palette-data-3d);
+  --color-data-4: var(--palette-slate-400);
+  --shadow-overlay: 0 12px 32px rgb(0 0 0 / .5);
+  color-scheme: dark;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root { --duration-fast: 0ms; --duration-base: 0ms; --duration-slow: 0ms; }
+}
