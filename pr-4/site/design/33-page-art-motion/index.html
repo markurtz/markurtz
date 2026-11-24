@@ -1103,8 +1103,8 @@ Build Six".</p>
 <p>Everything on the site is drawn by one marker. "markurtz" sounds like "markers", and the
 monogram is Mark's signature, so the page art is the same hand at work: <strong>the monogram's teal
 marker tip draws each page's subject live</strong>, over a quiet field of rising teal lines, then the
-subject does its job and settles. On page tops it then <strong>stops</strong>, locked in place; on cards it is
-rubbed out again and the cycle repeats with scroll.</p>
+subject does its job and settles. On page tops it then <strong>stops</strong>, locked in place. Link cards rest
+as the finished still and play the draw once when hovered or focused.</p>
 <p>Polished, professional and clean: no web, halo, glow or fade.</p>
 <h2 id="2-parts-of-a-picture">2. Parts of a picture<a class="headerlink" href="#2-parts-of-a-picture" title="Permanent link">&para;</a></h2>
 <table>
@@ -1380,12 +1380,20 @@ and stop at the settled frame; the undraw and blank phases apply only where a pi
   comes into view and does not restart on scroll or tab return.</li>
 <li><strong>ART-1b</strong> Page-top art sits in the <strong>right column only</strong>, beside the text, never full width and
   never behind the title, lede or buttons. The title, lede, meta and buttons fill the left column.</li>
-<li><strong>ART-2</strong> Cards follow scroll: 1400 px of scrolling = one cycle, backward on scroll up, eased
-  (<strong>Open</strong>, § 8).</li>
+<li><strong>ART-2</strong> Link cards with art (Home rows, blog strips, cover cards anywhere) <strong>animate on hover,
+  not scroll</strong> (Mark, 2026-11-24, settles D16). At rest each card shows the finished still. On
+  pointer hover or keyboard focus the marker draws the subject once from blank, it works and
+  settles, then holds; leaving the card returns it to the still. Scrolling never moves card art.
+  Touch screens show the still only.</li>
+<li><strong>ART-2b</strong> Sub-page tiles on Professional and Workshop carry <strong>no drawing</strong> (Mark, 2026-11-24,
+  pick D "Page top shows them"). Each tile is a hairline text card: icon, name, arrow, one-line
+  description and count (for example "10 repositories"). Hovering or focusing a tile redraws the
+  page-top art as that sub-page's subject (Software, Research, Speaking; Builds, Designs, Code),
+  played once to its settled still; leaving the tile row draws the section's own subject back.</li>
 <li><strong>ART-3</strong> Pictures rig lazily within 300 px of the viewport and pause off screen.</li>
 <li><strong>ART-4</strong> <code>prefers-reduced-motion: reduce</code> and no JavaScript show the <strong>finished still</strong>: subject
   in ink, both lines drawn, no movement.</li>
-<li><strong>ART-5</strong> Replay (cards only) restarts the clock; never re-mount.</li>
+<li><strong>ART-5</strong> Replay (hover) restarts the clock; never re-mount.</li>
 </ul>
 <h2 id="8-open">8. Open<a class="headerlink" href="#8-open" title="Permanent link">&para;</a></h2>
 <table>
@@ -1397,11 +1405,6 @@ and stop at the settled frame; the undraw and blank phases apply only where a pi
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>O1</td>
-<td>Cards following scroll is carried over from 2026-11-23; Mark reviewed cards only as stills this round</td>
-<td><code>data-page-art-mode="scroll"</code> on cards</td>
-</tr>
 <tr>
 <td>O2</td>
 <td>"Teal means live" is the art thread's reading, shown in builds four to six without objection</td>
@@ -1454,7 +1457,7 @@ container. Formats follow the SVG-first rule (<a href="../32-mark-icons/#formats
 <tbody>
 <tr>
 <td><code>page-art.js</code> (~20 KB)</td>
-<td>Draws and animates every picture (page tops once, cards with scroll) (<code>PageArt.init(root)</code>, <code>PageArt.still(subject, aspect, x)</code>)</td>
+<td>Draws and animates every picture (page tops once, cards on hover) (<code>PageArt.init(root)</code>, <code>PageArt.still(subject, aspect, x)</code>)</td>
 </tr>
 <tr>
 <td><code>page-art.css</code> (~1 KB)</td>
@@ -1475,8 +1478,9 @@ container. Formats follow the SVG-first rule (<a href="../32-mark-icons/#formats
 </tbody>
 </table>
 <div class="language-html highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"page-art"</span> <span class="na">data-page-art</span><span class="o">=</span><span class="s">"software"</span> <span class="na">data-page-art-mode</span><span class="o">=</span><span class="s">"once"</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>  <span class="cm">&lt;!-- page top: plays once, stops --&gt;</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"page-art"</span> <span class="na">data-page-art</span><span class="o">=</span><span class="s">"builds"</span> <span class="na">data-page-art-mode</span><span class="o">=</span><span class="s">"scroll"</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>     <span class="na">data-page-art-aspect</span><span class="o">=</span><span class="s">"1.6667"</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>                               <span class="cm">&lt;!-- card: follows scroll --&gt;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"page-art"</span> <span class="na">data-page-art</span><span class="o">=</span><span class="s">"builds"</span> <span class="na">data-page-art-mode</span><span class="o">=</span><span class="s">"hover"</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>     <span class="na">data-page-art-aspect</span><span class="o">=</span><span class="s">"1.6667"</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>                               <span class="cm">&lt;!-- card: draws on hover --&gt;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">"tile"</span> <span class="na">href</span><span class="o">=</span><span class="s">"/professional/software/"</span> <span class="na">data-page-art-target</span><span class="o">=</span><span class="s">"software"</span><span class="p">&gt;</span>…<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> <span class="cm">&lt;!-- tile: redraws the page top --&gt;</span>
 </span></code></pre></div>
 <ul>
 <li>The element sizes itself from its <code>aspect-ratio</code>; the picture fills it with
@@ -1484,14 +1488,15 @@ container. Formats follow the SVG-first rule (<a href="../32-mark-icons/#formats
   right-hand grid cell of <code>.ph</code> (about 46% of the header width at 1024 px and up), not an absolutely
   positioned full-width layer; the text column holds the left side.</li>
 <li><code>data-page-art-aspect</code>: <code>2</code> (headers and edge pages, default) or <code>1.6667</code> (cards).</li>
-<li><code>data-page-art-mode</code>: <code>once</code> (page tops and edge pages, default), <code>scroll</code> (cards) or <code>loop</code>
-  (review pages only; not used on the site).</li>
+<li><code>data-page-art-mode</code>: <code>once</code> (page tops and edge pages, default), <code>hover</code> (link cards) or <code>loop</code>
+  (review pages only; not used on the site). <code>scroll</code> is retired.</li>
+<li><code>data-page-art-target</code> on a tile names the subject the page-top art redraws as on hover or focus.</li>
 <li>Do not use <code>data-art-motion</code> or call <code>ArtMotion.init</code> on these elements.</li>
 </ul>
 <h2 id="retired">Retired<a class="headerlink" href="#retired" title="Permanent link">&para;</a></h2>
 <p>The elastic web (mesh, anchors, <code>WEB_STROKE</code>, <code>restyle</code>), the art's own Layers network, loop
 candidates as a user choice, page-top looping while visible (Build Six, reversed by Mark the same
-day), full-width header art, cover variants <code>-2/-3</code>, the scrim gradient in hero
+day), full-width header art, card art that follows scroll, cover art on sub-page tiles, cover variants <code>-2/-3</code>, the scrim gradient in hero
 SVGs, the left-side signal pulse, and the art round 7 requests of 2026-11-23 (superseded by the
 rebuild).</p>
 
